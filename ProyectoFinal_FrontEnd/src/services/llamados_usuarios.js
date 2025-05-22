@@ -24,7 +24,7 @@ async function GetUsuarios() {
 // Llamado Post de Usuarios
 async function PostUsuarios(obj) {
     try {
-        const response = await fetch ("http://127.0.0.1:8000/api/auth_user/",{
+        const response = await fetch ("http://127.0.0.1:8000/api/usuarios/",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json", 

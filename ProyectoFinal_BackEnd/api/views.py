@@ -5,6 +5,11 @@ from rest_framework.views import APIView
 from django.contrib.auth.models import User
 from .models import Usuarios
 from rest_framework.response import Response
+#pruebas
+from django.contrib.auth.models import User, Group
+
+
+
 #ListCreateView
 class RolesListCreateView(ListCreateAPIView):
     queryset = Roles.objects.all()
@@ -24,12 +29,18 @@ class AggUsuarioView(APIView):
         fecha_nacimiento = request.data.get("fecha_nacimiento")
         telefono = request.data.get("telefono")
 
+        if User.objects.filter(username=username).exists():
+            return Response({"error":"USUARIO YA EXISTE"},status=400)
+
     #datos propios de django
         usuario = User.objects.create_user(
             username=username,
             password=password,
             email=email
         )
+        grupo = Group.objects.get(name="User")
+        usuario.groups.add(grupo)
+
 
     #datos agregados
         Usuarios.objects.create(

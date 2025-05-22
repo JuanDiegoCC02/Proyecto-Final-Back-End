@@ -12,7 +12,6 @@ class Usuarios(models.Model):
     usuario = models.OneToOneField(User,on_delete=models.CASCADE)
     fecha_nacimiento = models.DateField()
     telefono = models.CharField(max_length=50)
-    rol = models.ForeignKey(Roles, on_delete = models.CASCADE, related_name= 'usuarios' )
 
 class TipoPublicaciones(models.Model):
     nombre = models.CharField(max_length=100)

@@ -1,4 +1,5 @@
 import React from 'react'
+import InicioSesionForm from '../components/InicioSesionForm'
 
 function InicioSesionPage() {
   return (
@@ -11,7 +12,7 @@ function InicioSesionPage() {
     </nav>,
     
     <main>
-
+        <InicioSesionForm/>
     </main>
   )
 }

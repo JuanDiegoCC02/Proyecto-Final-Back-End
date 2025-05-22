@@ -25,12 +25,11 @@ function RegistroForm() {
     }
     async function registrar() {
         const obj = {
-            nombre: NombreUsuario,
-            contraseña: ContraseñaUsuario,
+            username: NombreUsuario,
+            password: ContraseñaUsuario,
             email: EmailUsuario,
             fecha_nacimiento: Fecha_NacimientoUsuario,
             telefono: TelefonoUsuario
-            
         }
         const respuestaServer = await PostUsuarios(obj)
         console.log(respuestaServer);
@@ -48,20 +47,24 @@ function RegistroForm() {
             </div><br />
             <div>
             <label htmlFor="">Contraseña: </label>
-            <input value={ContraseñaUsuario} onChange={contraseña} type="text" />
+            <input value={ContraseñaUsuario} onChange={contraseña} type="password" />
             </div><br />
             <div>
             <label htmlFor="">Email: </label>
-            <input value={EmailUsuario} onChange={email} type="text" />
+            <input value={EmailUsuario} onChange={email} type="email" />
             </div><br />
             <div>
             <label htmlFor="">Fecha de Nacimiento: </label>
-            <input value={Fecha_NacimientoUsuario} onChange={fecha_nacimiento} type="text" />
+            <input value={Fecha_NacimientoUsuario} onChange={fecha_nacimiento} type="date" />
             </div><br />
             <div>
             <label htmlFor="">Telefono: </label>
             <input value={TelefonoUsuario} onChange={telefono} type="text" />
             </div>
+            <div> 
+            <label htmlFor="">Terminos y Condiciones</label>
+            <input type="checkbox" name="" id="" /> 
+            </div><br />
             <div>
                 <input type="button" onClick={registrar} value="Registro" />
             </div>
