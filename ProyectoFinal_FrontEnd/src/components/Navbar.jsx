@@ -11,7 +11,7 @@ function NavBar() {
   return (
             
     <Navbar collapseOnSelect expand="lg" className="ContainerNavbar">
-      <Container className='MainContainerNavbar'>
+      <Container className='MainContainerNavbar'> 
         <Navbar.Brand href="/">IMG</Navbar.Brand>
         <Navbar.Brand href="/">Costa Rica</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
