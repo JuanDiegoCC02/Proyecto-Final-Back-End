@@ -8,7 +8,7 @@ function Footer() {
       <footer className='FooterFo'>
         <div className='FooterContainer'>
         <div className='sec-AboutUs'>
-          <h2>About Us</h2>
+          <h2>Sobre Nosotros</h2>
           <p>Pagina ambiental.</p>
             <ul className='sci'>
             <li><a href="https://www.youtube.com"><i className="fa-brands fa-youtube"></i></a></li>
@@ -19,17 +19,17 @@ function Footer() {
         </div>
 
         <div className='sec-QuickLinks'>
-          <h2>Support</h2>
+          <h2>Soporte</h2>
           <ul>
           <li><a href="">FAQ</a></li>
-          <li><a href="">Privacy</a></li>
-          <li><a href="">Help</a></li>
-          <li><a href="/contact">Contact</a></li>
+          <li><a href="">Privacidad</a></li>
+          <li><a href="">Ayuda</a></li>
+          <li><a href="/contact">Contacto</a></li>
             </ul>
         </div>
 
         <div className='sec-QuickLinks'>
-          <h2>Shop</h2>
+          <h2>Información</h2>
           <ul>
           <li><a href="">Noticias</a></li>
           <li><a href="">Campañas/Voluntariados</a></li>
@@ -37,7 +37,7 @@ function Footer() {
         </div>
 
         <div className='sec-Contact'>
-          <h2>Contact Us</h2>
+          <h2>Contactenos</h2>
           <ul className='info'>
             <li>
               <span><i className="fa-solid fa-phone"></i></span><p><a href="">+506 8493-3030</a></p>
@@ -50,7 +50,7 @@ function Footer() {
         </div>
       </footer>
       <div className='copyrightText'>
-        <p>Copyright &copy;2025. All rights reserved Noticias Ambientales</p>
+        <p>Copyright &copy;2025. Derechos Reservados Noticias Ambientales</p>
       </div>
 
     </>
