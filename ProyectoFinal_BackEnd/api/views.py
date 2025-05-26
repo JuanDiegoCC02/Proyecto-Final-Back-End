@@ -26,7 +26,9 @@ class AggUsuarioView(APIView):
 #    datos completos del request
  def post(self,request):
     try:
-        username = request.data.get("username")
+        username = request.data.get("username") 
+        first_name = request.data.get("first_name")
+        last_name = request.data.get("last_name")
         password = request.data.get("password")
         email = request.data.get("email")
         fecha_nacimiento = request.data.get("fecha_nacimiento")
@@ -47,6 +49,8 @@ class AggUsuarioView(APIView):
         #   datos propios de django
         usuario = User.objects.create_user(
             username=username,
+            first_name=first_name,
+            last_name=last_name,
             password=password,
             email=email
         )

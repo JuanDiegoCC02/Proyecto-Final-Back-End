@@ -2,15 +2,23 @@ import React, {useState} from 'react'
 import  {PostUsuarios} from '../services/llamados_usuarios'
 
 function RegistroForm() {
-    const [NombreUsuario, setNombreUsuario] = useState()
+    const [NombreUser, setNombreUser] = useState()
+    const [NmUsuario, setNmUsuario] = useState()
+    const [ApUsuario, setApUsuario] = useState()
     const [ContraseñaUsuario, setContraseñaUsuario] = useState()
     const [EmailUsuario, setEmailUsuario] = useState()
     const [Fecha_NacimientoUsuario, setFecha_NacimientoUsuario] = useState()
     const [TelefonoUsuario, setTelefonoUsuario] = useState()
      const [mensaje, setMensaje] = useState("")
 
+    function nombre_user(e) {
+        setNombreUser(e.target.value)
+    }
     function nombre(e) {
-        setNombreUsuario(e.target.value)
+        setNmUsuario(e.target.value)
+    }
+    function apellido(e) {
+        setApUsuario(e.target.value)
     }
      function contraseña(e) {
         setContraseñaUsuario(e.target.value)
@@ -25,13 +33,15 @@ function RegistroForm() {
         setTelefonoUsuario(e.target.value)
     }
     async function registrar() {
-         if (!NombreUsuario || !ContraseñaUsuario || !EmailUsuario || !Fecha_NacimientoUsuario || !TelefonoUsuario) {
+         if (!NombreUser || !NmUsuario || !ApUsuario || !ContraseñaUsuario || !EmailUsuario || !Fecha_NacimientoUsuario || !TelefonoUsuario) {
             setMensaje("Todos los campos son obligatorios.");
             return;
         }
 
         const obj = {
-            username: NombreUsuario,
+            username: NombreUser,
+            first_name: NmUsuario,
+            last_name: ApUsuario,
             password: ContraseñaUsuario,
             email: EmailUsuario,
             fecha_nacimiento: Fecha_NacimientoUsuario,
@@ -48,8 +58,16 @@ function RegistroForm() {
         <h2>Formulario de Registro</h2>
         <div>
             <div>
+            <label htmlFor="">Usuario: </label>
+            <input value={NombreUser} onChange={nombre_user} type="text" />
+            </div><br />
+            <div>
             <label htmlFor="">Nombre: </label>
-            <input value={NombreUsuario} onChange={nombre} type="text" />
+            <input value={NmUsuario} onChange={nombre} type="text" />
+            </div><br />
+            <div>
+            <label htmlFor="">Apellido: </label>
+             <input value={ApUsuario} onChange={apellido} type="text" />
             </div><br />
             <div>
             <label htmlFor="">Contraseña: </label>
