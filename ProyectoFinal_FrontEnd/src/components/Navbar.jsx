@@ -3,6 +3,8 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
+import Imagen from './Imagen';
+
 import "../styles/Navbar.css"
 
 
@@ -11,8 +13,9 @@ function NavBar() {
   return (
             
     <Navbar collapseOnSelect expand="lg" className="ContainerNavbar">
-      <Container className='MainContainerNavbar'> 
-        <Navbar.Brand href="/">IMG</Navbar.Brand>
+      <Container className='MainContainerNavbar'>
+         <Imagen enlaceImagen={"../src/Images/Logo Noticias Ambientales.png"}/>
+        <Navbar.Brand href="/"></Navbar.Brand>
         <Navbar.Brand href="/">Costa Rica</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
