@@ -8,7 +8,7 @@ function Footer() {
       <footer className='FooterFo'>
         <div className='FooterContainer'>
         <div className='sec-AboutUs'>
-          <h2>Sobre Nosotros</h2>
+          <h2>Sobre Nosotros como empresa</h2>
           <p>Pagina ambiental.</p>
             <ul className='sci'>
             <li><a href="https://www.youtube.com"><i className="fa-brands fa-youtube"></i></a></li>
