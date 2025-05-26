@@ -1,0 +1,73 @@
+.MainContactContainer {
+    display: flex;
+    gap: 20px;
+    border: 2px solid;
+    max-width: 600px;
+    background-color: #67AE6E;
+    padding: 10px;
+
+}
+
+.contactContainer {
+    max-width: 400px;
+    text-align: center;
+    /* margin-top: 40px; */
+    background-color: #328E6E;
+    /* margin-left: 400px; */
+    padding: 20px;
+    font-size: 15px;
+    font-family: 'Times New Roman', Times, serif;
+    border: 2PX solid;
+}
+
+.SecondContact {
+    background-color: #328E6E;
+    padding: 5px;
+    max-width: 400px;
+    border: 2px solid;
+}
+
+.SecondContact .sci {
+    text-decoration: none;
+    font-size: 20px;
+    list-style: none;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.SecondContact .sci li a i {
+    background-color: #328E6E;
+    font-size: 20px;
+}
+
+.contactLabel {
+    margin-right: 10px;
+}
+
+.contactInput {
+    background-color: rgb(134, 108, 134);
+    border: none;
+    border-radius: 2PX;
+}
+
+.contactInput:hover {
+    background-color: rgb(199, 175, 199);
+}
+
+.contactMsg {
+    width: 300px;
+    height: 100px;
+}
+
+.contactBtn {
+    margin-top: 10px;
+    background-color: rgb(134, 108, 134);
+    border: none;
+    border-radius: 5px;
+    width: 70px;
+}
+
+.contactBtn:hover {
+    background-color: rgb(92, 67, 95);
+}

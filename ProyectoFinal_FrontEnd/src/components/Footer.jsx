@@ -1,0 +1,60 @@
+import React from 'react'
+import "../styles/Footer.css"
+
+
+function Footer() {
+  return (
+    <>
+      <footer className='FooterFo'>
+        <div className='FooterContainer'>
+        <div className='sec-AboutUs'>
+          <h2>About Us</h2>
+          <p>Pagina ambiental.</p>
+            <ul className='sci'>
+            <li><a href="https://www.youtube.com"><i className="fa-brands fa-youtube"></i></a></li>
+            <li><a href="https://x.com"><i className="fa-brands fa-x-twitter"></i></a></li>
+            <li><a href="https://www.instagram.com/"><i className="fa-brands fa-instagram"></i></a></li>
+            <li><a href="https://www.facebook.com"><i className="fa-brands fa-facebook-f"></i></a></li>
+            </ul>
+        </div>
+
+        <div className='sec-QuickLinks'>
+          <h2>Support</h2>
+          <ul>
+          <li><a href="">FAQ</a></li>
+          <li><a href="">Privacy</a></li>
+          <li><a href="">Help</a></li>
+          <li><a href="/contact">Contact</a></li>
+            </ul>
+        </div>
+
+        <div className='sec-QuickLinks'>
+          <h2>Shop</h2>
+          <ul>
+          <li><a href="">Noticias</a></li>
+          <li><a href="">Campañas/Voluntariados</a></li>
+            </ul>
+        </div>
+
+        <div className='sec-Contact'>
+          <h2>Contact Us</h2>
+          <ul className='info'>
+            <li>
+              <span><i className="fa-solid fa-phone"></i></span><p><a href="">+506 8493-3030</a></p>
+            </li>
+            <li>
+              <span><i className="fa-solid fa-envelope"></i></span><p><a href="">HolaProbando@gmail.com</a></p>
+            </li>
+          </ul>
+        </div>
+        </div>
+      </footer>
+      <div className='copyrightText'>
+        <p>Copyright &copy;2025. All rights reserved Noticias Ambientales</p>
+      </div>
+
+    </>
+  )
+}
+
+export default Footer

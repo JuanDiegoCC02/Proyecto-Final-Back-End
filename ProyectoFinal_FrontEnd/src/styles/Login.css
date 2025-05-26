@@ -1,1 +1,44 @@
 /* Aqui van los Estilos*/
+
+.loginContainer {
+    background-color: #4c8768;
+    max-width: 400px;
+    padding: 80px;
+    text-align: center;
+    border-radius: 2px;
+    position: relative;left: 350px;
+    top: 40px;
+    font-size: 15px;
+    border-radius: 3px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.labelLogin {
+    padding: 5px;
+}
+
+.inputLogin {
+    background-color: #135231;
+    border: none;
+    padding: 5px;
+}
+
+.inputLogin:hover {
+    background-color: #4b725e;
+
+}
+
+.loginBtn {
+    background-color: #002914;
+    border: none;
+    padding: 5px;
+    width: 60px;
+    text-align: center;
+    color: white;
+    border-radius: 3PX;
+    cursor: pointer;
+}
+
+.loginBtn:hover {
+    background-color: #b8b2b2;
+}

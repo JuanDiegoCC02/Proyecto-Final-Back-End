@@ -1,0 +1,45 @@
+.registerContainer {
+    background-color: #4c8768;
+    max-width: 400px;
+    text-align: center;
+    padding: 20px;
+    position: relative;left: 370px;
+    top: 50px;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.labelRegister {
+    position: relative;right: 5px;
+    border-radius: 2px;
+    padding: 5px;
+}
+
+.inputRegister {
+    background-color: #135231;
+    border: none;
+    border-radius: 2px;
+    padding: 5px;
+}
+
+.inputRegister:hover {
+    background-color: #4b725e;
+}
+
+.registerBtn {
+    background-color: #135231;
+    border: none;
+    border-radius: 2px;
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.registerBtn:hover {
+    background-color: rgb(147, 108, 123);
+}
+
+.barRegister {
+    border: 2px solid;
+}
+

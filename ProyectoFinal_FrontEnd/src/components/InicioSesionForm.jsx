@@ -1,7 +1,7 @@
 import React, { useState} from 'react'
 import { PostUsuarios } from '../services/llamados_usuarios';
 import { Link } from 'react-router-dom';
-
+import "../styles/Login.css"
 
 
 function InicioSesionForm() {

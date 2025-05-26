@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import  {PostUsuarios} from '../services/llamados_usuarios'
+import { Link } from 'react-router-dom';
+import "../styles/Register.css"
 
 function RegistroForm() {
     const [NombreUser, setNombreUser] = useState()
@@ -56,44 +58,46 @@ function RegistroForm() {
   return (
     <div>
         <h2>Formulario de Registro</h2>
-        <div>
+        <div className='registerContainer'>
             <div>
-            <label htmlFor="">Usuario: </label>
-            <input value={NombreUser} onChange={nombre_user} type="text" />
-            </div><br />
+            <label className='labelRegister' htmlFor="">Usuario: </label>
+            <input className='inputRegister' value={NombreUser} onChange={nombre_user} type="text" />
+            </div><hr />
             <div>
-            <label htmlFor="">Nombre: </label>
-            <input value={NmUsuario} onChange={nombre} type="text" />
-            </div><br />
+            <label className='labelRegister' htmlFor="">Nombre: </label>
+            <input className='inputRegister' value={NmUsuario} onChange={nombre} type="text" />
+            </div><hr />
             <div>
-            <label htmlFor="">Apellido: </label>
-             <input value={ApUsuario} onChange={apellido} type="text" />
-            </div><br />
+            <label className='labelRegister' htmlFor="">Apellido: </label>
+             <input className='inputRegister' value={ApUsuario} onChange={apellido} type="text" />
+            </div><hr />
             <div>
-            <label htmlFor="">Contraseña: </label>
-            <input value={ContraseñaUsuario} onChange={contraseña} type="password" />
-            </div><br />
+            <label className='labelRegister' htmlFor="">Contraseña: </label>
+            <input className='inputRegister' value={ContraseñaUsuario} onChange={contraseña} type="password" />
+            </div><hr />
             <div>
-            <label htmlFor="">Email: </label>
-            <input value={EmailUsuario} onChange={email} type="email" />
-            </div><br />
+            <label className='labelRegister' htmlFor="">Email: </label>
+            <input className='inputRegister' value={EmailUsuario} onChange={email} type="email" />
+            </div><hr />
             <div>
-            <label htmlFor="">Fecha de Nacimiento: </label>
-            <input value={Fecha_NacimientoUsuario} onChange={fecha_nacimiento} type="date" />
-            </div><br />
+            <label className='labelRegister' htmlFor="">Fecha de Nacimiento: </label>
+            <input className='inputRegister' value={Fecha_NacimientoUsuario} onChange={fecha_nacimiento} type="date" />
+            </div><hr />
             <div>
-            <label htmlFor="">Telefono: </label>
-            <input value={TelefonoUsuario} onChange={telefono} type="text" />
-            </div>
+            <label className='labelRegister' htmlFor="">Telefono: </label>
+            <input className='inputRegister' value={TelefonoUsuario} onChange={telefono} type="text" />
+            </div><hr />
             <div> 
-            <label htmlFor="">Terminos y Condiciones</label>
+            <label className='labelRegister' htmlFor="">Terminos y Condiciones</label>
             <input type="checkbox" name="" id="" /> 
-            </div><br />
+            </div><hr />
             <div>
-                <input type="button" onClick={registrar} value="Registro" />
+                <input className="registerBtn" type="button" onClick={registrar} value="Registro" />
                  {mensaje && <p>{mensaje}</p>} <br />
+            
             </div>
             
+        <p>¿Ya tienes una cuenta? <br /> <Link to="/inicio">Inicia Sesión</Link>   </p>
         </div>
     </div>
   )
