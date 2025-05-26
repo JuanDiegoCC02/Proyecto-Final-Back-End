@@ -1,12 +1,19 @@
 from django.urls import path
-from .views import RolesListCreateView, UsuariosListCreateView, TipoPublicacionesListCreateView, PublicacionesListCreateView, ComentariosListCreateView, RolesDetailView, UsuariosDetailView, TipoPublicacionesDetailView, PublicacionesDetailView, ComentariosDetailView
-from .views import AggUsuarioView
+from .views import  UsuariosListCreateView, TipoPublicacionesListCreateView, PublicacionesListCreateView, ComentariosListCreateView
+from .views import  RolesDetailView, UsuariosDetailView, TipoPublicacionesDetailView, PublicacionesDetailView, ComentariosDetailView
+from .views import  AggUsuarioView,LoginView
+
 urlpatterns = [
-    path ('roles/', RolesListCreateView.as_view(), name = 'roles-list-create'),
+
     path ('usuarios/', AggUsuarioView.as_view(), name = 'usuarios-list-create'),
+    path ('login/', LoginView.as_view(), name = 'usuarios-list-create'),
+
+   
+   
     path ('tipopublicaciones/', TipoPublicacionesListCreateView.as_view(), name = 'tipopublicaciones-list-create'),
     path ('publicaciones/', PublicacionesListCreateView.as_view(), name = 'publicaciones-list-create'),
     path ('comentarios/', ComentariosListCreateView.as_view(), name = 'comentarios-list-create'),
+
 
     path ('roles/<int:pk>/', RolesDetailView.as_view(), name = 'roles-editar-actualizar'),
     path ('usuarios/<int:pk>/', UsuariosDetailView.as_view(), name = 'usuarios-editar-actualizar'),

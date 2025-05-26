@@ -1,31 +1,33 @@
-import React, {useEffect} from 'react'
-import { GetUsuarios } from '../services/llamados_usuarios';
+import React, { useState} from 'react'
+import { PostUsuarios } from '../services/llamados_usuarios';
+import { Link } from 'react-router-dom';
 
 
 
 function InicioSesionForm() {
     const [NombreUsuario, setNombreUsuario] = useState("")
     const [ContraseñaUsuario, setContraseñaUsuario] = useState("")
-    const [Perfiles, setPerfiles] = useState([])
-    
-    
-useEffect(()=>{
-    async function fetchDataUsers() {
-        const datos = await GetUsuarios()  
-        setPerfiles(datos)      
-    };
-    fetchDataUsers()
-},[]);
+    const [mensaje, setMensaje] = useState("")
 
-function nombreUsr(e) {
-    setNombreUsuario (e.target.value)
-}
-function contraseñaUsr(e) {
-    setContraseñaUsuario (e.target.value)
-}
-function inicio() {
-    
-}
+
+    const inicio = async () => {
+        const response = await fetch("http://localhost:8000/api/login/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username: NombreUsuario, password: ContraseñaUsuario }),
+        });
+
+
+  const data = await response.json();
+        if (response.ok) {
+            setMensaje("Usuario válido. Inicio de sesión exitoso.");
+        } else {
+            setMensaje(data.error || "Usuario no encontrado.");
+        }
+    };
+
 
 
   return (
@@ -33,15 +35,18 @@ function inicio() {
 <>
     <div className='loginContainer'>
     <label htmlFor="" className='labelLogin'>Nombre</label>
-    <input className='inputLogin' onChange={nombreUsr}  placeholder='Nombre' type="text" />
+    <input className='inputLogin' value={NombreUsuario} onChange={(e) => setNombreUsuario(e.target.value)}  placeholder='Nombre' type="text" />
     <hr className='barLogin' />
 
     <label htmlFor="" className='labelLogin'>Contraseña</label>
-    <input className='inputLogin' onChange={contraseñaUsr} placeholder='Contraseña' type="text" />
+    <input className='inputLogin' value={ContraseñaUsuario} onChange={(e) => setContraseñaUsuario(e.target.value)} placeholder='Contraseña' type="text" />
     <hr className='barLogin' />
 
     <button className='loginBtn' onClick={inicio} >Iniciar</button>
-    <p>¿Aún no tienes una cuenta? <br /> <Link to="/register">Ir a Registrarse</Link>   </p>
+    {mensaje && <p>{mensaje}</p>} <br />
+
+
+     <p>¿Aún no tienes una cuenta? <br /> <Link to="/registro">Ir a Registrarse</Link>   </p>
     </div>
     </>
 

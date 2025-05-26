@@ -7,6 +7,7 @@ function RegistroForm() {
     const [EmailUsuario, setEmailUsuario] = useState()
     const [Fecha_NacimientoUsuario, setFecha_NacimientoUsuario] = useState()
     const [TelefonoUsuario, setTelefonoUsuario] = useState()
+     const [mensaje, setMensaje] = useState("")
 
     function nombre(e) {
         setNombreUsuario(e.target.value)
@@ -24,6 +25,11 @@ function RegistroForm() {
         setTelefonoUsuario(e.target.value)
     }
     async function registrar() {
+         if (!NombreUsuario || !ContraseñaUsuario || !EmailUsuario || !Fecha_NacimientoUsuario || !TelefonoUsuario) {
+            setMensaje("Todos los campos son obligatorios.");
+            return;
+        }
+
         const obj = {
             username: NombreUsuario,
             password: ContraseñaUsuario,
@@ -67,6 +73,7 @@ function RegistroForm() {
             </div><br />
             <div>
                 <input type="button" onClick={registrar} value="Registro" />
+                 {mensaje && <p>{mensaje}</p>} <br />
             </div>
             
         </div>

@@ -24,7 +24,7 @@ class Publicaciones(models.Model):
     img = models.CharField(max_length=100)
     estado_publicacion = models.CharField(max_length=100)
     tipopublicacion = models.ForeignKey(TipoPublicaciones, on_delete = models.CASCADE, related_name= 'publicaciones' )   
-    usuario = models.ForeignKey(Usuarios, on_delete = models.CASCADE, related_name = 'publicaciones')    
+    usuario = models.ForeignKey(User, on_delete = models.CASCADE, related_name = 'publicaciones')    
 
 class Comentarios(models.Model):
     comentario = models.TextField()

@@ -2,11 +2,13 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIV
 from .models import Roles, Usuarios, TipoPublicaciones, Publicaciones, Comentarios
 from .serializers import RolesSerializer, UsuariosSerializer, TipoPublicacionesSerializer, PublicacionesSerializer, ComentariosSerializer
 from rest_framework.views import APIView
-from django.contrib.auth.models import User
 from .models import Usuarios
 from rest_framework.response import Response
-#pruebas
 from django.contrib.auth.models import User, Group
+from django.contrib.auth import authenticate, login
+from rest_framework import status
+
+
 
 
 
@@ -21,18 +23,28 @@ class UsuariosListCreateView(ListCreateAPIView):
     serializer_class = UsuariosSerializer
 
 class AggUsuarioView(APIView):
-    # todos los datos
-    def post(self,request):
+#    datos completos del request
+ def post(self,request):
+    try:
         username = request.data.get("username")
         password = request.data.get("password")
         email = request.data.get("email")
         fecha_nacimiento = request.data.get("fecha_nacimiento")
         telefono = request.data.get("telefono")
 
-        if User.objects.filter(username=username).exists():
-            return Response({"error":"USUARIO YA EXISTE"},status=400)
+        if not username or not password or not email or not  fecha_nacimiento or not telefono:
+            return Response(
+                {"error": "Complete todos los campos"}, status=400 #Solicitud Invalidad //400
+            )
 
-    #datos propios de django
+        if User.objects.filter(email=email).exists():
+            return Response({"error": "Email ya Registrado"})
+
+        if User.objects.filter(username=username).exists():
+            return Response({"error":"Usuario ya Registrado"}, status=400)#Solicitud Invalidad //400
+
+
+        #   datos propios de django
         usuario = User.objects.create_user(
             username=username,
             password=password,
@@ -41,16 +53,36 @@ class AggUsuarioView(APIView):
         grupo = Group.objects.get(name="User")
         usuario.groups.add(grupo)
 
-
-    #datos agregados
+        #   datos agregados
         Usuarios.objects.create(
             usuario = usuario,
             fecha_nacimiento = fecha_nacimiento,
             telefono = telefono
-
         )
 
-        return Response({"exito":"Usuario Creado"})
+    except Exception as e:
+        return Response(
+                {"error": f"Error en el not create user {str(e)}"}, status=500
+            )
+
+
+#  Validacion de Usuarios en el Inicio de Sesion
+class LoginView(APIView):
+     def post(self, request):
+        username = request.data.get("username")
+        password = request.data.get("password")
+
+        if not username or not password:
+            return Response({"error": "Usuario y Contraseña obligatorios"}, status=400) #Solicitud Invalida // 400
+
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return Response({"mensaje": "Inicio de sesion exitoso"}, status=200) #Solicitud  Validada // 200
+
+        return Response({"error": "Credenciales ingresadas inválidas"}, status=400) # Solicitud Invalida // 400
+
+
 
 
 

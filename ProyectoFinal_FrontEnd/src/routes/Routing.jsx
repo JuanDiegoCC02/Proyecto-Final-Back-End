@@ -1,14 +1,14 @@
 import React from 'react'
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import RegistroPage from '../pages/RegistroPage';
-import InicioSesionForm from '../components/InicioSesionForm';
+import InicioSesionPage from '../pages/InicioSesionPage';
 
 function Routing() {
   return (
    <Router>
         <Routes>
             <Route path = '/registro' element = {<RegistroPage/>}/> 
-            <Route path = '/inicio' element = {<InicioSesionForm/>}/> 
+            <Route path = '/inicio' element = {<InicioSesionPage/>}/> 
 
         </Routes>
    </Router>

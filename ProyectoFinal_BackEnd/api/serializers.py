@@ -22,8 +22,9 @@ class TipoPublicacionesSerializer(serializers.ModelSerializer):
 
 class PublicacionesSerializer(serializers.ModelSerializer):
     class Meta:
-        mdoel = Publicaciones
+        model = Publicaciones  
         fields = '__all__'
+
 
 
 class ComentariosSerializer(serializers.ModelSerializer):
