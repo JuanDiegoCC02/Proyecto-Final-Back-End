@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import  {PostUsuarios} from '../services/llamados_usuarios'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import "../styles/Register.css"
 
 function RegistroForm() {
@@ -12,6 +12,7 @@ function RegistroForm() {
     const [Fecha_NacimientoUsuario, setFecha_NacimientoUsuario] = useState()
     const [TelefonoUsuario, setTelefonoUsuario] = useState()
      const [mensaje, setMensaje] = useState("")
+     const navigate = useNavigate();
 
     function nombre_user(e) {
         setNombreUser(e.target.value)
@@ -34,6 +35,8 @@ function RegistroForm() {
     function telefono(e) {
         setTelefonoUsuario(e.target.value)
     }
+
+    
     async function registrar() {
          if (!NombreUser || !NmUsuario || !ApUsuario || !ContraseñaUsuario || !EmailUsuario || !Fecha_NacimientoUsuario || !TelefonoUsuario) {
             setMensaje("Todos los campos son obligatorios.");
@@ -50,8 +53,18 @@ function RegistroForm() {
             telefono: TelefonoUsuario
         }
         const respuestaServer = await PostUsuarios(obj)
-        console.log(respuestaServer);
+        if (respuestaServer.success){
+            console.log(respuestaServer);
+            navigate("/inicio")
+        }else {
+            setMensaje(respuestaServer.error)
+            console.log(respuestaServer.error);
+            
+        }
+        
+
     }
+  
 
 
 

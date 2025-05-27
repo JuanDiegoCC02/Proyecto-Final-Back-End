@@ -25,7 +25,6 @@ class UsuariosListCreateView(ListCreateAPIView):
 class AggUsuarioView(APIView):
 #    datos completos del request
  def post(self,request):
-    try:
         username = request.data.get("username") 
         first_name = request.data.get("first_name")
         last_name = request.data.get("last_name")
@@ -54,8 +53,8 @@ class AggUsuarioView(APIView):
             password=password,
             email=email
         )
-        grupo = Group.objects.get(name="User")
-        usuario.groups.add(grupo)
+        # grupo = Group.objects.get(name="User")
+        # usuario.groups.add(grupo)
 
         #   datos agregados
         Usuarios.objects.create(
@@ -64,10 +63,8 @@ class AggUsuarioView(APIView):
             telefono = telefono
         )
 
-    except Exception as e:
-        return Response(
-                {"error": f"Error en el not create user {str(e)}"}, status=500
-            )
+        return Response({"exito": "Usuario creado"},status=201)
+
 
 
 #  Validacion de Usuarios en el Inicio de Sesion

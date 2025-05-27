@@ -1,6 +1,7 @@
 import React from 'react'
 import NavBar from '../components/Navbar'
 import NoticiasForm from '../components/NoticiasForm'
+import Footer from '../components/Footer'
 
 
 function Noticias() {
@@ -13,6 +14,10 @@ function Noticias() {
   <main>
     <NoticiasForm/>
     </main>
+
+    <footer>
+      <Footer/>
+    </footer>
    </div>
   )
 }

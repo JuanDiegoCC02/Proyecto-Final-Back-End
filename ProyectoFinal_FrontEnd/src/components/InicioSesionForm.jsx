@@ -1,6 +1,6 @@
 import React, { useState} from 'react'
 import { PostUsuarios } from '../services/llamados_usuarios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import "../styles/Login.css"
 
 
@@ -8,6 +8,7 @@ function InicioSesionForm() {
     const [NombreUsuario, setNombreUsuario] = useState("")
     const [ContraseñaUsuario, setContraseñaUsuario] = useState("")
     const [mensaje, setMensaje] = useState("")
+    const Navigate = useNavigate();
 
 
     const inicio = async () => {
@@ -22,7 +23,7 @@ function InicioSesionForm() {
 
   const data = await response.json();
         if (response.ok) {
-            setMensaje("Usuario válido. Inicio de sesión exitoso.");
+            Navigate("/")
         } else {
             setMensaje(data.error || "Usuario no encontrado.");
         }

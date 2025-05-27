@@ -1,10 +1,22 @@
 import React from 'react'
+import Navbar from '../components/Navbar'
+
 
 function Moderador() {
   return (
     <div>
 
-    <h1>Probando...</h1>
+    <nav>
+    <Navbar/>
+    </nav>
+
+    <main>
+
+    </main>
+
+    <footer>
+
+    </footer>
 
     </div>
   )
