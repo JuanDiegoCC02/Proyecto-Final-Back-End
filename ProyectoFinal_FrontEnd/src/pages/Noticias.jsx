@@ -1,5 +1,6 @@
 import React from 'react'
 import NavBar from '../components/Navbar'
+import NoticiasTitulo from '../components/NoticiasTitulo'
 import NoticiasForm from '../components/NoticiasForm'
 import Footer from '../components/Footer'
 
@@ -13,6 +14,7 @@ function Noticias() {
 
   <main>
     <NoticiasForm/>
+     <NoticiasTitulo />
     </main>
 
     <footer>

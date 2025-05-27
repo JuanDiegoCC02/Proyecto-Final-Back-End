@@ -53,6 +53,7 @@ class AggUsuarioView(APIView):
             password=password,
             email=email
         )
+        #Funcion de grupo COMENTADA para pruebas
         # grupo = Group.objects.get(name="User")
         # usuario.groups.add(grupo)
 

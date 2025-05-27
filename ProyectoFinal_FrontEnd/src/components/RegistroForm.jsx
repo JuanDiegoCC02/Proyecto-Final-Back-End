@@ -52,18 +52,15 @@ function RegistroForm() {
             fecha_nacimiento: Fecha_NacimientoUsuario,
             telefono: TelefonoUsuario
         }
-        const respuestaServer = await PostUsuarios(obj)
-        if (respuestaServer.success){
-            console.log(respuestaServer);
-            navigate("/inicio")
-        }else {
-            setMensaje(respuestaServer.error)
-            console.log(respuestaServer.error);
-            
-        }
-        
-
+    try {
+        const respuestaServer = await PostUsuarios(obj);
+        console.log("Usuario registrado:", respuestaServer);
+        navigate("/inicio");
+    } catch (error) {
+        console.error("Error al registrar:", error);
+        setMensaje("No se pudo registrar. Verifica los datos.");
     }
+}
   
 
 

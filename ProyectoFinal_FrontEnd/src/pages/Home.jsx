@@ -15,8 +15,6 @@ function Home() {
         <Bienvenidos />
         <CardHome />
         <Img_info />
-        <NoticiasTitulo />
-        <NoticiasForm />
         <Footer />
     </div>
   )
