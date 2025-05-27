@@ -8,23 +8,23 @@ function Img_info() {
     <div className='ImgContainer'>
 
         <div className='ImgBox'>
-          <img src="../src/images/planta.webp" alt="" />
+          <img src="../src/images/perezoso.png" alt="" />
         </div>
 
         <div className='ImgBox'>
-          <img src="src/images/planta.webp" alt="" />
+          <img src="src/images/ArbolesImage.png" alt="" />
           </div>
 
         <div className='ImgBox'>
-          <img src="src/images/planta.webp" alt="" />
+          <img src="src/images/MapaCRImage.png" alt="" />
           </div>
 
         <div className='ImgBox'>
-          <img src="src/images/planta.webp" alt="" />
+          <img src="src/images/FloraImage.png" alt="" />
           </div>
 
         <div className='ImgBox'>
-          <img src="src/images/planta.webp" alt="" />
+          <img src="src/images/FaunaImage.png" alt="" />
           </div>
     </div>
 
