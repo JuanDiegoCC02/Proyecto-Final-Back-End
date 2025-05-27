@@ -5,6 +5,7 @@ import InicioSesionPage from '../pages/InicioSesionPage';
 import Home from '../pages/Home';
 import Contact from '../pages/Contact';
 import Moderador from '../pages/Moderador';
+import Noticias from '../pages/Noticias';
 
 function Routing() {
   return (
@@ -12,6 +13,7 @@ function Routing() {
         <Routes>
             <Route path = '/registro' element = {<RegistroPage/>}/> 
             <Route path = '/inicio' element = {<InicioSesionPage/>}/> 
+            <Route path = '/noticias' element = {<Noticias/>}/> 
 
             <Route path="/" element={<Home/>}/>
             <Route path="/contacto" element={<Contact/>}/>

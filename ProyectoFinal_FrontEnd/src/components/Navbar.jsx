@@ -20,7 +20,7 @@ function NavBar() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">Noticias</Nav.Link>
+            <Nav.Link href="/noticias">Noticias</Nav.Link>
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/contacto">Contacto</Nav.Link>
             <NavDropdown title="ion kno" id="collapsible-nav-dropdown">
