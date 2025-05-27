@@ -6,15 +6,26 @@ function Img_info() {
   return (
     <>
     <div className='ImgContainer'>
-        <div className='ImgBox'><img src="../src/images/planta.webp" alt="" /></div>
 
-        <div className='ImgBox'><img src="src/images/planta.webp" alt="" /></div>
+        <div className='ImgBox'>
+          <img src="../src/images/planta.webp" alt="" />
+        </div>
 
-        <div className='ImgBox'><img src="src/images/planta.webp" alt="" /></div>
+        <div className='ImgBox'>
+          <img src="src/images/planta.webp" alt="" />
+          </div>
 
-        <div className='ImgBox'><img src="src/images/planta.webp" alt="" /></div>
+        <div className='ImgBox'>
+          <img src="src/images/planta.webp" alt="" />
+          </div>
 
-        <div className='ImgBox'><img src="src/images/planta.webp" alt="" /></div>
+        <div className='ImgBox'>
+          <img src="src/images/planta.webp" alt="" />
+          </div>
+
+        <div className='ImgBox'>
+          <img src="src/images/planta.webp" alt="" />
+          </div>
     </div>
 
 
