@@ -10,7 +10,7 @@ function CardHome() {
         <h1>La mejor página de Noticias Ambientales en el país</h1>
         <hr className='CardBars' />
         <h2></h2>
-        <h2>Somos una página de noticias ambientales donde los usuarios pueden reportar y realizar posts de los 
+        <h2>Somos una página de noticias ambientales donde los usuarios pueden reportar y realizar publicaciones de los 
         últimos incidentes ambientales que suceden en todo el país.
         </h2>
             <a href="" className='readMoreCard'>Leer más</a>
