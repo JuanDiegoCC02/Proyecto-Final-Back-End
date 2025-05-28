@@ -7,10 +7,16 @@
     background-color: #328E6E;
     padding: 10px;
     border-radius: 5px;
+    font-size: 30px;
+
 }
 
 .NavbarImg {
     max-width: 150px;
     max-height: 100px;
     border-radius: 90%;
+}
+
+.BrandTitle {
+    font-size: 30px;
 }

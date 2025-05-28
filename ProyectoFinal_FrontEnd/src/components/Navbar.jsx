@@ -16,12 +16,11 @@ function NavBar() {
       <Container className='MainContainerNavbar'>
          <Imagen enlaceImagen={"../src/Images/Logo Noticias Ambientales.png"}/>
         <Navbar.Brand href="/"></Navbar.Brand>
-        <Navbar.Brand href="/">Costa Rica</Navbar.Brand>
+        <Navbar.Brand className='BrandTitle' href="/">Costa Rica</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/moderador">Moderador</Nav.Link>
-            <Nav.Link href="/noticias">Noticias</Nav.Link>
+            <Nav.Link href="/">Noticias</Nav.Link>
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/contacto">Contacto</Nav.Link>
             <NavDropdown title="ion kno" id="collapsible-nav-dropdown">

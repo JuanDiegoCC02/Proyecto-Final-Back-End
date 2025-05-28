@@ -26,13 +26,13 @@ function ContactForm() {
     <div className='SecondContact'>
       <h1>Informacion de Contacto</h1>
       <h2>Ubicacion</h2>
-      <h3>San José, Costa Rica</h3>
+      <h3 className='ContactH2' >San José, Costa Rica</h3>
       <h2>Telefono</h2>
-      <h3>506-8493-3030</h3>
+      <h3 className='ContactH2' >506-8493-3030</h3>
       <h2>Email</h2>
-      <h3>Holaprobando@gmail.com</h3>
+      <h3 className='ContactH2' >Holaprobando@gmail.com</h3>
       <h2>Horario</h2>
-      <h3>7:00a.m - 4:00pm</h3>
+      <h3 className='ContactH2' >7:00a.m - 4:00pm</h3>
       <h2>Redes Sociales</h2>
       <ul className='sci'>
             <li><a href="https://www.youtube.com"><i className="fa-brands fa-youtube"></i></a></li>
