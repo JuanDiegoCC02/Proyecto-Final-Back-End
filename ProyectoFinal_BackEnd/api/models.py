@@ -1,7 +1,7 @@
 from django.db import models
 # from para una conexion entre la tabla de django y la tabla propia
 from django.contrib.auth.models import User
-# Create your models here.
+
 
 class Roles(models.Model):
     nombre = models.CharField(max_length=100)
