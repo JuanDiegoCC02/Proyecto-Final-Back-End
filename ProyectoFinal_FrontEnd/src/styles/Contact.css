@@ -14,9 +14,10 @@
     background-color: #328E6E;
     /* margin-left: 400px; */
     padding: 20px;
-    font-size: 15px;
+    font-size: 30px;
     font-family: 'Times New Roman', Times, serif;
     border: 2PX solid;
+
 }
 
 .SecondContact {
@@ -24,11 +25,12 @@
     padding: 5px;
     max-width: 400px;
     border: 2px solid;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .SecondContact .sci {
     text-decoration: none;
-    font-size: 20px;
+    font-size: 30px;
     list-style: none;
     align-content: center;
     justify-content: center;
@@ -64,9 +66,12 @@
     background-color: rgb(134, 108, 134);
     border: none;
     border-radius: 5px;
-    width: 70px;
 }
 
 .contactBtn:hover {
     background-color: rgb(92, 67, 95);
+}
+
+.ContactH2 {
+    color: whitesmoke;
 }
