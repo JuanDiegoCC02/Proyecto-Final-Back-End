@@ -1,7 +1,6 @@
 import React from 'react'
 
 import Footer from '../components/Footer'
-import NoticiasForm from '../components/NoticiasForm'
 import NavBar from '../components/Navbar'
 import NoticiasTitulo from '../components/NoticiasTitulo'
 import Bienvenidos from '../components/Bienvenidos'
@@ -15,6 +14,7 @@ function Home() {
         <Bienvenidos />
         <CardHome />
         <Img_info />
+        <NoticiasTitulo/>
         <Footer />
     </div>
   )

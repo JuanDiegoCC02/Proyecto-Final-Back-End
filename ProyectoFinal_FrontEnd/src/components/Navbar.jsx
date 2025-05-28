@@ -20,20 +20,17 @@ function NavBar() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">Noticias</Nav.Link>
+            <Nav.Link href="/moderador">Moderador</Nav.Link>
+            <Nav.Link href="/noticias">Noticias</Nav.Link>
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/contacto">Contacto</Nav.Link>
-            <NavDropdown title="ion kno" id="collapsible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+            <NavDropdown title="Configuración" id="collapsible-nav-dropdown">
+              <NavDropdown.Item href="/registro">Registro</NavDropdown.Item>
+              <NavDropdown.Item href="/inicio">Inicio de Sesión</NavDropdown.Item>
+              <NavDropdown.Item href="/"></NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
+              <NavDropdown.Item href="/">Cerrar Sesión</NavDropdown.Item>
+            </NavDropdown> 
           </Nav>
           <Nav>
             <Nav.Link href="/inicio">LogIn</Nav.Link>

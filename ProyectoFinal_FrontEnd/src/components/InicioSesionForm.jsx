@@ -40,7 +40,7 @@ function InicioSesionForm() {
     <hr className='barLogin' />
 
     <label htmlFor="" className='labelLogin'>Contraseña</label>
-    <input className='inputLogin' value={ContraseñaUsuario} onChange={(e) => setContraseñaUsuario(e.target.value)} placeholder='Contraseña' type="text" />
+    <input className='inputLogin' value={ContraseñaUsuario} onChange={(e) => setContraseñaUsuario(e.target.value)} placeholder='Contraseña' type="password" />
     <hr className='barLogin' />
 
     <button className='loginBtn' onClick={inicio} >Iniciar</button>
