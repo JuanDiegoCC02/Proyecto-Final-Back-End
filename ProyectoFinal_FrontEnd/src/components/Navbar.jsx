@@ -34,7 +34,7 @@ function NavBar() {
           </Nav>
           <Nav>
             <Nav.Link href="/inicio">LogIn</Nav.Link>
-            <Nav.Link eventKey={2} href="/registro">Register</Nav.Link>
+            <Nav.Link eventKey={2} href="/registro">Registro</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
