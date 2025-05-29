@@ -110,9 +110,11 @@ class UsuariosDetailView(RetrieveUpdateDestroyAPIView):
      queryset = User.objects.all()
      serializer_class = UsuariosEditarSerializer
 
+#Configuracion del view para actualizar Usuario
 class UsuarioActualizar(APIView):
     def patch(self,request):
         pass
+
 class TipoPublicacionesDetailView(RetrieveUpdateDestroyAPIView):
     queryset = TipoPublicaciones.objects.all()
     serializer_class = TipoPublicacionesSerializer
