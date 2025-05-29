@@ -34,7 +34,7 @@ class AggUsuarioView(APIView):
         telefono = request.data.get("telefono")
 
         if not username or not password or not email or not  fecha_nacimiento or not telefono:
-            return Response(
+            return Response(    
                 {"error": "Complete todos los campos"}, status=400 #Solicitud Invalidad //400
             )
 
