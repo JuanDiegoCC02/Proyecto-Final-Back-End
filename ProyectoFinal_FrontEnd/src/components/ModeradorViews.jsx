@@ -24,14 +24,14 @@ function ModeradorViews() {
     list()
   }, [reload])
 
+
+
 async function actualizar(id) {
   const p = {
-    "usuario_alias": edicionAliasUsuario,
-    "usuario_nombre": edicionNombre,
-    "usuario_apellido": edicionApellido,
-    "usuario_email": edicionEmail,
-    "fecha_nacimiento": edicionFechaNacimiento,
-    "telefono": edicionTelefono
+    "username": edicionAliasUsuario,
+    "first_name": edicionNombre,
+    "last_name": edicionApellido,
+    "email": edicionEmail,
   }
   await UpdateUsuarios(p, id)
   
