@@ -9,9 +9,13 @@ class RolesSerializer(serializers.ModelSerializer):
 
 
 class UsuariosSerializer(serializers.ModelSerializer):
+    usuario_alias = serializers.CharField(source="usuario.username",read_only=True)
+    usuario_nombre = serializers.CharField(source="usuario.first_name",read_only=True)
+    usuario_apellido = serializers.CharField(source="usuario.last_name",read_only=True)
+    usuario_email = serializers.CharField(source="usuario.email",read_only=True)
     class Meta:
         model = Usuarios
-        fields = '__all__'
+        fields = ["id","fecha_nacimiento","telefono","usuario","usuario_alias","usuario_nombre","usuario_apellido","usuario_email"]
 
 
 class TipoPublicacionesSerializer(serializers.ModelSerializer):

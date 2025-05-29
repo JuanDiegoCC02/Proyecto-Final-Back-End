@@ -6,6 +6,7 @@ from .views import  AggUsuarioView,LoginView
 urlpatterns = [
 
     path ('usuarios/', AggUsuarioView.as_view(), name = 'usuarios-list-create'),
+    path ('usuarios-mostrar/', UsuariosListCreateView.as_view()),
     path ('login/', LoginView.as_view(), name = 'usuarios-list-create'),
 
    
