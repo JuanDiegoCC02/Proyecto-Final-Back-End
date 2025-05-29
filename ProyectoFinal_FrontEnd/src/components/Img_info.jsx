@@ -24,7 +24,7 @@ function Img_info() {
           </div>
 
         <div className='ImgBox'>
-          <img src="src/images/FaunaImage.png" alt="" />
+          <img src="src/images/FaunaIMG.jpg" alt="" />
           </div>
     </div>
 

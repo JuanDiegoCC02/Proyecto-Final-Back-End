@@ -13,7 +13,7 @@ function CardHome() {
         <h2>Somos una página de noticias ambientales donde los usuarios pueden reportar y realizar publicaciones de los 
         últimos incidentes ambientales que suceden en todo el país.
         </h2>
-            <a href="" className='readMoreCard'>Leer más</a>
+            <a href="" className='readMoreCard'></a>
         </div>
         <img className='UnflavoredCardImg' src="../src/logos/JphUnflavoredPowder.png" alt="" />
         </div>
@@ -27,7 +27,7 @@ function CardHome() {
             <h2>Nos consideramos muy estrictos con la moderación de cada publicación realizada al igual que cumplan 
               con los terminos y condiciones de nuestra página.
             </h2>
-            <a href="" className='readMoreCard'>Leer más</a>
+            <a href="" className='readMoreCard'></a>
           
         </div>
         <img  className='ElectroCardImg' src="../src/logos/ElectrolytesCardImg.png" alt="" />

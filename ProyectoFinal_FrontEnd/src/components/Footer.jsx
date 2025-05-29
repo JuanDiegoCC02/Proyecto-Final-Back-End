@@ -8,7 +8,7 @@ function Footer() {
       <footer className='FooterFo'>
         <div className='FooterContainer'>
         <div className='sec-AboutUs'>
-          <h2>Sobre Nosotros como empresa</h2>
+          <h2>Sobre Nosotros</h2>
           <p>Pagina ambiental.</p>
             <ul className='sci'>
             <li><a href="https://www.youtube.com"><i className="fa-brands fa-youtube"></i></a></li>
@@ -21,10 +21,10 @@ function Footer() {
         <div className='sec-QuickLinks'>
           <h2>Soporte</h2>
           <ul>
-          <li><a href="">FAQ</a></li>
           <li><a href="">Privacidad</a></li>
-          <li><a href="">Ayuda</a></li>
-          <li><a href="/contact">Contacto</a></li>
+          <li><a href="">Politicas</a></li>
+          <li><a href="/contacto">Ayuda</a></li>
+          <li><a href=""></a></li>
             </ul>
         </div>
 
@@ -43,7 +43,7 @@ function Footer() {
               <span><i className="fa-solid fa-phone"></i></span><p><a href="">+506 8493-3030</a></p>
             </li>
             <li>
-              <span><i className="fa-solid fa-envelope"></i></span><p><a href="">HolaProbando@gmail.com</a></p>
+              <span><i className="fa-solid fa-envelope"></i></span><p><a href="">PaginaAmbiental@gmail.com</a></p>
             </li>
           </ul>
         </div>
