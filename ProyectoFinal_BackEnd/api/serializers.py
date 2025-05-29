@@ -1,6 +1,6 @@
 from .models import Roles, Usuarios, TipoPublicaciones, Publicaciones, Comentarios
 from rest_framework import serializers
-
+from django.contrib.auth.models import User
 #Serializers 
 class RolesSerializer(serializers.ModelSerializer):
     class Meta: 
@@ -16,6 +16,13 @@ class UsuariosSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuarios
         fields = ["id","fecha_nacimiento","telefono","usuario","usuario_alias","usuario_nombre","usuario_apellido","usuario_email"]
+
+class UsuariosEditarSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = "__all__"
+
+
 
 
 class TipoPublicacionesSerializer(serializers.ModelSerializer):

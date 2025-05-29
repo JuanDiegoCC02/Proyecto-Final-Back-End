@@ -1,6 +1,6 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from .models import Roles, Usuarios, TipoPublicaciones, Publicaciones, Comentarios
-from .serializers import RolesSerializer, UsuariosSerializer, TipoPublicacionesSerializer, PublicacionesSerializer, ComentariosSerializer
+from .serializers import RolesSerializer, UsuariosSerializer,UsuariosEditarSerializer, TipoPublicacionesSerializer, PublicacionesSerializer, ComentariosSerializer
 from rest_framework.views import APIView
 from .models import Usuarios
 from rest_framework.response import Response
@@ -107,9 +107,12 @@ class RolesDetailView(RetrieveUpdateDestroyAPIView):
     serializer_class = RolesSerializer
 
 class UsuariosDetailView(RetrieveUpdateDestroyAPIView):
-    queryset = Usuarios.objects.all()
-    serializer_class = UsuariosSerializer
+     queryset = User.objects.all()
+     serializer_class = UsuariosEditarSerializer
 
+class UsuarioActualizar(APIView):
+    def patch(self,request):
+        pass
 class TipoPublicacionesDetailView(RetrieveUpdateDestroyAPIView):
     queryset = TipoPublicaciones.objects.all()
     serializer_class = TipoPublicacionesSerializer
