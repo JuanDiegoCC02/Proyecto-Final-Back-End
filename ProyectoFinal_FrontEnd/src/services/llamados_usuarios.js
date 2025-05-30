@@ -47,7 +47,7 @@ async function PostUsuarios(obj) {
 async function UpdateUsuarios(obj, id) 
 {
     try {
-        const response = await fetch("http://127.0.0.1:8000/api/usuarios/"+id+"/", {
+        const response = await fetch("http://127.0.0.1:8000/api/usuarios-editar/"+id+"/", {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'

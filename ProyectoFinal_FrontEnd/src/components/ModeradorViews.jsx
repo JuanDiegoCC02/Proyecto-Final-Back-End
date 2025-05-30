@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { GetUsuarios, UpdateUsuarios,  } from '../services/llamados_usuarios'
+import { DeleteUsuarios, GetUsuarios, UpdateUsuarios,  } from '../services/llamados_usuarios'
 
 function ModeradorViews() {
   const [usuarios, setUsuarios] = useState ([])
@@ -32,9 +32,17 @@ async function actualizar(id) {
     "first_name": edicionNombre,
     "last_name": edicionApellido,
     "email": edicionEmail,
+    "fecha_nacimiento": edicionFechaNacimiento,
+    "telefono": edicionTelefono
+
   }
   await UpdateUsuarios(p, id)
-  
+  setReload(!reload)
+  setMostrar(!mostrar)
+}
+
+async function EliminarUsuarios(id) {
+  await DeleteUsuarios(id)
 }
 
   return (
@@ -55,7 +63,7 @@ async function actualizar(id) {
                                 <strong>Email</strong> {user.usuario_email} <br /><br /><br />
                                 <strong>Fecha Nacimiento</strong>  {user.fecha_nacimiento} <br /><br /><br />
                                 <strong>Telefono</strong>  {user.telefono} <br /><br /><br />
-                                <button>Eliminar</button>
+                                <button onClick={()=> EliminarUsuarios(user.id)}>Eliminar</button>
                                 <button onClick={()=> setMostrar(!mostrar)}>Editar</button>
                                 {mostrar &&
                                     <> <br />

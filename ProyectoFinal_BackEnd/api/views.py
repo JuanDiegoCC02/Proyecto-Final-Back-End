@@ -128,4 +128,38 @@ class ComentariosDetailView(RetrieveUpdateDestroyAPIView):
     serializer_class = ComentariosSerializer
 
 
+class UsuarioEditarView(APIView):
+    def patch(self,request,id):
+        username = request.data.get("username")
+        first_name = request.data.get("first_name")
+        last_name = request.data.get("last_name")
+        email = request.data.get("email")
+        password = request.data.get("password")
+        fecha_nacimiento = request.data.get("fecha_nacimiento")
+        telefono = request.data.get("telefono")
 
+        user = User.objects.get(id=id)
+
+        if username:
+            user.username = username
+        if first_name:
+            user.first_name = first_name
+        if last_name:
+            user.last_name = last_name
+        if email:
+            user.email = email
+        if password:
+            user.set_password(password)
+        
+        usuario_ext = user.usuarios
+
+        if fecha_nacimiento:
+            usuario_ext.fecha_nacimiento = fecha_nacimiento
+        if telefono:
+            usuario_ext.telefono = telefono
+        
+        user.save()
+
+        usuario_ext.save()
+
+        return Response({"mensaje": "Usuario actualizado"}, status=200)
