@@ -107,7 +107,7 @@ function RegistroForm() {
             
             </div>
             
-        <p>¿Ya tienes una cuenta? <br /> <Link to="/inicio">Inicia Sesión</Link>   </p>
+        <p>¿Ya tienes cuenta? <br /> <Link to="/inicio">Inicia Sesión</Link>   </p>
         </div>
     </div>
   )
