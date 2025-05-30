@@ -18,23 +18,19 @@ function NavBar() {
         <Navbar.Brand href="/"></Navbar.Brand>
         <Navbar.Brand className='BrandTitle' href="/">Costa Rica</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
+        <Navbar.Collapse id="responsive-navbar-nav" >
+          <Nav className="me-auto ">
             <Nav.Link href="/moderador">Moderador</Nav.Link>
             <Nav.Link href="/noticias">Noticias</Nav.Link>
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/contacto">Contacto</Nav.Link>
             <NavDropdown title="Configuración" id="collapsible-nav-dropdown">
-              <NavDropdown.Item href="/">Opc</NavDropdown.Item>
-              <NavDropdown.Item href="/">Opc</NavDropdown.Item>
+              <NavDropdown.Item href="/">Login</NavDropdown.Item>
+              <NavDropdown.Item href="/">Registro</NavDropdown.Item>
               <NavDropdown.Item href="/"></NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="/">Cerrar Sesión</NavDropdown.Item>
             </NavDropdown>
-          </Nav>
-          <Nav>
-            <Nav.Link href="/inicio">LogIn</Nav.Link>
-            <Nav.Link eventKey={2} href="/registro">Registro</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

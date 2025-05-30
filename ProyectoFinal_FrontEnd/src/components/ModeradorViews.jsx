@@ -5,7 +5,7 @@ function ModeradorViews() {
   const [usuarios, setUsuarios] = useState ([])
   
   const [reload, setReload] = useState (false)
-
+  
   //prueba
   const [mostrar, setMostrar] = useState(false)
   const [edicionAliasUsuario, setEdicionAliasUsuario] = useState("")

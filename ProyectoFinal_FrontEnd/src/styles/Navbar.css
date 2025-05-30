@@ -1,20 +1,22 @@
 .ContainerNavbar {
     background-color: #328E6E;
-    padding: 10px;
+
 }
 
 .MainContainerNavbar {
     background-color: #328E6E;
-    padding: 10px;
     border-radius: 5px;
     font-size: 30px;
-
 }
-
+.abc{
+    color: red !important;
+    font-size: 10px;
+}
 .NavbarImg {
     max-width: 150px;
     max-height: 100px;
     border-radius: 90%;
+
 }
 
 .BrandTitle {
