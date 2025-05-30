@@ -1,11 +1,12 @@
 from django.urls import path
 from .views import  UsuariosListCreateView, TipoPublicacionesListCreateView, PublicacionesListCreateView, ComentariosListCreateView
 from .views import  RolesDetailView, UsuariosDetailView, TipoPublicacionesDetailView, PublicacionesDetailView, ComentariosDetailView
-from .views import  AggUsuarioView,LoginView
+from .views import  AggUsuarioView,LoginView,UsuarioEditarView
 
 urlpatterns = [
 
     path ('usuarios/', AggUsuarioView.as_view(), name = 'usuarios-list-create'),
+    path ('usuarios-editar/<int:id>/', UsuarioEditarView.as_view(), name = 'usuarios-editar'),
     path ('usuarios-mostrar/', UsuariosListCreateView.as_view()),
     path ('login/', LoginView.as_view(), name = 'usuarios-list-create'),
 
