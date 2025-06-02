@@ -31,3 +31,10 @@ class Comentarios(models.Model):
     usuario = models.ForeignKey(Usuarios, on_delete = models.CASCADE, related_name = 'comentarios')    
     publicacion = models.ForeignKey(Publicaciones, on_delete= models.CASCADE, related_name = 'comentarios')
 
+class EmailsContacto(models.Model):
+    nombre = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100)
+    telefono = models.CharField(max_length=80)
+    mensaje = models.TextField()
+    fecha = models.DateTimeField(auto_now_add=True)
+

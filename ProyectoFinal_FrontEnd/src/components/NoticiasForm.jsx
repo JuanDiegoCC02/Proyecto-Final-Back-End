@@ -4,6 +4,9 @@ import "../styles/NoticiasForm.css"
 
 
 function NoticiasForm() {
+
+    
+
     return (
         <>
          <div className='mainContainerNoticia'>
