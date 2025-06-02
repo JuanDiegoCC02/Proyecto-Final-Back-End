@@ -139,7 +139,7 @@ class UsuarioEditarView(APIView):
         telefono = request.data.get("telefono")
 
         user = User.objects.get(id=id)
-
+                
         if username:
             user.username = username
         if first_name:
