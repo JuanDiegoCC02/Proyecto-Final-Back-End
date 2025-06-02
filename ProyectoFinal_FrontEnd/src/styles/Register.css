@@ -3,10 +3,11 @@
     max-width: 400px;
     text-align: center;
     padding: 20px;
-    position: relative;left: 370px;
+    position: relative;left: 420px;
     top: 50px;
     border-radius: 5px;
     font-size: 15px;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .labelRegister {
@@ -16,28 +17,30 @@
 }
 
 .inputRegister {
-    background-color: #135231;
+   background-color: #96cbb0;
     border: none;
     border-radius: 2px;
     padding: 5px;
-    color: whitesmoke;
+    color: rgb(0, 0, 0);
 }
 
 .inputRegister:hover {
-    background-color: #4b725e;
+   background-color: #3dcd83;   
 }
 
 .registerBtn {
-    background-color: #135231;
+    background-color: #0e2a1c;
     border: none;
     border-radius: 2px;
     padding: 5px;
     margin: 5px;
     cursor: pointer;
+    color: rgba(201, 223, 31, 0.968);
 }
 
 .registerBtn:hover {
-    background-color: rgb(147, 108, 123);
+     background-color: #0e522ec3;
+     color: rgb(209, 223, 217);
 }
 
 .barRegister {

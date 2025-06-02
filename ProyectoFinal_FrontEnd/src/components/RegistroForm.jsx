@@ -70,32 +70,32 @@ function RegistroForm() {
         <h2>Formulario de Registro</h2>
         <div className='registerContainer'>
             <div>
-            <label className='labelRegister' htmlFor="">Usuario: </label>
-            <input className='inputRegister' value={NombreUser} onChange={nombre_user} type="text" />
+            <label className='labelRegister' htmlFor="">Usuario </label><br />
+            <input className='inputRegister' value={NombreUser} onChange={nombre_user} type="text" placeholder='Nombre Usuario' />
             </div><hr />
             <div>
-            <label className='labelRegister' htmlFor="">Nombre: </label>
-            <input className='inputRegister' value={NmUsuario} onChange={nombre} type="text" />
+            <label className='labelRegister' htmlFor="">Nombre </label><br />
+            <input className='inputRegister' value={NmUsuario} onChange={nombre} type="text" placeholder='Nombre'/>
             </div><hr />
             <div>
-            <label className='labelRegister' htmlFor="">Apellido: </label>
-             <input className='inputRegister' value={ApUsuario} onChange={apellido} type="text" />
+            <label className='labelRegister' htmlFor="">Apellido </label><br />
+             <input className='inputRegister' value={ApUsuario} onChange={apellido} type="text" placeholder='Apellido' />
             </div><hr />
             <div>
-            <label className='labelRegister' htmlFor="">Contraseña: </label>
-            <input className='inputRegister' value={ContraseñaUsuario} onChange={contraseña} type="password" />
+            <label className='labelRegister' htmlFor="">Contraseña </label><br />
+            <input className='inputRegister' value={ContraseñaUsuario} onChange={contraseña} type="password" placeholder='Contraseña' />
             </div><hr />
             <div>
-            <label className='labelRegister' htmlFor="">Email: </label>
-            <input className='inputRegister' value={EmailUsuario} onChange={email} type="email" />
+            <label className='labelRegister' htmlFor="">Email </label><br />
+            <input className='inputRegister' value={EmailUsuario} onChange={email} type="email" placeholder='Email' />
             </div><hr />
             <div>
-            <label className='labelRegister' htmlFor="">Fecha de Nacimiento: </label>
+            <label className='labelRegister' htmlFor="">Fecha de Nacimiento </label><br />
             <input className='inputRegister' value={Fecha_NacimientoUsuario} onChange={fecha_nacimiento} type="date" />
             </div><hr />
             <div>
-            <label className='labelRegister' htmlFor="">Telefono: </label>
-            <input className='inputRegister' value={TelefonoUsuario} onChange={telefono} type="text" />
+            <label className='labelRegister' htmlFor="">Telefono</label><br />
+            <input className='inputRegister' value={TelefonoUsuario} onChange={telefono} type="text" placeholder='Telefono' />
             </div><hr />
             <div> 
             <label className='labelRegister' htmlFor="">Terminos y Condiciones</label>
