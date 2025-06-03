@@ -1,4 +1,5 @@
 import React from 'react'
+import Geolocalizacion from '../components/Geolocalizacion'
 import "../styles/NoticiasForm.css"
 
 
@@ -19,6 +20,7 @@ function NoticiasForm() {
                     <option value="noticia">Noticia</option>
                     <option value="campana">Campaña</option>
                 </select>
+                 <Geolocalizacion/>
                 <input className='inputFile' type="file" />
                 <button className='noticiasBtn'>Enviar</button>
                 </div>

@@ -6,19 +6,23 @@
 .MainContainerNavbar {
     background-color: #328E6E;
     border-radius: 5px;
-    font-size: 30px;
+    font-size: 22px;
+    margin: 10px;
+    font-family: 'Times New Roman', Times, serif;
 }
 .abc{
     color: red !important;
     font-size: 10px;
 }
 .NavbarImg {
-    max-width: 150px;
-    max-height: 100px;
+    max-width: 200px;
+    max-height: 150px;
     border-radius: 90%;
 
 }
 
-.BrandTitle {
-    font-size: 30px;
+
+.linkConfg{
+    margin-left: 350px;
+    font-size: 21px;
 }

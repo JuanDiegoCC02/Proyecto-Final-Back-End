@@ -16,7 +16,7 @@ function NavBar() {
       <Container className='MainContainerNavbar'>
          <Imagen enlaceImagen={"../src/Images/Logo Pag Noticias.jpg"}/>
         <Navbar.Brand href="/"></Navbar.Brand>
-        <Navbar.Brand className='BrandTitle' href="/">Costa Rica</Navbar.Brand>
+        <Navbar.Brand className='BrandTitle' href="/"></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav" >
           <Nav className="me-auto ">
@@ -24,7 +24,7 @@ function NavBar() {
             <Nav.Link href="/noticias">Noticias</Nav.Link>
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/contacto">Contacto</Nav.Link>
-            <NavDropdown title="Configuración" id="collapsible-nav-dropdown">
+            <NavDropdown className='linkConfg' title="Configuración" id="collapsible-nav-dropdown">
               <NavDropdown.Item href="/inicio">Inicio de Sesión</NavDropdown.Item>
               <NavDropdown.Item href="/registro">Registro</NavDropdown.Item>
               <NavDropdown.Divider />

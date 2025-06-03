@@ -5,16 +5,21 @@ import NoticiasForm from '../components/NoticiasForm'
 import Footer from '../components/Footer'
 
 
+
 function Noticias() {
   return (
  <div>
   <nav>
     <NavBar/>
+    
    </nav>,
 
   <main>
     <NoticiasForm/>
      <NoticiasTitulo />
+    
+   
+    
     </main>
 
     <footer>
