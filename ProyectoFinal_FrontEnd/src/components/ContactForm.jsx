@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import  {postUsers} from '../services/MainLlamados'
+import React, {useState, useEffect} from 'react'
+import  {postUsers, getUsers, patchData, deleteUser} from '../services/MainLlamados'
 import "../styles/Contact.css"
 
 
