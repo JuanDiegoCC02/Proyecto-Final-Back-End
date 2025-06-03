@@ -35,8 +35,8 @@ function InicioSesionForm() {
     <div>
         <nav>
      <div className='ImgInicioLogo'>
-         <img src="../src/Images/Logo Noticias Ambientales.png" alt="" />
-     </div>
+         <img src="../src/Images/Logo Pag Noticias.jpg" alt="" />
+     </div><br /><br />
      <div>
         <h3 className='tituloInicio'>Inicio de Sesión</h3>
      </div>

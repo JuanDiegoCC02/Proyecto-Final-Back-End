@@ -2,7 +2,7 @@ import React from 'react'
 import "../styles/Footer.css"
 
 
-function Footer() {
+function Footer_Registro() {
   return (
     <>
       <footer className='FooterFo'>
@@ -31,8 +31,8 @@ function Footer() {
         <div className='sec-QuickLinks'>
           <h2>Información</h2>
           <ul>
-          <li><a href="">Noticias</a></li>
-          <li><a href="">Campañas/Voluntariados</a></li>
+          <li><a href="/">Noticias</a></li>
+          <li><a href="/">Campañas/Voluntariados</a></li>
             </ul>
         </div>
 
@@ -57,4 +57,4 @@ function Footer() {
   )
 }
 
-export default Footer
+export default Footer_Registro

@@ -1,19 +1,16 @@
 import React from 'react'
 import RegistroForm from '../components/RegistroForm'
+import Footer_Registro from '../components/Footer_Registro'
 
 function RegistroPage() {
   return (
-     <header>
-
-    </header>,
-
-    <nav>
-
-    </nav>,
+     <div>
+          <RegistroForm/><br />
+         <Footer_Registro/>
+     </div>
+       
     
-    <main>
-        <RegistroForm/>
-    </main>
+    
   )
 }
 

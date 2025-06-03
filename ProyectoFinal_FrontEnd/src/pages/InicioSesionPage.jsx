@@ -1,19 +1,15 @@
 import React from 'react'
 import InicioSesionForm from '../components/InicioSesionForm'
+import Footer_Registro from '../components/Footer_Registro'
 
 function InicioSesionPage() {
   return (
-    <header>
-
-    </header>,
-
-    <nav>
-
-    </nav>,
+   <div>
+     <InicioSesionForm/><br />
+       <Footer_Registro/>
+   </div>
+       
     
-    <main>
-        <InicioSesionForm/>
-    </main>
   )
 }
 

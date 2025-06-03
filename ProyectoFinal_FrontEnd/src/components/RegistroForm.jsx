@@ -67,7 +67,11 @@ function RegistroForm() {
 
   return (
     <div>
-        <h2>Formulario de Registro</h2>
+     <div className='ImgInicioLogo'>
+         <img src="../src/Images/Logo Pag Noticias.jpg" alt="" />
+     </div><br /><br />
+
+        <h3 className='tituloRegistro' >Registro</h3>
         <div className='registerContainer'>
             <div>
             <label className='labelRegister' htmlFor="">Usuario </label><br />
@@ -102,12 +106,12 @@ function RegistroForm() {
             <input type="checkbox" name="" id="" /> 
             </div><hr />
             <div>
-                <input className="registerBtn" type="button" onClick={registrar} value="Registro" />
-                 {mensaje && <p>{mensaje}</p>} <br />
+                <input className="registerBtn" type="button" onClick={registrar} value="Registro" /><br /><br />
+                 {mensaje && <p>{mensaje}</p>} 
             
-            </div>
+            </div><br />
             
-        <p>¿Ya tienes cuenta? <br /> <Link to="/inicio">Inicia Sesión</Link>   </p>
+        <p>¿Ya tienes cuenta? <br /> <Link className='linkRegistro' to="/inicio">Inicia Sesión</Link>   </p>
         </div>
     </div>
   )

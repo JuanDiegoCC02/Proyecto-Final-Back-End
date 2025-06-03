@@ -14,7 +14,7 @@ function NavBar() {
             
     <Navbar collapseOnSelect expand="lg" className="ContainerNavbar">
       <Container className='MainContainerNavbar'>
-         <Imagen enlaceImagen={"../src/Images/Logo Noticias Ambientales.png"}/>
+         <Imagen enlaceImagen={"../src/Images/Logo Pag Noticias.jpg"}/>
         <Navbar.Brand href="/"></Navbar.Brand>
         <Navbar.Brand className='BrandTitle' href="/">Costa Rica</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -27,7 +27,6 @@ function NavBar() {
             <NavDropdown title="Configuración" id="collapsible-nav-dropdown">
               <NavDropdown.Item href="/inicio">Inicio de Sesión</NavDropdown.Item>
               <NavDropdown.Item href="/registro">Registro</NavDropdown.Item>
-              <NavDropdown.Item href="/"></NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="/">Cerrar Sesión</NavDropdown.Item>
             </NavDropdown>
