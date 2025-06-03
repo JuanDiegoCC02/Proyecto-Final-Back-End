@@ -9,6 +9,7 @@ urlpatterns = [
     path ('usuarios-editar/<int:id>/', UsuarioEditarView.as_view(), name = 'usuarios-editar'),
     path ('usuarios-mostrar/', UsuariosListCreateView.as_view()),
     path ('login/', LoginView.as_view(), name = 'usuarios-list-create'),
+     # url de la vista de contacto
     path ('emails-contacto/', EmailsContactoListCreateView.as_view()),
    
    
@@ -23,4 +24,5 @@ urlpatterns = [
     path ('publicaciones/<int:pk>/', PublicacionesDetailView.as_view(), name = 'publicaciones-editar-actualizar'),
     path ('comentarios/<int:pk>/', ComentariosDetailView.as_view(), name = 'comentarios-editar-actualizar'),
 
+   
 ]

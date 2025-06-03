@@ -14,6 +14,7 @@ from rest_framework import status
 
 #ListCreateView
 
+# vista para contacto
 class EmailsContactoListCreateView(ListCreateAPIView):
     queryset = EmailsContacto.objects.all()
     serializer_class = EmailContactoSerializer
@@ -145,7 +146,7 @@ class UsuarioEditarView(APIView):
         telefono = request.data.get("telefono")
 
         user = User.objects.get(id=id)
-
+                
         if username:
             user.username = username
         if first_name:
@@ -169,3 +170,5 @@ class UsuarioEditarView(APIView):
         usuario_ext.save()
 
         return Response({"mensaje": "Usuario actualizado"}, status=200)
+
+

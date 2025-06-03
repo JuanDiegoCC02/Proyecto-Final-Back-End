@@ -43,9 +43,8 @@ class PublicacionesSerializer(serializers.ModelSerializer):
 
 
 
+# serializer del modelo de contacto
 class ComentariosSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comentarios
         fields = '__all__'
-
-        

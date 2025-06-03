@@ -6,7 +6,7 @@ import Home from '../pages/Home';
 import Contact from '../pages/Contact';
 import Moderador from '../pages/Moderador';
 import Noticias from '../pages/Noticias';
-import StripedColumnsExample from '../components/tablaUsuarios';
+import TablaUsuarios from '../pages/tablaUsuarios';
 
 function Routing() {
   return (
@@ -19,7 +19,8 @@ function Routing() {
             <Route path="/" element={<Home/>}/>
             <Route path="/contacto" element={<Contact/>}/>
             <Route path="/moderador" element={<Moderador/>}/>
-            <Route path="/tabla" element={<StripedColumnsExample/>}/>
+            <Route path="/tablausuarios" element={<TablaUsuarios/>}/>
+
 
         </Routes>
    </Router>
