@@ -81,14 +81,14 @@ class LoginView(APIView):
         password = request.data.get("password")
 
         if not username or not password:
-            return Response({"error": "Usuario y Contraseña obligatorios"}, status=400) #Solicitud Invalida // 400
+            return Response({"error": "Credenciales obligatorias"}, status=400) #Solicitud Invalida // 400
 
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return Response({"mensaje": "Inicio de sesion exitoso"}, status=200) #Solicitud  Validada // 200
+            return Response({"mensaje": "Inicio de sesión exitoso"}, status=200) #Solicitud  Validada // 200
 
-        return Response({"error": "Credenciales ingresadas inválidas"}, status=400) # Solicitud Invalida // 400
+        return Response({"error": "Credenciales inválidas"}, status=400) # Solicitud Invalida // 400
 
 
 

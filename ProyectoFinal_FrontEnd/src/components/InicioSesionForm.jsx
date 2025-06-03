@@ -33,6 +33,14 @@ function InicioSesionForm() {
 
   return (
     <div>
+        <nav>
+     <div className='ImgInicioLogo'>
+         <img src="../src/Images/Logo Noticias Ambientales.png" alt="" />
+     </div>
+     <div>
+        <h3 className='tituloInicio'>Inicio de Sesión</h3>
+     </div>
+        </nav>
 <>
     <div className='loginContainer'>
     <label htmlFor="" className='labelLogin'>Nombre</label>
@@ -43,11 +51,11 @@ function InicioSesionForm() {
     <input className='inputLogin' value={ContraseñaUsuario} onChange={(e) => setContraseñaUsuario(e.target.value)} placeholder='Contraseña' type="password" />
     <hr className='barLogin' />
 
-    <button className='loginBtn' onClick={inicio} >Iniciar</button>
-    {mensaje && <p>{mensaje}</p>} <br />
+    <button className='loginBtn' onClick={inicio} >Iniciar</button><br /><br />
+    {mensaje && <p>{mensaje}</p>} 
 
 
-     <p>¿Aún no tienes una cuenta? <br /> <Link to="/registro">Ir a Registrarse</Link>   </p>
+     <p>¿Aún no estás Registrado? <br /> <Link className='linkInicio' to="/registro">Registro</Link>   </p>
     </div>
     </>
 
