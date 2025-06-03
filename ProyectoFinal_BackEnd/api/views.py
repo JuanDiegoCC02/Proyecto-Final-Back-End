@@ -1,6 +1,6 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from .models import Roles, Usuarios, TipoPublicaciones, Publicaciones, Comentarios
-from .serializers import RolesSerializer, UsuariosSerializer,UsuariosEditarSerializer, TipoPublicacionesSerializer, PublicacionesSerializer, ComentariosSerializer
+from .models import Roles, Usuarios, TipoPublicaciones, Publicaciones, Comentarios, EmailsContacto
+from .serializers import RolesSerializer, UsuariosSerializer,UsuariosEditarSerializer, TipoPublicacionesSerializer, PublicacionesSerializer, ComentariosSerializer, EmailContactoSerializer
 from rest_framework.views import APIView
 from .models import Usuarios
 from rest_framework.response import Response
@@ -13,6 +13,13 @@ from rest_framework import status
 
 
 #ListCreateView
+
+# vista para contacto
+class EmailsContactoListCreateView(ListCreateAPIView):
+    queryset = EmailsContacto.objects.all()
+    serializer_class = EmailContactoSerializer
+
+
 class RolesListCreateView(ListCreateAPIView):
     queryset = Roles.objects.all()
     serializer_class = RolesSerializer
@@ -163,3 +170,5 @@ class UsuarioEditarView(APIView):
         usuario_ext.save()
 
         return Response({"mensaje": "Usuario actualizado"}, status=200)
+
+

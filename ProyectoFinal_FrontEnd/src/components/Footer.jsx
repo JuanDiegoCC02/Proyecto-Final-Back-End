@@ -43,7 +43,7 @@ function Footer() {
               <span><i className="fa-solid fa-phone"></i></span><p><a href="">+506 8493-3030</a></p>
             </li>
             <li>
-              <span><i className="fa-solid fa-envelope"></i></span><p><a href="">PaginaAmbiental@gmail.com</a></p>
+              <span><i className="fa-solid fa-envelope"></i></span><p><a href="">NoticiasCR@gmail.com</a></p>
             </li>
           </ul>
         </div>

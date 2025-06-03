@@ -1,18 +1,10 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import Nav from 'react-bootstrap/Nav';
 
 const options = [
-  {
-    name: 'Enable backdrop (default)',
-    scroll: false,
-    backdrop: true,
-  },
-  {
-    name: 'Disable backdrop',
-    scroll: false,
-    backdrop: false,
-  },
+
   {
     name: 'Enable body scrolling',
     scroll: true,
@@ -35,14 +27,21 @@ function Sidebar({ name, ...props }) {
     <>
       <Button variant="primary" onClick={toggleShow} className="me-2">
         {name}
-      </Button>
+      SideBar</Button>
       <Offcanvas show={show} onHide={handleClose} {...props}>
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+          <Offcanvas.Title>Noticias Ambientales CR</Offcanvas.Title>
         </Offcanvas.Header>
+        <Nav className="me-auto ">
+            <Nav.Link href="/tablausuarios">Moderador</Nav.Link>
+            <Nav.Link href="/noticias">Noticias</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/contacto">Contacto</Nav.Link>
+        </Nav>
         <Offcanvas.Body>
           Some text as placeholder. In real life you can have the elements you
           have chosen. Like, text, images, lists, etc.
+          
         </Offcanvas.Body>
       </Offcanvas>
     </>
