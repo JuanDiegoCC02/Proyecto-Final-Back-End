@@ -11,7 +11,7 @@ function NoticiasForm() {
     return (
         <>
          <div className='mainContainerNoticia'>
-            <h2 className='tituloNoticia'>Insertar Noticia</h2>
+            <h2 className='tituloNoticia'>Ingrese Noticia</h2>
                 <div className='containerNoticia'> 
                 <input className='inputTexto' type="text" placeholder='Titulo Noticia' />
                  <input className='inputTexto' type="text" placeholder='Descripción Noticia' />

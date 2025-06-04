@@ -1,4 +1,4 @@
-from .models import Roles, Usuarios, TipoPublicaciones, Publicaciones, Comentarios, EmailsContacto
+from .models import Roles, Usuarios, TipoPublicaciones, Publicaciones, Comentarios, EmailsContactos
 from rest_framework import serializers
 from django.contrib.auth.models import User
 
@@ -23,9 +23,9 @@ class UsuariosEditarSerializer(serializers.ModelSerializer):
         model = User
         fields = "__all__"
 
-class EmailContactoSerializer(serializers.ModelSerializer):
+class EmailContactosSerializer(serializers.ModelSerializer):
     class Meta:
-        model = EmailsContacto
+        model = EmailsContactos
         fields =  '__all__'
 
 
