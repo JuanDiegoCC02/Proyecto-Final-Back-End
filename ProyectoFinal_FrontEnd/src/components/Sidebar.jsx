@@ -33,7 +33,8 @@ function Sidebar({ name, ...props }) {
           <Offcanvas.Title>Noticias Ambientales CR</Offcanvas.Title>
         </Offcanvas.Header>
         <Nav className="me-auto ">
-            <Nav.Link href="/tablausuarios">Moderador</Nav.Link>
+            <Nav.Link href="/tablausuarios">Tabla Usuarios</Nav.Link>
+            <Nav.Link href="/tablacomentarios">Tabla Contacto</Nav.Link>
             <Nav.Link href="/noticias">Noticias</Nav.Link>
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/contacto">Contacto</Nav.Link>

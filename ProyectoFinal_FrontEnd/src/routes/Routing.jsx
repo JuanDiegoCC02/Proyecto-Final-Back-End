@@ -7,6 +7,7 @@ import Contact from '../pages/Contact';
 import Moderador from '../pages/Moderador';
 import Noticias from '../pages/Noticias';
 import TablaUsuarios from '../pages/tablaUsuarios';
+import TablaComentarios from '../pages/TablaComentarios';
 
 function Routing() {
   return (
@@ -20,6 +21,7 @@ function Routing() {
             <Route path="/contacto" element={<Contact/>}/>
             <Route path="/moderador" element={<Moderador/>}/>
             <Route path="/tablausuarios" element={<TablaUsuarios/>}/>
+            <Route path="/tablacomentarios" element={<TablaComentarios/>}/>
 
 
         </Routes>
