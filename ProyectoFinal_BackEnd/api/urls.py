@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import  UsuariosListCreateView, TipoPublicacionesListCreateView, PublicacionesListCreateView, ComentariosListCreateView, EmailsContactoListCreateView
-from .views import  RolesDetailView, UsuariosDetailView, TipoPublicacionesDetailView, PublicacionesDetailView, ComentariosDetailView
+from .views import  UsuariosListCreateView, TipoPublicacionesListCreateView, PublicacionesListCreateView, ComentariosListCreateView, EmailContactoListCreateView
+from .views import  RolesDetailView, UsuariosDetailView, TipoPublicacionesDetailView, PublicacionesDetailView, ComentariosDetailView, EmailsContactosDetailView
 from .views import  AggUsuarioView,LoginView,UsuarioEditarView
 
 urlpatterns = [
@@ -11,7 +11,7 @@ urlpatterns = [
     path ('login/', LoginView.as_view(), name = 'usuarios-list-create'),
     
      # url de la vista de contacto
-    path ('emails-contacto/', EmailsContactoListCreateView.as_view()),
+    path ('emails-contacto/', EmailContactoListCreateView.as_view()),
    
    
     path ('tipopublicaciones/', TipoPublicacionesListCreateView.as_view(), name = 'tipopublicaciones-list-create'),
@@ -22,8 +22,8 @@ urlpatterns = [
     path ('roles/<int:pk>/', RolesDetailView.as_view(), name = 'roles-editar-actualizar'),
     path ('usuarios/<int:pk>/', UsuariosDetailView.as_view(), name = 'usuarios-editar-actualizar'),
     path ('tipopublicaciones/<int:pk>/', TipoPublicacionesDetailView.as_view(), name = 'tipopublicaciones-editar-actualizar'),
-    path ('publicaciones/<int:pk>/', PublicacionesDetailView.as_view(), name = 'publicaciones-editar-actualizar'),
+    path ('publicaciones/<int:pk>/', PublicacionesDetailView.as_view()),
     path ('comentarios/<int:pk>/', ComentariosDetailView.as_view(), name = 'comentarios-editar-actualizar'),
-
+    path ('emailscontacto/<int:pk>/', EmailsContactosDetailView.as_view()),
    
 ]

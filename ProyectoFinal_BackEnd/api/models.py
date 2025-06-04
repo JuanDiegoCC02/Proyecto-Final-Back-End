@@ -20,7 +20,8 @@ class TipoPublicaciones(models.Model):
 class Publicaciones(models.Model):
     titulo = models.CharField(max_length=100)
     descripcion = models.TextField()
-    ubicacion = models.CharField(max_length=50)
+    latitud = models.CharField(max_length=50)
+    longitud = models.CharField(max_length=50)
     img = models.CharField(max_length=100)
     estado_publicacion = models.CharField(max_length=100)
     tipopublicacion = models.ForeignKey(TipoPublicaciones, on_delete = models.CASCADE, related_name= 'publicaciones' )   
@@ -33,7 +34,7 @@ class Comentarios(models.Model):
 
 
 #crea el modelo para peticiones de contacto
-class EmailsContacto(models.Model):
+class EmailsContactos(models.Model):
     nombre = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
     telefono = models.CharField(max_length=80)
