@@ -100,7 +100,7 @@ async function patchData(estado,endpoint,id)
 
 async function deleteUser(id,endpoint) {
     try {
-        const response = await fetch(`http://127.0.0.1:8000/${endpoint}/${id}`, {
+        const response = await fetch(`http://127.0.0.1:8000/${endpoint}/${id}/`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'

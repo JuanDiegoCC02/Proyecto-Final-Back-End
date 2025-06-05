@@ -1,6 +1,6 @@
 import Table from 'react-bootstrap/Table';
 import React, { useEffect, useState } from 'react'
-import { getUsers, patchData, } from '../services/MainLlamados'
+import { getUsers, patchData, deleteUser } from '../services/MainLlamados'
 import "../styles/TablaUsuarios.css"
 
 function TablaComentariosCom() {
@@ -8,18 +8,25 @@ function TablaComentariosCom() {
     const [reload, setReload] = useState (false)
 
     const [mostrar, setMostrar] = useState(false)
-
     //Para el edit
     const [editNombre, setEditNombre] = useState("")
     const [editEmail, setEditEMail] = useState("")
     const [editTelefono, setEditTelefono] = useState("")
     const [editComentario, setEditComentario] = useState("")
+    const [usuario,setUsuario] = useState(null)
+
+
 
   useEffect(() => {
+    if(usuario){
+      console.log("entra al usuario");
+      console.log(usuario);
+      setEditNombre(usuario.nombre)
+    }
+
     async function TraerComentarios() {
       const datos = await getUsers("api/emails-contacto")
       setComentarios (datos)
-      console.log (datos) 
     }
     TraerComentarios()
   }, [reload])
@@ -31,11 +38,27 @@ function TablaComentariosCom() {
       "telefono" : editTelefono,
       "mensaje" : editComentario
     }
-    await patchData (actComentario, id)
+    await patchData (actComentario, "api/emailscontacto", id)
     setReload(!reload)
     setMostrar(!mostrar)
     
   }
+
+  async function EliminarContacto(id) {
+  await deleteUser(id, "api/emailscontacto")
+  setReload(!reload)
+}
+  function abrirModal(usuario) {
+    setUsuario(usuario)
+    setEditNombre(usuario.nombre)
+    setEditEMail(usuario.email)
+    setEditTelefono(usuario.telefono)
+    setEditComentario(usuario.mensaje)
+    setMostrar(true)
+    console.log(editNombre);
+    
+  }
+  
 
   return (
      <Table striped="columns">
@@ -58,27 +81,26 @@ function TablaComentariosCom() {
           <td>{comentario.telefono}</td>
           <td>{comentario.mensaje}</td>
           <button onClick={()=> EliminarContacto(comentario.id)}>Eliminar</button>
-          <button onClick={()=> setMostrar(!mostrar)}>Editar</button>
-          {mostrar &&
+          <button onClick={()=> abrirModal(comentario)}>Editar</button>
+        </tr>
+        ))}
+         
+      </tbody>
+       {mostrar &&
               <> <br />
-              <input type="text" className='inputTablaUsuarios' onChange={(e) => setEditNombre(e.target.value)} placeholder='Editar Nombre' />
+              <input type="text" value={editNombre} className='inputTablaUsuarios' onChange={(e) => setEditNombre(e.target.value)} placeholder='Editar Nombre' />
               <br />
-              <input type="text" className='inputTablaUsuarios' onChange={(e) => setEditEMail(e.target.value)} placeholder='Editar Email' />
+              <input type="text" value={editEmail}  className='inputTablaUsuarios' onChange={(e) => setEditEMail(e.target.value)} placeholder='Editar Email' />
               <br />
-              <input type="text" className='inputTablaUsuarios' onChange={(e) => setEditTelefono(e.target.value)} placeholder='Editar Telefono' />
+              <input type="text" value={editTelefono}  className='inputTablaUsuarios' onChange={(e) => setEditTelefono(e.target.value)} placeholder='Editar Telefono' />
               <br />
-              <input type="text" className='inputTablaUsuarios' onChange={(e) => setEditComentario(e.target.value)} placeholder='Editar Mensaje' />
-              <br /> 
-              <button className='tablaUsuariosConfirmBtn' onClick={() => actualizarComentarios(comentario.id)}>Confirmar Edit</button> 
+              <input type="text" value={editComentario}  className='inputTablaUsuarios' onChange={(e) => setEditComentario(e.target.value)} placeholder='Editar Mensaje' />
+              <br />
+              <button className='tablaUsuariosConfirmBtn' onClick={() => actualizarComentarios(usuario.id)}>Confirmar Edit</button>
 
               </>
           }
-        </tr>
-
-
-                ))}
-         
-      </tbody>
+       
     </Table>
 )
 }

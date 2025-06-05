@@ -2,6 +2,8 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Nav from 'react-bootstrap/Nav';
+import "../styles/Sidebar.css"
+
 
 const options = [
 
@@ -25,23 +27,25 @@ function Sidebar({ name, ...props }) {
 
   return (
     <>
-      <Button variant="primary" onClick={toggleShow} className="me-2">
+      <Button style={{backgroundColor:"#5b5b5b"}} variant="primary" onClick={toggleShow} className="me-2">
         {name}
       SideBar</Button>
-      <Offcanvas show={show} onHide={handleClose} {...props}>
+      <Offcanvas style={{backgroundColor:"#e6e6e6e6"}} show={show} onHide={handleClose} {...props}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Noticias Ambientales CR</Offcanvas.Title>
         </Offcanvas.Header>
-        <Nav className="me-auto ">
-            <Nav.Link href="/tablausuarios">Tabla Usuarios</Nav.Link>
-            <Nav.Link href="/tablacomentarios">Tabla Contacto</Nav.Link>
-            <Nav.Link href="/noticias">Noticias</Nav.Link>
+        <Nav style={{backgroundColor:"#ECFAE5"}} className="me-auto ">
+            <Nav.Link style={{backgroundColor: "#e6e6e6"}} href="/tablausuarios">Tabla Usuarios</Nav.Link>
+            <Nav.Link style={{backgroundColor: "#e6e6e6"}} href="/tablacomentarios">Tabla Contacto</Nav.Link>
+            <Nav.Link style={{backgroundColor: "#e6e6e6"}} href="/noticias">Adm Noticias</Nav.Link>
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/contacto">Contacto</Nav.Link>
+            <Nav.Link href="/moderador">Moderador</Nav.Link>
         </Nav>
-        <Offcanvas.Body>
-          Some text as placeholder. In real life you can have the elements you
-          have chosen. Like, text, images, lists, etc.
+        <Offcanvas.Body style={{backgroundColor: "#DDDDDD"}}>
+          Aquí se va a poder acceder a los Usuarios, solicitudes de los Formularios de contacto, y las noticias
+          que envíen los usuarios, cada uno tiene su funcionalidad CRUD de Post, Get, Patch que se utiliza para 
+          editar información, y el Delete.
           
         </Offcanvas.Body>
       </Offcanvas>
