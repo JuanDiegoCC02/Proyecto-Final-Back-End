@@ -12,6 +12,7 @@ function InicioSesionForm() {
 
 
     const inicio = async () => {
+      try{
         const response = await fetch("http://localhost:8000/api/login/", {
             method: "POST",
             headers: {
@@ -20,14 +21,20 @@ function InicioSesionForm() {
             body: JSON.stringify({ username: NombreUsuario, password: ContraseñaUsuario }),
         });
 
-
-  const data = await response.json();
+        const data = await response.json();
+        console.log(data);
         if (response.ok) {
-            Navigate("/")
+            localStorage.setItem("id", data.id); // se guarda el ID en LS
+            Navigate("/"); 
         } else {
             setMensaje(data.error || "Usuario no encontrado.");
         }
-    };
+    } catch (error) {
+        console.error("Error en el inicio de sesión:", error);
+        setMensaje("Ocurrió un error al iniciar sesión.");
+    }
+};
+
 
 
 

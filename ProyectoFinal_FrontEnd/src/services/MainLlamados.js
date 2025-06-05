@@ -1,4 +1,5 @@
-async function getUsers(endpoint,id="") {
+async function getUsers(endpoint,id='') {
+   //cambio de id
     try {
         const response = await fetch(`http://127.0.0.1:8000/${endpoint}/${id}`, {
             method: 'GET',

@@ -30,12 +30,13 @@
 
 .registerBtn {
     background-color: #0a1631ce;
+    color: rgba(54, 206, 128, 0.968);
     border: none;
     border-radius: 2px;
     padding: 5px;
     margin: 5px;
     cursor: pointer;
-    color: rgba(54, 206, 128, 0.968);
+   
 }
 
 .registerBtn:hover {
