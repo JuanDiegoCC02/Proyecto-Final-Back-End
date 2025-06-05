@@ -6,13 +6,20 @@ import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaf
 
 function Geolocalizacion() {
   const [posicion, setPosicion] = useState(null);
-  // Funcion para el manejo del click en el map
+  // Funcion para el manejo del click map
   function ClickMap({ setPosicion }) {
     useMapEvents({
       click: (e) => {
-  // Guarda la nueva posicion
+
+          const nuevaPosicion = [e.latlng.lat, e.latlng.lng];
+      setPosicion(nuevaPosicion);
+
+      // localStorage
+      localStorage.setItem("posicion", JSON.stringify(nuevaPosicion));
+
+       // SAVE posicion
         setPosicion([e.latlng.lat, e.latlng.lng]); 
-        console.log([e.latlng.lat, e.latlng.lng])
+        console.log(nuevaPosicion)
         
         
       },

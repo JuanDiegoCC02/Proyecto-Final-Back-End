@@ -1,10 +1,11 @@
 .mainContainerNoticia {
     border: 2px solid;
     padding: 5%;
-    background-color: #658147;
+    background-color: #2d9f58e8;
 }
 
 .tituloNoticia {
+    font-family: 'Times New Roman', Times, serif;
     text-align: center;
 }
 
@@ -15,34 +16,49 @@
     width: 25%;
     margin-left: auto;
     margin-right: auto;
+    font-family: 'Times New Roman', Times, serif;
+    
+
 
 }
 
 .inputFile {
-    background-color: #6e8e61;
+    background-color: #65a785;
     border: none;
     padding: 3px;
 }
-
+.inputFile:hover {
+    background-color: rgba(205, 221, 218, 0.806);}
 .inputTexto {
-    background-color: #729762;
+    background-color: #37be8a;
     border: none;
     padding: 5px;
     border-radius: 5px;
     
 }
-
+.inputTexto:hover{
+    background-color: rgba(205, 221, 218, 0.806);
+}
 .selectNoticias {
-    background-color: #729762;
+    background-color: #37be8a;
     border: none;
     padding: 5px;
     border-radius: 5px; 
 }
+.selectNoticias:hover{
+    background-color: rgba(205, 221, 218, 0.806);
+}
 
 .noticiasBtn {
-    background-color: #729762;
+    background-color: #0a1631ce;
+    color: rgb(32, 239, 201);
     padding: 5px;
     width: 85px;
     border: none;
     border-radius: 5px;
+    margin-left: 100px;
+}
+.noticiasBtn:hover{
+ background-color: #18374bdb;
+    color: rgba(219, 234, 134, 0.92);
 }

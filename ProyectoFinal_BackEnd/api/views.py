@@ -8,10 +8,6 @@ from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate, login
 from rest_framework import status
 
-
-
-
-
 #ListCreateView
 
 # vista para contacto
@@ -87,17 +83,19 @@ class LoginView(APIView):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return Response({"mensaje": "Inicio de sesión exitoso"}, status=200) #Solicitud  Validada // 200
+            return Response({"mensaje": "Inicio de sesión exitoso","id":user.id}, status=200) #Solicitud  Validada // 200
 
         return Response({"error": "Credenciales inválidas"}, status=400) # Solicitud Invalida // 400
 
 
 
 
-
+#Prueba De Tipo Publicaciones
 class TipoPublicacionesListCreateView(ListCreateAPIView):
     queryset = TipoPublicaciones.objects.all()
     serializer_class = TipoPublicacionesSerializer
+
+
 
 class PublicacionesListCreateView(ListCreateAPIView):
     queryset = Publicaciones.objects.all()
@@ -174,5 +172,3 @@ class UsuarioEditarView(APIView):
         usuario_ext.save()
 
         return Response({"mensaje": "Usuario actualizado"}, status=200)
-
-
