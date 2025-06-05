@@ -3,6 +3,7 @@ import NavBar from '../components/Navbar'
 import NoticiasTitulo from '../components/NoticiasTitulo'
 import NoticiasForm from '../components/NoticiasForm'
 import Footer from '../components/Footer'
+import Sidebar from '../components/Sidebar'
 
 
 
@@ -15,6 +16,7 @@ function Noticias() {
    </nav>,
 
   <main>
+    <Sidebar />
     <NoticiasForm/>
      <NoticiasTitulo />
     
