@@ -3,6 +3,7 @@ import  {postUsers, getUsers } from '../services/MainLlamados'
 import Geolocalizacion from '../components/Geolocalizacion'
 import "../styles/NoticiasForm.css"
 import { useNavigate } from "react-router-dom";
+import Cloudinary from './Cloudinary';
 
 
 
@@ -14,6 +15,8 @@ function NoticiasForm() {
     const [publicacion, setPublicacion] = useState("")
 
     const navigate = useNavigate();
+    
+
 
 
     function TituloF(e) {
@@ -30,6 +33,7 @@ function NoticiasForm() {
         const guardaLatitud =  JSON.parse(localStorage.getItem("posicion"))
         const guardarLongitud =  JSON.parse(localStorage.getItem("posicion"))
         const guardarUsuario = JSON.parse(localStorage.getItem("id"))
+        const guardarURL = localStorage.getItem("img")
         
         const obj = {
             titulo: TituloNoticia,
@@ -37,7 +41,8 @@ function NoticiasForm() {
             tipopublicacion: publicacion,
             usuario: guardarUsuario,
             latitud: guardaLatitud[0],
-            longitud: guardarLongitud[1]
+            longitud: guardarLongitud[1],
+            img : guardarURL
         }
         console.log(obj);
         console.log("Latitud", guardaLatitud);
@@ -87,10 +92,19 @@ function NoticiasForm() {
 
 
                  <Geolocalizacion/>
-                <input className='inputFile' type="file" />
+                 <Cloudinary/>
+                
+
                 <button onClick={enviar} className='noticiasBtn'>Enviar</button>
+
+
+                
                 </div>
             </div>
+
+            
+                
+            
         </>
 
     )

@@ -31,7 +31,7 @@ class Publicaciones(models.Model):
     descripcion = models.TextField()
     latitud = models.CharField(max_length=50)
     longitud = models.CharField(max_length=50)
-    img = models.CharField(max_length=100,default="https://www.repretel.com/wp-content/uploads/2021/07/Imagen-14_7_2021-15_57_59.jpg")
+    img = models.CharField(max_length=100)
     estado_publicacion = models.CharField(max_length=100,choices=OPCIONES_ESTADO, default="pendiente")
     tipopublicacion = models.ForeignKey(TipoPublicaciones, on_delete = models.CASCADE, related_name= 'publicaciones' )   
     usuario = models.ForeignKey(User, on_delete = models.CASCADE, related_name = 'publicaciones')    
