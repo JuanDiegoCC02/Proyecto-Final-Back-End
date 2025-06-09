@@ -37,7 +37,7 @@ function Sidebar({ name, ...props }) {
         <Nav style={{backgroundColor:"#ECFAE5"}} className="me-auto ">
             <Nav.Link style={{backgroundColor: "#e6e6e6"}} href="/tablausuarios">Tabla Usuarios</Nav.Link>
             <Nav.Link style={{backgroundColor: "#e6e6e6"}} href="/tablacomentarios">Tabla Contacto</Nav.Link>
-            <Nav.Link style={{backgroundColor: "#e6e6e6"}} href="/noticias">Adm Noticias</Nav.Link>
+            <Nav.Link style={{backgroundColor: "#e6e6e6"}} href="/admin">Adm Noticias</Nav.Link>
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/contacto">Contacto</Nav.Link>
             <Nav.Link href="/moderador">Moderador</Nav.Link>

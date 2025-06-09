@@ -37,9 +37,14 @@ class TipoPublicacionesSerializer(serializers.ModelSerializer):
 
 
 class PublicacionesSerializer(serializers.ModelSerializer):
+    nombre_tipo_publicacion = serializers.CharField(source="tipopublicacion.nombre", read_only=True)
     class Meta:
         model = Publicaciones  
-        fields = '__all__'
+        fields = [
+            "id", "titulo", "descripcion", "latitud", "longitud", "img", 
+            "estado_publicacion", "tipopublicacion", "usuario", 
+            "nombre_tipo_publicacion"
+        ]
 
 
 

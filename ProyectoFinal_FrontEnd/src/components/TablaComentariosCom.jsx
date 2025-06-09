@@ -49,7 +49,7 @@ function TablaComentariosCom() {
   setReload(!reload)
 }
   function abrirModal(usuario) {
-    setUsuario(usuario)
+    setUsuario(usuario) 
     setEditNombre(usuario.nombre)
     setEditEMail(usuario.email)
     setEditTelefono(usuario.telefono)
@@ -78,7 +78,7 @@ function TablaComentariosCom() {
           <td style={{backgroundColor:"#999999"}} >{index + 1}</td>
           <td>{comentario.nombre}</td>
           <td>{comentario.email}</td>
-          <td>{comentario.telefono}</td>
+          <td>{comentario.telefono}</td>  
           <td>{comentario.mensaje}</td>
           <button onClick={()=> EliminarContacto(comentario.id)}>Eliminar</button>
           <button onClick={()=> abrirModal(comentario)}>Editar</button>

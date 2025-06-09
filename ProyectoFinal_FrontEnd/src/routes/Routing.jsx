@@ -8,6 +8,9 @@ import Moderador from '../pages/Moderador';
 import Noticias from '../pages/Noticias';
 import TablaUsuarios from '../pages/tablaUsuarios';
 import TablaComentarios from '../pages/TablaComentarios';
+import NoticiasAdmin from '../pages/NoticiasAdmin';
+import PruebaNoticias from '../components/PruebaNoticias';
+import NoticiaFull from '../components/NoticiaFull';
 
 function Routing() {
   return (
@@ -22,6 +25,9 @@ function Routing() {
             <Route path="/moderador" element={<Moderador/>}/>
             <Route path="/tablausuarios" element={<TablaUsuarios/>}/>
             <Route path="/tablacomentarios" element={<TablaComentarios/>}/>
+            <Route path="/admin" element={<NoticiasAdmin/>}/>
+            <Route path="/prueba" element={<PruebaNoticias/>}/>
+            <Route path="/noticiafull" element={<NoticiaFull/>}/>
 
 
         </Routes>

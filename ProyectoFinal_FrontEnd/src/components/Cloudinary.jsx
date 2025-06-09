@@ -31,6 +31,7 @@ const Cloudinary = () => {
 
             console.log(result);
             console.log('Url Imagen:', result.secure_url);
+            localStorage.setItem("img", result.secure_url); // Guardar la URL en localStorage
         } catch (error) {
             console.error('Error uploading image:', error);
             setLoading(false);
