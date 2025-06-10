@@ -87,3 +87,19 @@
     height: 36px;
     padding: 10px;
 }
+
+@media (max-width: 768px) {
+    .MainContactContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contactContainer, .SecondContact {
+        width: 100%;
+        max-width: none;
+    }
+
+    .contactMsg {
+        width: 100%;
+    }
+}

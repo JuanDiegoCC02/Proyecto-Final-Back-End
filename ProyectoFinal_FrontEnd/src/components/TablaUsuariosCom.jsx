@@ -51,7 +51,7 @@ async function EliminarUsuarios(id) {
 }
 
   return (
-    <Table striped="columns">
+    <Table  responsive="sm" striped="columns">
       <thead >
         <tr>
           <th style={{backgroundColor:"#5b5b5b"}} className='pruebaWe'>#</th>

@@ -26,7 +26,6 @@ function Routing() {
             <Route path="/tablausuarios" element={<TablaUsuarios/>}/>
             <Route path="/tablacomentarios" element={<TablaComentarios/>}/>
             <Route path="/admin" element={<NoticiasAdmin/>}/>
-            <Route path="/prueba" element={<PruebaNoticias/>}/>
             <Route path="/noticiafull" element={<NoticiaFull/>}/>
 
 

@@ -61,7 +61,7 @@ function TablaComentariosCom() {
   
 
   return (
-     <Table striped="columns">
+     <Table responsive="sm" striped="columns">
       <thead >
         <tr>
           <th style={{backgroundColor:"#5b5b5b"}} className='pruebaWe'>#</th>
@@ -80,10 +80,10 @@ function TablaComentariosCom() {
           <td>{comentario.email}</td>
           <td>{comentario.telefono}</td>  
           <td>{comentario.mensaje}</td>
-          <button onClick={()=> EliminarContacto(comentario.id)}>Eliminar</button>
-          <button onClick={()=> abrirModal(comentario)}>Editar</button>
+          <button className='tablaUsuariosDeleteBtn' onClick={()=> EliminarContacto(comentario.id)}>Eliminar</button>
+          <button className='tablaUsuariosEditBtn' onClick={()=> abrirModal(comentario)}>Editar</button>
         </tr>
-        ))}
+        ))}             
          
       </tbody>
        {mostrar &&
