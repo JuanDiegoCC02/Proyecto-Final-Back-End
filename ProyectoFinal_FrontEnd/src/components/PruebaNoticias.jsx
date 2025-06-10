@@ -40,13 +40,13 @@ function PruebaNoticias() {
                 "titulo" : editTitulo,
                 "descripcion" : editDescripcion,
                 "latitud" : editLatitud,
-                "longitud" : editLongitud,
+                "longitud" : editLongitud,  
                 "img" : localStorage.getItem("img") // Usar la imagen guardada en localStorage
             }
             await patchData(actPublicacion, "api/publicaciones", id)
             setReload(!reload)
             setMostrar(!mostrar)
-        }
+        }  
     
         function abrirModalPublicaciones(usuario) {
             setUsuario(usuario)
