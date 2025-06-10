@@ -42,7 +42,7 @@ class AggUsuarioView(APIView):
             )
 
         if User.objects.filter(email=email).exists():
-            return Response({"error": "Email ya Registrado"})
+            return Response({"error": "Email ya Registrado"}, status=400)
 
         if User.objects.filter(username=username).exists():
             return Response({"error":"Usuario ya Registrado"}, status=400)#Solicitud Invalidad //400

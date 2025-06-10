@@ -59,7 +59,7 @@ function InicioSesionForm() {
     <hr className='barLogin' />
 
     <button className='loginBtn' onClick={inicio} >Iniciar</button><br /><br />
-    {mensaje && <p>{mensaje}</p>} 
+    {mensaje && <p className='error-message-I'>{mensaje}</p>} 
 
 
      <p>¿Aún no estás Registrado? <br /> <Link className='linkInicio' to="/registro">Registro</Link>   </p>

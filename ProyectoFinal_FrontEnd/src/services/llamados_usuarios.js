@@ -31,12 +31,14 @@ async function PostUsuarios(obj) {
             },
             body: JSON.stringify(obj)
         });
-        if (!response.ok){
-            throw new Error("Error fetching user")
+      const data = await response.json();
+
+        if (!response.ok) {
+            throw { response: { data } };
         }
-        return await response.json();
+        return data;
     } catch (error) {
-        console.error("Error fetching user", error);
+        console.error("Error PostUsuarios:", error);
         throw error;
     }
 }

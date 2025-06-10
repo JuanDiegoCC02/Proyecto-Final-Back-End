@@ -43,7 +43,7 @@ function Footer_Registro() {
               <span><i className="fa-solid fa-phone"></i></span><p><a href="">+506 8493-3030</a></p>
             </li>
             <li>
-              <span><i className="fa-solid fa-envelope"></i></span><p><a href="https://workspace.google.com/intl/es-419/gmail/">NoticiasAmbi_CR@gmail.com</a></p>
+              <span><i className="fa-solid fa-envelope"></i></span><p><a href="https://workspace.google.com/intl/es-419/gmail/">NoticiasCR@gmail.com</a></p>
             </li>
           </ul>
         </div>

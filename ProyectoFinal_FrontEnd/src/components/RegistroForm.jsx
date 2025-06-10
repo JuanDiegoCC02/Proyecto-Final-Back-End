@@ -39,9 +39,10 @@ function RegistroForm() {
     
     async function registrar() {
          if (!NombreUser || !NmUsuario || !ApUsuario || !ContraseñaUsuario || !EmailUsuario || !Fecha_NacimientoUsuario || !TelefonoUsuario) {
-            setMensaje("Todos los campos son obligatorios.");
+            setMensaje("Debe completar todos los campos!");
             return;
         }
+    
 
         const obj = {
             username: NombreUser,
@@ -57,13 +58,22 @@ function RegistroForm() {
         console.log("Usuario registrado:", respuestaServer);
         navigate("/inicio");
     } catch (error) {
-        console.error("Error al registrar:", error);
-        setMensaje("No se pudo registrar. Verifica los datos.");
+    console.error("Error al registrar:", error);
+
+    // Verifica si viene un msj
+    if (error.response && error.response.data) {
+        const data = error.response.data;
+
+        if (data.error) {
+            setMensaje(data.error); // mensaje backend
+        } else {
+            setMensaje("No se pudo registrar. Verifica los datos.");
+        }
+        } else {
+            setMensaje("Error del servidor. Inténtalo más tarde.");
+        }
     }
-}
-  
-
-
+} 
 
   return (
     <div>
@@ -107,7 +117,7 @@ function RegistroForm() {
             </div><hr />
             <div>
                 <input className="registerBtn" type="button" onClick={registrar} value="Registro" /><br /><br />
-                 {mensaje && <p>{mensaje}</p>} 
+                 {mensaje && <p className='error-message'>{mensaje}</p>} 
             
             </div><br />
             
