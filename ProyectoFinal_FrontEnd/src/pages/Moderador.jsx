@@ -5,6 +5,9 @@ import StripedColumnsExample from '../components/TablaUsuariosCom'
 import Footer from '../components/Footer'
 import "../styles/Moderador.css"
 import Sidebar from '../components/Sidebar'
+import LineBar from '../components/LineBar'
+import LineBarUsers from '../components/LineBarUsers'
+
 
 function Moderador() {
   return (
@@ -17,6 +20,8 @@ function Moderador() {
     <main className='cont-tablita'>
     <Sidebar />
     <StripedColumnsExample/>
+    <LineBar/>
+    <LineBarUsers/>
     </main>
 
     <footer>

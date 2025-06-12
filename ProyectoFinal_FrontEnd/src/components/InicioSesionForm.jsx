@@ -16,7 +16,7 @@ function InicioSesionForm() {
         const response = await fetch("http://localhost:8000/api/login/", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json",  
             },
             body: JSON.stringify({ username: NombreUsuario, password: ContraseñaUsuario }),
         });
@@ -24,7 +24,9 @@ function InicioSesionForm() {
         const data = await response.json();
         console.log(data);
         if (response.ok) {
-            localStorage.setItem("id", data.id); // se guarda el ID en LS
+            localStorage.setItem("id", data.id);
+            localStorage.setItem("accessToken", data.access)
+            console.log ("accessToken", data.access);
             Navigate("/"); 
         } else {
             setMensaje(data.error || "Usuario no encontrado.");

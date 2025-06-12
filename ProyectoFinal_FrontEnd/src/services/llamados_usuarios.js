@@ -1,9 +1,12 @@
 // Llamados Usuarios
+
 async function GetUsuarios() {
+    const accessToken = localStorage.getItem("accessToken");
   try {
     const response = await fetch(`http://127.0.0.1:8000/api/usuarios-mostrar/`, {
       method: "GET",
       headers: {
+       "Authorization": `Bearer ${accessToken}`, 
         "Content-Type": "application/json",
       },
     });
@@ -23,11 +26,13 @@ async function GetUsuarios() {
 
 // Llamado Post de Usuarios
 async function PostUsuarios(obj) {
+     const accessToken = localStorage.getItem("accessToken");
     try {
         const response = await fetch ("http://127.0.0.1:8000/api/usuarios/",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json", 
+                 "Authorization": `Bearer ${accessToken}`,
             },
             body: JSON.stringify(obj)
         });
@@ -46,21 +51,26 @@ async function PostUsuarios(obj) {
 
 
 // Llamado Uptade de Usuarios
-async function UpdateUsuarios(obj, id) 
-{
+async function UpdateUsuarios(obj, id) {
+    const accessToken = localStorage.getItem("accessToken"); 
+
     try {
-        const response = await fetch("http://127.0.0.1:8000/api/usuarios-editar/"+id+"/", {
-            method: 'PATCH',
+        const response = await fetch(`http://127.0.0.1:8000/api/usuarios-editar/${id}/`, {
+            method: "PATCH",
             headers: {
-                'Content-Type': 'application/json'
+                "Authorization": `Bearer ${accessToken}`,
+                "Content-Type": "application/json"
             },
             body: JSON.stringify(obj)
         });
 
-     
+        if (!response.ok) {
+            throw new Error("Error updating user");
+        }
+
         return await response.json();
     } catch (error) {
-        console.error('Error update user:', error);
+        console.error("Error update user:", error);
         throw error;
     }
 }
@@ -69,11 +79,13 @@ async function UpdateUsuarios(obj, id)
 
 //  Llamado Delete de Usuarios
 async function DeleteUsuarios(id) {
+     const accessToken = localStorage.getItem("accessToken");
     try {
         
         const response = await fetch(`http://127.0.0.1:8000/api/usuarios/${id}/`, {
             method: 'DELETE',
             headers: {
+                 "Authorization": `Bearer ${accessToken}`,
                 'Content-Type': 'application/json'
             }
         });

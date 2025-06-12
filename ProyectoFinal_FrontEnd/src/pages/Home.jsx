@@ -9,6 +9,7 @@ import Img_info from '../components/Img_info'
 import { useState,useEffect } from 'react'
 import { getUsers } from '../services/MainLlamados'
 import CardsNoticias from '../components/CardNoticias'
+
 function Home() {
   const [noticias,setNoticias] = useState([])
 
@@ -35,6 +36,8 @@ function Home() {
           );
         })}
         </div>
+
+
         <Footer />
     </div>
   )
