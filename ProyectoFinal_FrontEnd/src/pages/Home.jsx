@@ -9,8 +9,10 @@ import Img_info from '../components/Img_info'
 import { useState,useEffect } from 'react'
 import { getUsers } from '../services/MainLlamados'
 import CardsNoticias from '../components/CardNoticias'
+import { useNavigate } from 'react-router-dom'
 function Home() {
   const [noticias,setNoticias] = useState([])
+  const navigate = useNavigate()
 
   useEffect(()=>{
     async function traeNoticias() {
@@ -31,7 +33,10 @@ function Home() {
         <div className='d-flex flex-row gap-3'>
         {noticias.map((noticia) => {
           return (
-            <CardsNoticias key={noticia.id} title={noticia.titulo} text={noticia.descripcion} imgSrc={noticia.img} />
+            <CardsNoticias key={noticia.id} title={noticia.titulo} text={noticia.descripcion} imgSrc={noticia.img} getId={() => {
+              localStorage.setItem("id_publicacion", noticia.id)
+              navigate('/noticiafull')
+            }} />
           );
         })}
         </div>

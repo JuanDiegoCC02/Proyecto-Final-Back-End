@@ -18,9 +18,9 @@ import MapaCards from './MapaCards'
             }
         
             async function TraerPublicaciones() {
-                const datos = await getUsers("api/publicaciones")
-                const filtrar = datos.filter((datos) => datos.estado_publicacion === "publicada");
-                setPublicaciones(filtrar)
+                const datos = await getUsers("api/publicaciones",localStorage.getItem("id_publicacion")+"/")
+                console.log(datos);
+                setPublicaciones(Array.isArray(datos) ? datos : datos ? [datos] : [])
             }
             TraerPublicaciones()
             }, [reload])
@@ -30,7 +30,8 @@ import MapaCards from './MapaCards'
   <div className='noticiasCard'>
     <div className='noticiasCardContent'>
         
-      {publicaciones.map((p) => (
+      {Array.isArray(publicaciones) && publicaciones.map((p) => { 
+        return(
         <div key={p.id} className='noticiasItem'>
           <p className='tipoPublicacion'>{p.nombre_tipo_publicacion}</p>
           <img src={p.img} alt="Imagen de la noticia" className='noticiasIMG' width={300} />
@@ -41,7 +42,8 @@ import MapaCards from './MapaCards'
               <h1>--</h1>
 
         </div>
-      ))}
+        )
+      })}
     </div>
   </div>
 </div>

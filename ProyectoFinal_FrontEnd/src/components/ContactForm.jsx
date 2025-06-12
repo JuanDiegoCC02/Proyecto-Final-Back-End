@@ -4,10 +4,10 @@ import "../styles/Contact.css"
 
 
 function ContactForm() {
-      const [NombreContact, setNombreContact] = useState()
-      const [EmailContact, setEmailContact] = useState()
-      const [TelefonoContact, setTelefonoContact] = useState()
-      const [TextContact, setTextoContact] = useState()
+      const [NombreContact, setNombreContact] = useState("")
+      const [EmailContact, setEmailContact] = useState("")
+      const [TelefonoContact, setTelefonoContact] = useState("")
+      const [TextContact, setTextoContact] = useState("")
       const [mensaje, setMensaje] = useState("")
 
   function nombre_contact(e) {
@@ -36,14 +36,17 @@ function ContactForm() {
             telefono: TelefonoContact,
             mensaje: TextContact,
         }
+
     try {
         const respuestaServer = await postUsers(obj,"api/emails-contacto/");
+        setNombreContact("") , setEmailContact(""), setTelefonoContact(""), setTextoContact(""); //Para reiniciar el formulario despues de enviarlo
         console.log("Contacto registrado:", respuestaServer);
-    } catch (error) {
+      } catch (error) {
         console.error("Error al registrar:", error);
         setMensaje("No se pudo registrar. Verifica los datos.");
-    }
+      }
 }
+
      
   return (  
     <>
