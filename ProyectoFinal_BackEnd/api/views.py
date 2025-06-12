@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate, login
 from rest_framework import status
-
+from rest_framework_simplejwt.tokens import RefreshToken,AccessToken
 #ListCreateView
 
 # vista para contacto
@@ -38,14 +38,14 @@ class AggUsuarioView(APIView):
 
         if not username or not password or not email or not  fecha_nacimiento or not telefono:
             return Response(    
-                {"error": "Complete todos los campos"}, status=400 #Solicitud Invalidad //400
+                {"error": "Complete todos los campos"}, status=400 
             )
 
         if User.objects.filter(email=email).exists():
             return Response({"error": "Email ya Registrado"}, status=400)
-
+        
         if User.objects.filter(username=username).exists():
-            return Response({"error":"Usuario ya Registrado"}, status=400)#Solicitud Invalidad //400
+            return Response({"error":"Usuario ya Registrado"}, status=400)
 
 
         #   datos propios de django
@@ -57,8 +57,8 @@ class AggUsuarioView(APIView):
             email=email
         )
         #Funcion de grupo COMENTADA para pruebas
-        # grupo = Group.objects.get(name="User")
-        # usuario.groups.add(grupo)
+        grupo = Group.objects.get(name="Usuario")
+        usuario.groups.add(grupo)
 
         #   datos agregados
         Usuarios.objects.create(
@@ -71,21 +71,34 @@ class AggUsuarioView(APIView):
 
 
 
-#  Validacion de Usuarios en el Inicio de Sesion
+# inicio de sesion
 class LoginView(APIView):
-     def post(self, request):
+    def post(self, request):
         username = request.data.get("username")
         password = request.data.get("password")
 
         if not username or not password:
-            return Response({"error": "Credenciales obligatorias"}, status=400) #Solicitud Invalida // 400
+            return Response({"error": "Credenciales obligatorias"}, status=400)
 
         user = authenticate(username=username, password=password)
         if user is not None:
-            login(request, user)
-            return Response({"mensaje": "Inicio de sesión exitoso","id":user.id}, status=200) #Solicitud  Validada // 200
+            
+            token_ref = RefreshToken.for_user(user)
+            token_acc = AccessToken.for_user(user)
 
-        return Response({"error": "Credenciales inválidas"}, status=400) # Solicitud Invalida // 400
+            login(request, user)
+            print("Access Token:", token_acc)
+            print("Refresh Token:", token_ref)
+
+
+            return Response({
+                "mensaje": "Inicio de sesión exitoso",
+                "access": str(token_acc),
+                "refresh": str(token_ref),
+                "id": user.id
+            }, status=200)
+
+        return Response({"error": "Credenciales inválidas"}, status=400)
 
 
 

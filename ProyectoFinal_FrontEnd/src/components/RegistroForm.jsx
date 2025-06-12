@@ -4,13 +4,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import "../styles/Register.css"
 
 function RegistroForm() {
-    const [NombreUser, setNombreUser] = useState()
-    const [NmUsuario, setNmUsuario] = useState()
-    const [ApUsuario, setApUsuario] = useState()
-    const [ContraseñaUsuario, setContraseñaUsuario] = useState()
-    const [EmailUsuario, setEmailUsuario] = useState()
-    const [Fecha_NacimientoUsuario, setFecha_NacimientoUsuario] = useState()
-    const [TelefonoUsuario, setTelefonoUsuario] = useState()
+    const [NombreUser, setNombreUser] = useState("")
+    const [NmUsuario, setNmUsuario] = useState("")
+    const [ApUsuario, setApUsuario] = useState("")
+    const [ContraseñaUsuario, setContraseñaUsuario] = useState("")
+    const [EmailUsuario, setEmailUsuario] = useState("")
+    const [Fecha_NacimientoUsuario, setFecha_NacimientoUsuario] = useState("")
+    const [TelefonoUsuario, setTelefonoUsuario] = useState("")
      const [mensaje, setMensaje] = useState("")
      const navigate = useNavigate();
 
