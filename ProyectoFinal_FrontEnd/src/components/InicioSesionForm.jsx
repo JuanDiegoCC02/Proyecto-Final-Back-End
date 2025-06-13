@@ -39,7 +39,7 @@ function InicioSesionForm() {
                 console.log("accessToken", data.access);
 
 
-
+            localStorage.setItem("grupoUsuario", data.grupo)
             localStorage.setItem("id", data.id);
             localStorage.setItem("accessToken", data.access)
 
