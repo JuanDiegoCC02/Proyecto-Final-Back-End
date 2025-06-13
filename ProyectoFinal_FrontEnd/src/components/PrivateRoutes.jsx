@@ -2,10 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 //Privada
-    function PrivateRoutes({children}) {
+    function PrivateRoutes({children,rol}) {
         function usuarioValido() {
-            const usuario = localStorage.getItem("admin")
-            if (usuario) {
+            const usuario = localStorage.getItem("grupoUsuario")
+            if (usuario===rol) {
                 return true
             }else{
                 return false

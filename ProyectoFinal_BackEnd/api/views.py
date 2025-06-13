@@ -82,7 +82,7 @@ class LoginView(APIView):
 
         user = authenticate(username=username, password=password)
         if user is not None:
-            
+            grupo_usuario = user.groups.first()
             token_ref = RefreshToken.for_user(user)
             token_acc = AccessToken.for_user(user)
 
@@ -90,12 +90,14 @@ class LoginView(APIView):
             print("Access Token:", token_acc)
             print("Refresh Token:", token_ref)
 
+            print("Grupo del usuario:", grupo_usuario)
 
             return Response({
                 "mensaje": "Inicio de sesión exitoso",
                 "access": str(token_acc),
                 "refresh": str(token_ref),
-                "id": user.id
+                "id": user.id,
+                "grupo": str(grupo_usuario)
             }, status=200)
 
         return Response({"error": "Credenciales inválidas"}, status=400)

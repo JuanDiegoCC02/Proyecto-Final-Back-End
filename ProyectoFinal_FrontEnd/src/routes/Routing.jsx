@@ -11,21 +11,23 @@ import TablaComentarios from '../pages/TablaComentarios';
 import NoticiasAdmin from '../pages/NoticiasAdmin';
 import PruebaNoticias from '../components/PruebaNoticias';
 import NoticiaFull from '../components/NoticiaFull';
-
+import PrivateRoutes from '../components/PrivateRoutes';
 function Routing() {
   return (
    <Router>
         <Routes>
+            {/*Rutas Privadas*/}
+            <Route path="/admin" element={<PrivateRoutes children={<NoticiasAdmin/>} rol="administrador"/>}/>
+            <Route path="/moderador" element={<PrivateRoutes children={<Moderador/>} rol="administrador"/>}/>
+            <Route path="/tablacomentarios" element={<PrivateRoutes children={<TablaComentarios/>} rol="administrador"/>}/>
+            <Route path="/tablausuarios" element={<PrivateRoutes children={<TablaUsuarios/>} rol="administrador"/>}/>
+
+            {/*Rutas Publicas*/}
+            <Route path="/" element={<Home/>}/>
             <Route path = '/registro' element = {<RegistroPage/>}/> 
             <Route path = '/inicio' element = {<InicioSesionPage/>}/> 
             <Route path = '/noticias' element = {<Noticias/>}/> 
-
-            <Route path="/" element={<Home/>}/>
             <Route path="/contacto" element={<Contact/>}/>
-            <Route path="/moderador" element={<Moderador/>}/>
-            <Route path="/tablausuarios" element={<TablaUsuarios/>}/>
-            <Route path="/tablacomentarios" element={<TablaComentarios/>}/>
-            <Route path="/admin" element={<NoticiasAdmin/>}/>
             <Route path="/noticiafull" element={<NoticiaFull/>}/>
 
 
