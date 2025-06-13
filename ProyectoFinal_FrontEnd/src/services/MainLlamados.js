@@ -1,10 +1,13 @@
+const token = localStorage.getItem("accessToken");
+
 async function getUsers(endpoint,id='') {
    //cambio de id
     try {
         const response = await fetch(`http://127.0.0.1:8000/${endpoint}/${id}`, {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Authorization": `Bearer ${token}`
             }
         });
 
@@ -28,7 +31,8 @@ async function postUsers(obj,endpoint) {
         const response = await fetch(`http://127.0.0.1:8000/${endpoint}`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify(obj)
         });
@@ -61,7 +65,8 @@ async function updateUsers(logInUser, logInPassword, MdUsu)
         const response = await fetch("http://127.0.0.1:8000/users/"+id, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify(userData)
         });
@@ -83,7 +88,8 @@ async function patchData(estado,endpoint,id)
         const response = await fetch(`http://127.0.0.1:8000/${endpoint}/${id}/`, {
             method: 'PATCH',
             headers: {
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+                "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify(estado)
         });
@@ -104,7 +110,8 @@ async function deleteUser(id,endpoint) {
         const response = await fetch(`http://127.0.0.1:8000/${endpoint}/${id}/`, {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Authorization": `Bearer ${token}`
             }
         });
 

@@ -17,10 +17,10 @@ function Routing() {
    <Router>
         <Routes>
             {/*Rutas Privadas*/}
-            <Route path="/admin" element={<PrivateRoutes children={<NoticiasAdmin/>} rol="administrador"/>}/>
-            <Route path="/moderador" element={<PrivateRoutes children={<Moderador/>} rol="administrador"/>}/>
-            <Route path="/tablacomentarios" element={<PrivateRoutes children={<TablaComentarios/>} rol="administrador"/>}/>
-            <Route path="/tablausuarios" element={<PrivateRoutes children={<TablaUsuarios/>} rol="administrador"/>}/>
+            <Route path="/admin" element={<PrivateRoutes children={<NoticiasAdmin/>} rol="Administrador"/>}/>
+            <Route path="/moderador" element={<PrivateRoutes children={<Moderador/>} rol="Administrador"/>}/>
+            <Route path="/tablacomentarios" element={<PrivateRoutes children={<TablaComentarios/>} rol="Administrador"/>}/>
+            <Route path="/tablausuarios" element={<PrivateRoutes children={<TablaUsuarios/>} rol="Administrador"/>}/>
 
             {/*Rutas Publicas*/}
             <Route path="/" element={<Home/>}/>

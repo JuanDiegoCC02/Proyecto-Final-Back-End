@@ -1,4 +1,4 @@
-from .models import Roles, Usuarios, TipoPublicaciones, Publicaciones, Comentarios, EmailsContactos
+from .models import Roles, Usuarios, TipoPublicaciones, Publicaciones, EmailsContactos
 from rest_framework import serializers
 from django.contrib.auth.models import User
 
@@ -48,8 +48,4 @@ class PublicacionesSerializer(serializers.ModelSerializer):
 
 
 
-# serializer del modelo de contacto
-class ComentariosSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Comentarios
-        fields = '__all__'
+

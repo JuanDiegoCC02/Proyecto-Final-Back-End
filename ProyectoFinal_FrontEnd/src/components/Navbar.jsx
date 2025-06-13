@@ -16,6 +16,11 @@ function NavBar() {
      const cerrarSesion = () => {
     localStorage.removeItem('accessToken'); 
     removeCookie('accessToken', { path: '/' });
+
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('grupoUsuario');
+    localStorage.removeItem('id');
+
      window.location.href = "/inicio";  
     
 };

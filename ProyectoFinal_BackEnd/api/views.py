@@ -1,6 +1,6 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from .models import Roles, Usuarios, TipoPublicaciones, Publicaciones, Comentarios, EmailsContactos
-from .serializers import RolesSerializer, UsuariosSerializer,UsuariosEditarSerializer, TipoPublicacionesSerializer, PublicacionesSerializer, ComentariosSerializer, EmailContactosSerializer
+from .models import Roles, Usuarios, TipoPublicaciones, Publicaciones, EmailsContactos
+from .serializers import RolesSerializer, UsuariosSerializer,UsuariosEditarSerializer, TipoPublicacionesSerializer, PublicacionesSerializer, EmailContactosSerializer
 from rest_framework.views import APIView
 from .models import Usuarios
 from rest_framework.response import Response
@@ -8,15 +8,69 @@ from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate, login
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken,AccessToken
+from rest_framework.permissions import BasePermission, SAFE_METHODS, IsAuthenticated
+
+from rest_framework.permissions import AllowAny
+
+
+#Permisos admin
+class Permisos(BasePermission):
+    def has_permission(self, request, view):
+        usuario = request.user
+        if not usuario.is_authenticated:
+            return False
+        metodo = request.method
+        grupos_usuarios = usuario.groups.values_list('name', flat=True)
+
+
+        if metodo in SAFE_METHODS:
+            return True
+        
+        if "Usuario" in grupos_usuarios:
+            if metodo in ["POST", "GET"]:
+                return True
+            
+        if "Moderador" in grupos_usuarios:
+            if metodo in ["POST", "GET", "PATCH"]:
+                return True
+
+        if "Administrador" in grupos_usuarios:
+            return True  
+
+        
+#Permiso usuario
+class PermisosUser(BasePermission):
+    def has_permission(self, request, view):
+        usuario = request.user
+        if not usuario.is_authenticated:
+            return False
+        metodo = request.method
+        grupos_usuarios = usuario.groups.values_list('name', flat=True)
+
+
+        if metodo in SAFE_METHODS:
+            return True
+        
+        if "Usuario" in grupos_usuarios:
+            if metodo in ["POST", "GET"]:
+                return True
+        return False
+        
+
+
+
+
 #ListCreateView
 
 # vista para contacto
 class EmailContactoListCreateView(ListCreateAPIView):
+    permission_classes = [Permisos, IsAuthenticated]
     queryset = EmailsContactos.objects.all()
     serializer_class = EmailContactosSerializer
 
 
 class RolesListCreateView(ListCreateAPIView):
+    permission_classes = [Permisos, IsAuthenticated]
     queryset = Roles.objects.all()
     serializer_class = RolesSerializer
 
@@ -73,6 +127,7 @@ class AggUsuarioView(APIView):
 
 # inicio de sesion
 class LoginView(APIView):
+    permission_classes = [AllowAny]
     def post(self, request):
         username = request.data.get("username")
         password = request.data.get("password")
@@ -92,6 +147,7 @@ class LoginView(APIView):
 
             print("Grupo del usuario:", grupo_usuario)
 
+
             return Response({
                 "mensaje": "Inicio de sesión exitoso",
                 "access": str(token_acc),
@@ -107,52 +163,54 @@ class LoginView(APIView):
 
 #Prueba De Tipo Publicaciones
 class TipoPublicacionesListCreateView(ListCreateAPIView):
+    permission_classes = [Permisos, IsAuthenticated]
     queryset = TipoPublicaciones.objects.all()
     serializer_class = TipoPublicacionesSerializer
 
 
 
 class PublicacionesListCreateView(ListCreateAPIView):
+    permission_classes = [Permisos, IsAuthenticated]
     queryset = Publicaciones.objects.all()
     serializer_class = PublicacionesSerializer
-
-class ComentariosListCreateView(ListCreateAPIView):
-    queryset = Comentarios.objects.all()
-    serializer_class = ComentariosSerializer
 
 
 #DetailView
 class EmailsContactosDetailView(RetrieveUpdateDestroyAPIView):
+    permission_classes = [Permisos, IsAuthenticated]
     queryset = EmailsContactos.objects.all()
     serializer_class = EmailContactosSerializer
 
 class RolesDetailView(RetrieveUpdateDestroyAPIView):
+    
     queryset = Roles.objects.all()
     serializer_class = RolesSerializer
 
 class UsuariosDetailView(RetrieveUpdateDestroyAPIView):
+    
      queryset = User.objects.all()
      serializer_class = UsuariosEditarSerializer
 
 #Configuracion del view para actualizar Usuario
 class UsuarioActualizar(APIView):
+    
     def patch(self,request):
         pass
 
 class TipoPublicacionesDetailView(RetrieveUpdateDestroyAPIView):
+    permission_classes = [Permisos, IsAuthenticated]
     queryset = TipoPublicaciones.objects.all()
     serializer_class = TipoPublicacionesSerializer
 
 class PublicacionesDetailView(RetrieveUpdateDestroyAPIView):
+    permission_classes = [Permisos, IsAuthenticated]
     queryset = Publicaciones.objects.all()
     serializer_class = PublicacionesSerializer
 
-class ComentariosDetailView(RetrieveUpdateDestroyAPIView):
-    queryset = Comentarios.objects.all()
-    serializer_class = ComentariosSerializer
 
 
 class UsuarioEditarView(APIView):
+   
     def patch(self,request,id):
         username = request.data.get("username")
         first_name = request.data.get("first_name")

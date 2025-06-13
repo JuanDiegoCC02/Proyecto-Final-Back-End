@@ -36,10 +36,7 @@ class Publicaciones(models.Model):
     tipopublicacion = models.ForeignKey(TipoPublicaciones, on_delete = models.CASCADE, related_name= 'publicaciones' )   
     usuario = models.ForeignKey(User, on_delete = models.CASCADE, related_name = 'publicaciones')    
 
-class Comentarios(models.Model):
-    comentario = models.TextField()
-    usuario = models.ForeignKey(Usuarios, on_delete = models.CASCADE, related_name = 'comentarios')    
-    publicacion = models.ForeignKey(Publicaciones, on_delete= models.CASCADE, related_name = 'comentarios')
+
 
 
 #crea el modelo para peticiones de contacto
