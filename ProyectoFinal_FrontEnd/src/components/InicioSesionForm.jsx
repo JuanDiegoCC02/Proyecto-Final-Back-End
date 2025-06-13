@@ -3,12 +3,20 @@ import { PostUsuarios } from '../services/llamados_usuarios';
 import { Link, useNavigate } from 'react-router-dom';
 import "../styles/Login.css"
 
+//Prueba de Cookies
+import {useCookies} from 'react-cookie'
+
 
 function InicioSesionForm() {
     const [NombreUsuario, setNombreUsuario] = useState("")
     const [ContraseñaUsuario, setContraseñaUsuario] = useState("")
     const [mensaje, setMensaje] = useState("")
     const Navigate = useNavigate();
+
+    // Prueba Cookies
+    const [cookies, setCookie, removeCookie] = useCookies(['accessToken'],{
+        doNotParse: true
+    })
 
 
     const inicio = async () => {
@@ -24,8 +32,17 @@ function InicioSesionForm() {
         const data = await response.json();
         console.log(data);
         if (response.ok) {
+
+            // Prueba Cookies
+            setCookie("accessToken", data.access, { path: "/", maxAge: 3600 });
+            setCookie("id", data.id, { path: "/" });
+                console.log("accessToken", data.access);
+
+
+
             localStorage.setItem("id", data.id);
             localStorage.setItem("accessToken", data.access)
+
             console.log ("accessToken", data.access);
             Navigate("/"); 
         } else {

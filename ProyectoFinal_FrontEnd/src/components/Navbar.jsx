@@ -2,6 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import {useCookies} from 'react-cookie';
 
 import Imagen from './Imagen';
 
@@ -9,6 +10,15 @@ import "../styles/Navbar.css"
 
 
 function NavBar() {
+  const [cookies, setCookie, removeCookie] = useCookies(['accessToken'],{
+        doNotParse: true
+    })
+     const cerrarSesion = () => {
+    localStorage.removeItem('accessToken'); 
+    removeCookie('accessToken', { path: '/' });
+     window.location.href = "/inicio";  
+    
+};
             /*en el primer navbar estaba className="bg-body-tertiary">*/
   return (
             
@@ -28,7 +38,7 @@ function NavBar() {
               <NavDropdown.Item href="/inicio">Inicio de Sesión</NavDropdown.Item>
               <NavDropdown.Item href="/registro">Registro</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/">Cerrar Sesión</NavDropdown.Item>
+              <NavDropdown.Item onClick={cerrarSesion}>Cerrar Sesión</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
