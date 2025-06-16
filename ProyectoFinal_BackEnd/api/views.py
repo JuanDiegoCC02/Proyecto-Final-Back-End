@@ -1,6 +1,6 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from .models import Roles, Usuarios, TipoPublicaciones, Publicaciones, EmailsContactos
-from .serializers import RolesSerializer, UsuariosSerializer,UsuariosEditarSerializer, TipoPublicacionesSerializer, PublicacionesSerializer, EmailContactosSerializer
+from .models import Roles, Usuarios, TipoPublicaciones, Publicaciones, EmailsContactos, Comentarios
+from .serializers import RolesSerializer, UsuariosSerializer,UsuariosEditarSerializer, TipoPublicacionesSerializer, PublicacionesSerializer, EmailContactosSerializer, ComentariosSerializer
 from rest_framework.views import APIView
 from .models import Usuarios
 from rest_framework.response import Response
@@ -61,6 +61,12 @@ class PermisosUser(BasePermission):
 
 
 #ListCreateView
+
+class ComentariosListCreateView(ListCreateAPIView):
+    permission_classes = [Permisos, IsAuthenticated]
+    queryset = Comentarios.objects.all()
+    serializer_class = ComentariosSerializer
+
 
 # vista para contacto
 class EmailContactoListCreateView(ListCreateAPIView):
@@ -176,6 +182,12 @@ class PublicacionesListCreateView(ListCreateAPIView):
 
 
 #DetailView
+class ComentariosDetailView(RetrieveUpdateDestroyAPIView):
+    permission_classes = [Permisos, IsAuthenticated]
+    queryset = Comentarios.objects.all()
+    serializer_class = ComentariosSerializer
+
+
 class EmailsContactosDetailView(RetrieveUpdateDestroyAPIView):
     permission_classes = [Permisos, IsAuthenticated]
     queryset = EmailsContactos.objects.all()

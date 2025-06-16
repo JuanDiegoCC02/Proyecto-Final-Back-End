@@ -12,6 +12,8 @@ import NoticiasAdmin from '../pages/NoticiasAdmin';
 import PruebaNoticias from '../components/PruebaNoticias';
 import NoticiaFull from '../components/NoticiaFull';
 import PrivateRoutes from '../components/PrivateRoutes';
+import Perfil from '../pages/Perfil';
+
 function Routing() {
   return (
    <Router>
@@ -21,6 +23,7 @@ function Routing() {
             <Route path="/moderador" element={<PrivateRoutes children={<Moderador/>} rol="Administrador"/>}/>
             <Route path="/tablacomentarios" element={<PrivateRoutes children={<TablaComentarios/>} rol="Administrador"/>}/>
             <Route path="/tablausuarios" element={<PrivateRoutes children={<TablaUsuarios/>} rol="Administrador"/>}/>
+            <Route path="/perfil" element={<PrivateRoutes children={<Perfil/>} rol="Administrador"/>}/>
 
             {/*Rutas Publicas*/}
             <Route path="/" element={<Home/>}/>

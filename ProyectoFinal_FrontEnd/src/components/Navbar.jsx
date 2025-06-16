@@ -40,8 +40,7 @@ function NavBar() {
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/contacto">Contacto</Nav.Link>
             <NavDropdown className='linkConfg' title="Configuración" id="collapsible-nav-dropdown">
-              <NavDropdown.Item href="/inicio">Inicio de Sesión</NavDropdown.Item>
-              <NavDropdown.Item href="/registro">Registro</NavDropdown.Item>
+              <NavDropdown.Item href="/perfil">Perfil</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item onClick={cerrarSesion}>Cerrar Sesión</NavDropdown.Item>
             </NavDropdown>

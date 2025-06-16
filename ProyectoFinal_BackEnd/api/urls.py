@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import  UsuariosListCreateView, TipoPublicacionesListCreateView, PublicacionesListCreateView, EmailContactoListCreateView
 from .views import  RolesDetailView, UsuariosDetailView, TipoPublicacionesDetailView, PublicacionesDetailView, EmailsContactosDetailView
-from .views import  AggUsuarioView,LoginView,UsuarioEditarView
+from .views import  AggUsuarioView,LoginView,UsuarioEditarView, ComentariosListCreateView, ComentariosDetailView
 
 urlpatterns = [
 
@@ -16,6 +16,7 @@ urlpatterns = [
    
     path ('tipopublicaciones/', TipoPublicacionesListCreateView.as_view(), name = 'tipopublicaciones-list-create'),
     path ('publicaciones/', PublicacionesListCreateView.as_view(), name = 'publicaciones-list-create'),
+    path ('comentarios/', ComentariosListCreateView.as_view()),
   
 
 
@@ -24,5 +25,6 @@ urlpatterns = [
     path ('tipopublicaciones/<int:pk>/', TipoPublicacionesDetailView.as_view(), name = 'tipopublicaciones-editar-actualizar'),
     path ('publicaciones/<int:pk>/', PublicacionesDetailView.as_view()),
     path ('emailscontacto/<int:pk>/', EmailsContactosDetailView.as_view()),
+    path ('comentarios/<int:pk>/', ComentariosDetailView.as_view()),
    
 ]

@@ -10,6 +10,7 @@ class Roles(models.Model):
 class Usuarios(models.Model):
     #relacion entre tablas
     usuario = models.OneToOneField(User,on_delete=models.CASCADE)
+    foto_perfil = models.TextField()
     fecha_nacimiento = models.DateField()
     telefono = models.CharField(max_length=50)
 
@@ -31,12 +32,18 @@ class Publicaciones(models.Model):
     descripcion = models.TextField()
     latitud = models.CharField(max_length=50)
     longitud = models.CharField(max_length=50)
-    img = models.CharField(max_length=100)
+    img = models.CharField(max_length=150)
     estado_publicacion = models.CharField(max_length=100,choices=OPCIONES_ESTADO, default="pendiente")
     tipopublicacion = models.ForeignKey(TipoPublicaciones, on_delete = models.CASCADE, related_name= 'publicaciones' )   
-    usuario = models.ForeignKey(User, on_delete = models.CASCADE, related_name = 'publicaciones')    
+    usuario = models.ForeignKey(User, on_delete = models.CASCADE, related_name = 'publicaciones') 
+    calificacion = models.FloatField(default=0)
 
 
+class Comentarios(models.Model):
+    contenido = models.TextField()
+    fecha = models.DateTimeField(auto_now_add=True)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comentarios")
+    publicacion = models.ForeignKey(Publicaciones, on_delete=models.CASCADE, related_name="comentarios")
 
 
 #crea el modelo para peticiones de contacto
