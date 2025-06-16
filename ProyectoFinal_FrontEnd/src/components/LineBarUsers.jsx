@@ -8,13 +8,9 @@ const LineBarUsers = ({ title, data, categories }) => {
     const [seriesUsuarios, setSeriesUsuarios] = useState(0);
  useEffect(() => {
   async function list() {   
-    const datos = await GetUsuarios("api/usuarios");
-
-    const filtradoUsuarios = datos.filter((item) => item.nombre_usuarios === "Usuarios");
-    
-
-  
-    setSeriesUsuarios(filtradoUsuarios.length);
+    const datos = await GetUsuarios();
+    console.log("prueba", datos); 
+    setSeriesUsuarios(datos.length);
 
   }
 
@@ -46,7 +42,7 @@ const LineBarUsers = ({ title, data, categories }) => {
 
   const series = [
     {
-      name: 'Usuarios',
+      name: 'usuario',
       data: data || [seriesUsuarios],
     },
   ];
@@ -59,3 +55,4 @@ const LineBarUsers = ({ title, data, categories }) => {
 };
 
 export default LineBarUsers;
+  

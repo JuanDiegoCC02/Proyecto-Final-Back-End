@@ -63,7 +63,9 @@
         const fetchTiposPublicacion = async () => {
             try {
                 const respuesta = await getUsers("api/tipopublicaciones");
-                setTituloNoticia(""), setDescripcionNoticia(""), setPublicacion(""); // Reinicar campos del formulario
+                setTituloNoticia("")
+                setDescripcionNoticia("")
+                setPublicacion(""); // Reinicar campos del formulario
                 setTipoPublicacion(respuesta);  
                 console.log(respuesta)
             } catch (error) {
@@ -96,7 +98,7 @@
                     <Cloudinary/>
                     
 
-                    <button value={TituloNoticia} onClick={enviar} className='noticiasBtn'>Enviar</button>
+                    <button onClick={enviar} className='noticiasBtn'>Enviar</button>
 
 
                     
