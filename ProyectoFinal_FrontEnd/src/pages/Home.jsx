@@ -30,7 +30,7 @@ function Home() {
         <CardHome />
         <Img_info />
         <NoticiasTitulo/>
-        <div className='d-flex flex-row gap-3'>
+        <div className='d-flex flex-row gap-3 flex-wrap mx-auto justify-content-center'>
         {noticias.map((noticia) => {
           return (
             <CardsNoticias key={noticia.id} title={noticia.titulo} text={noticia.descripcion} imgSrc={noticia.img} getId={() => {
@@ -40,7 +40,7 @@ function Home() {
           );
         })}
         </div>
-
+        
 
         <Footer />
     </div>

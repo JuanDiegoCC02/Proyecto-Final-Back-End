@@ -1,0 +1,37 @@
+.noticiasFullBtnEliminar {
+    background-color: rgb(94, 144, 94);
+    margin-left: 5px;
+    margin-top: 3px;
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+}
+
+.noticiasFullBtnEliminar:hover {
+    background-color: rgb(255, 0, 0);
+    color: white;
+}
+
+.comentariosContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.comentarioCard {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 14px 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.comentarioUsuario {
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.comentarioContenido {
+  color: #555;
+}
