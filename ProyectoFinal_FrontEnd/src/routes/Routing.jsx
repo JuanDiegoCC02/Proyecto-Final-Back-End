@@ -10,9 +10,9 @@ import TablaUsuarios from '../pages/tablaUsuarios';
 import TablaComentarios from '../pages/TablaComentarios';
 import NoticiasAdmin from '../pages/NoticiasAdmin';
 import PruebaNoticias from '../components/PruebaNoticias';
-import NoticiaFull from '../components/NoticiaFull';
 import PrivateRoutes from '../components/PrivateRoutes';
 import Perfil from '../pages/Perfil';
+import FullNoticias from '../pages/FullNoticias';
 
 function Routing() {
   return (
@@ -31,7 +31,7 @@ function Routing() {
             <Route path = '/inicio' element = {<InicioSesionPage/>}/> 
             <Route path = '/noticias' element = {<Noticias/>}/> 
             <Route path="/contacto" element={<Contact/>}/>
-            <Route path="/noticiafull" element={<NoticiaFull/>}/>
+            <Route path="/noticiafull" element={<FullNoticias/>}/>
 
 
         </Routes>

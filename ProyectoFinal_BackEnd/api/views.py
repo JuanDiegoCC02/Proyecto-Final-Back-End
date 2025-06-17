@@ -31,11 +31,13 @@ class Permisos(BasePermission):
                 return True
             
         if "Moderador" in grupos_usuarios:
-            if metodo in ["POST", "GET", "PATCH"]:
+            if metodo in ["POST", "GET", "PATCH", "DELETE"]:
                 return True
 
         if "Administrador" in grupos_usuarios:
-            return True  
+            if metodo in ["POST", "GET", "PATCH", "DELETE"]:
+                return True  
+        return False
 
         
 #Permiso usuario
@@ -87,8 +89,9 @@ class UsuariosListCreateView(ListCreateAPIView):
 
 
 class AggUsuarioView(APIView):
+    permission_classes = [AllowAny]
 #    datos completos del request
- def post(self,request):
+    def post(self,request):
         username = request.data.get("username") 
         first_name = request.data.get("first_name")
         last_name = request.data.get("last_name")

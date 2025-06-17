@@ -69,7 +69,7 @@ async function EliminarUsuarios(id) {
         <tr key={user.id}>
           <td style={{backgroundColor:"#999999"}} >{index + 1}</td>
           <td>{user.usuario_alias}</td>
-          <td>{user.usuario_nombre}</td>
+          <td>{user.usuario_nombre}</td> 
           <td>{user.usuario_apellido}</td>
           <td>{user.usuario_email}</td>
           <td>{user.fecha_nacimiento}</td>

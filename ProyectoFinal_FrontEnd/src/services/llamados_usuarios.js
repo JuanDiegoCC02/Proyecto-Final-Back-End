@@ -26,13 +26,11 @@ async function GetUsuarios() {
 
 // Llamado Post de Usuarios
 async function PostUsuarios(obj) {
-     const accessToken = localStorage.getItem("accessToken");
     try {
         const response = await fetch ("http://127.0.0.1:8000/api/usuarios/",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json", 
-                 "Authorization": `Bearer ${accessToken}`,
             },
             body: JSON.stringify(obj)
         });
