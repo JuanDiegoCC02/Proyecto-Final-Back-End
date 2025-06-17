@@ -63,7 +63,7 @@ async function EliminarUsuarios(id) {
           <th style={{backgroundColor:"#68c4af"}}>Telefono</th>
           <th style={{backgroundColor:"#68c4af"}}>Opciones</th>
         </tr>
-      </thead>
+      </thead>  
       <tbody className='containerTablaUsuarios ' >
         {usuarios.map((user, index) => (
         <tr key={user.id}>

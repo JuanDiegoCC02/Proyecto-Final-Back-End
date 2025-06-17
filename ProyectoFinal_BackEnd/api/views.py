@@ -1,4 +1,4 @@
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, RetrieveAPIView
 from .models import Roles, Usuarios, TipoPublicaciones, Publicaciones, EmailsContactos, Comentarios
 from .serializers import RolesSerializer, UsuariosSerializer,UsuariosEditarSerializer, TipoPublicacionesSerializer, PublicacionesSerializer, EmailContactosSerializer, ComentariosSerializer
 from rest_framework.views import APIView
@@ -84,6 +84,7 @@ class RolesListCreateView(ListCreateAPIView):
 class UsuariosListCreateView(ListCreateAPIView):
     queryset = Usuarios.objects.all()
     serializer_class = UsuariosSerializer
+
 
 class AggUsuarioView(APIView):
 #    datos completos del request
@@ -198,14 +199,25 @@ class RolesDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Roles.objects.all()
     serializer_class = RolesSerializer
 
+
+# -----------<<<<<<<<<<<----------CONSULTA-------->>>>>>>>>>>-----------------
 class UsuariosDetailView(RetrieveUpdateDestroyAPIView):
-    
      queryset = User.objects.all()
      serializer_class = UsuariosEditarSerializer
 
+
+# ----------<<<<<<<<---------PRUEBA USER--------->>>>>>>>>>>-----------------
+class UsuarioRetrieveView(RetrieveAPIView):
+    queryset = Usuarios.objects.all()
+    serializer_class = UsuariosSerializer
+    lookup_field = 'id'  
+
+
+
+
+
 #Configuracion del view para actualizar Usuario
 class UsuarioActualizar(APIView):
-    
     def patch(self,request):
         pass
 
