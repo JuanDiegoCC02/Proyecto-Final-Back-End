@@ -2,7 +2,7 @@ from django.urls import path
 from .views import  UsuariosListCreateView, TipoPublicacionesListCreateView, PublicacionesListCreateView, EmailContactoListCreateView
 from .views import  RolesDetailView, UsuariosDetailView, TipoPublicacionesDetailView, PublicacionesDetailView, EmailsContactosDetailView
 from .views import  AggUsuarioView,LoginView,UsuarioEditarView, ComentariosListCreateView, ComentariosDetailView, UsuarioRetrieveView
-
+from .views import RespuestaComentariosListCreateView
 urlpatterns = [
 
     path('usuario/<int:id>/', UsuarioRetrieveView.as_view(), name='usuario-detail'),
@@ -29,5 +29,6 @@ urlpatterns = [
     path ('publicaciones/<int:pk>/', PublicacionesDetailView.as_view()),
     path ('emailscontacto/<int:pk>/', EmailsContactosDetailView.as_view()),
     path ('comentarios/<int:pk>/', ComentariosDetailView.as_view()),
-   
+    path ('respuestascomentarios/', RespuestaComentariosListCreateView.as_view()),
+
 ]

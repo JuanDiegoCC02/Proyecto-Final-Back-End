@@ -38,6 +38,8 @@ class Publicaciones(models.Model):
     usuario = models.ForeignKey(User, on_delete = models.CASCADE, related_name = 'publicaciones') 
     calificacion = models.FloatField(default=0)
 
+    def __str__(self):
+        return self.titulo
 
 class Comentarios(models.Model):
     contenido = models.TextField()
@@ -45,6 +47,15 @@ class Comentarios(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comentarios")
     publicacion = models.ForeignKey(Publicaciones, on_delete=models.CASCADE, related_name="comentarios")
 
+    def __str__(self):
+        return self.contenido
+
+class RespuestaComentarios(models.Model):
+    contenido = models.TextField()
+    fecha = models.DateTimeField(auto_now_add=True)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name="respuestas")
+    comentario = models.ForeignKey(Comentarios, on_delete=models.CASCADE, related_name="respuestas")
+    publicacion = models.ForeignKey(Publicaciones, on_delete=models.CASCADE, related_name="respuestas")
 
 #crea el modelo para peticiones de contacto
 class EmailsContactos(models.Model):

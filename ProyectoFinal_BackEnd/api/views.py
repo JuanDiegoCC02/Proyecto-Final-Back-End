@@ -1,6 +1,6 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, RetrieveAPIView
-from .models import Roles, Usuarios, TipoPublicaciones, Publicaciones, EmailsContactos, Comentarios
-from .serializers import RolesSerializer, UsuariosSerializer,UsuariosEditarSerializer, TipoPublicacionesSerializer, PublicacionesSerializer, EmailContactosSerializer, ComentariosSerializer
+from .models import Roles, Usuarios, TipoPublicaciones, Publicaciones, EmailsContactos, Comentarios, RespuestaComentarios
+from .serializers import RolesSerializer, UsuariosSerializer,UsuariosEditarSerializer, TipoPublicacionesSerializer, PublicacionesSerializer, EmailContactosSerializer, ComentariosSerializer,RespuestaComentariosSerializer
 from rest_framework.views import APIView
 from .models import Usuarios
 from rest_framework.response import Response
@@ -69,6 +69,9 @@ class ComentariosListCreateView(ListCreateAPIView):
     queryset = Comentarios.objects.all()
     serializer_class = ComentariosSerializer
 
+class RespuestaComentariosListCreateView(ListCreateAPIView):
+    queryset = RespuestaComentarios.objects.all()
+    serializer_class = RespuestaComentariosSerializer
 
 # vista para contacto
 class EmailContactoListCreateView(ListCreateAPIView):
