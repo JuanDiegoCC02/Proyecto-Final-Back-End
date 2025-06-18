@@ -1,22 +1,24 @@
-from .models import Roles, Usuarios, TipoPublicaciones, Publicaciones, EmailsContactos,Comentarios, RespuestaComentarios
+from .models import Roles, Usuarios, TipoPublicaciones, Publicaciones, EmailsContactos,Comentarios, RespuestaComentarios, Calificaciones
 from rest_framework import serializers
 from django.contrib.auth.models import User
 
 #Serializers 
 
+#Serializer Users
 class UsersSerializer(serializers.ModelSerializer):
     class Meta: 
         model = User
         fields = '__all__'
 
 
-
+#Serializer Roles
 class RolesSerializer(serializers.ModelSerializer):
     class Meta: 
         model = Roles
         fields = '__all__'
 
 
+#Serializer Usuarios conexion de tablas
 class UsuariosSerializer(serializers.ModelSerializer):
     usuario_alias = serializers.CharField(source="usuario.username",read_only=True)
     usuario_nombre = serializers.CharField(source="usuario.first_name",read_only=True)
@@ -26,24 +28,29 @@ class UsuariosSerializer(serializers.ModelSerializer):
         model = Usuarios
         fields = ["id","fecha_nacimiento","telefono","usuario","usuario_alias","usuario_nombre","usuario_apellido","usuario_email"]
 
+
+#Serializer EDIT Usarios
 class UsuariosEditarSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = "__all__"  
 
+
+#Serializer Emails de Contactos
 class EmailContactosSerializer(serializers.ModelSerializer):
     class Meta:
         model = EmailsContactos
         fields =  '__all__'
 
 
-
+#Serializer Tipo Publicaciones
 class TipoPublicacionesSerializer(serializers.ModelSerializer):
     class Meta:
         model = TipoPublicaciones
         fields = '__all__'
 
 
+#Serializers Publicaciones
 class PublicacionesSerializer(serializers.ModelSerializer):
     nombre_tipo_publicacion = serializers.CharField(source="tipopublicacion.nombre", read_only=True)
     class Meta:
@@ -54,11 +61,22 @@ class PublicacionesSerializer(serializers.ModelSerializer):
             "nombre_tipo_publicacion", "calificacion"
         ]
 
+
+#Serializer Calificacion
+class CalificacionesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Calificaciones
+        fields = '__all__'
+
+
+#Serializer Comentarios
 class ComentariosSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comentarios
         fields = '__all__'
 
+
+#Serializer Respues de Comentarios
 class RespuestaComentariosSerializer(serializers.ModelSerializer):
     usuario_alias = serializers.CharField(source="usuarios.username", read_only=True)
     comentario_responde = serializers.CharField(source="comentarios.contenido", read_only=True)

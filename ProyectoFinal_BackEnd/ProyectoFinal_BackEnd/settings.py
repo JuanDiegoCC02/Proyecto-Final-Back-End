@@ -17,7 +17,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+    #<---Configuracion de apps--->
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt'
 ]
 
+    #<---Configuracion de middleware--->
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -41,6 +42,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
 ]
+
+#Implementacion de Rest Framework
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -49,10 +52,13 @@ REST_FRAMEWORK = {
     #     'rest_framework.permissions.IsAuthenticated',
     # )
 }
+
+#Implementacion de JWT
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=120),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 }
+
 ROOT_URLCONF = 'ProyectoFinal_BackEnd.urls'
 
 TEMPLATES = [
@@ -77,6 +83,7 @@ WSGI_APPLICATION = 'ProyectoFinal_BackEnd.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+#Confg de la DataBases
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -134,6 +141,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
 ]
 
+#Metodos 
 CORS_ALLOW_METHODS = [
     'GET',
     'POST',

@@ -77,7 +77,7 @@ function CardPefil() {
             <div><strong>Calificacion:</strong> {user.tipo_usuario}</div>
 
 
-  {/*------Prueba de Foto Perfil-------*/}
+         {/*------Prueba de Foto Perfil-------*/}
             <div>
               <strong>Foto de Perfil:</strong><br />
               <img src={user.img} alt="Perfil" className="perfilIMG" width={150} />
@@ -105,7 +105,7 @@ function CardPefil() {
                   onChange={(e) => setEdicionEmail(e.target.value)} placeholder='Editar Email' /> <br />
 
 
-                  {/*Prueba Foto de Perfil*/}
+          {/*Prueba Foto de Perfil*/}
                 <Cloudinary />
                 <button className='tablaUsuariosConfirmBtn' onClick={() => actualizar(user.id)}> Confirmar Edit </button>
               </>

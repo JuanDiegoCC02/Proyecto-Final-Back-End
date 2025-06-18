@@ -10,6 +10,8 @@ import { useState,useEffect } from 'react'
 import { getUsers } from '../services/MainLlamados'
 import CardsNoticias from '../components/CardNoticias'
 import { useNavigate } from 'react-router-dom'
+
+
 function Home() {
   const [noticias,setNoticias] = useState([])
   const navigate = useNavigate()

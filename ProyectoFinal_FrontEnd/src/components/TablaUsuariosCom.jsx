@@ -29,7 +29,6 @@ function StripedColumnsExample() {
   }, [reload])
 
 
-
 async function actualizar(id) {
   const p = {
     "username": edicionAliasUsuario,
@@ -68,12 +67,13 @@ async function EliminarUsuarios(id) {
         {usuarios.map((user, index) => (
         <tr key={user.id}>
           <td style={{backgroundColor:"#999999"}} >{index + 1}</td>
-          <td>{user.usuario_alias}</td>
-          <td>{user.usuario_nombre}</td> 
+          <td>{user.username}</td>
+          <td>{user.first_name}</td> 
           <td>{user.usuario_apellido}</td>
           <td>{user.usuario_email}</td>
           <td>{user.fecha_nacimiento}</td>
           <td>{user.telefono}</td>
+          <td>
           <button className='tablaUsuariosDeleteBtn' onClick={()=> EliminarUsuarios(user.id)}>Eliminar</button>
           <button className='tablaUsuariosEditBtn' onClick={()=> setMostrar(!mostrar)}>Editar</button>
           {mostrar &&
@@ -93,6 +93,7 @@ async function EliminarUsuarios(id) {
               <button className='tablaUsuariosConfirmBtn    ' onClick={() => actualizar(user.id)}>Confirmar Edit</button> 
               </>
                     }
+          </td>
         </tr>
 
 
