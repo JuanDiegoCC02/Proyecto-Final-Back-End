@@ -1,6 +1,6 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, RetrieveAPIView
 from .models import Roles, Usuarios, TipoPublicaciones, Publicaciones, EmailsContactos, Comentarios
-from .serializers import RolesSerializer, UsuariosSerializer,UsuariosEditarSerializer, TipoPublicacionesSerializer, PublicacionesSerializer, EmailContactosSerializer, ComentariosSerializer
+from .serializers import RolesSerializer, UsuariosSerializer,UsuariosEditarSerializer, TipoPublicacionesSerializer, PublicacionesSerializer, EmailContactosSerializer, ComentariosSerializer, UsersSerializer
 from rest_framework.views import APIView
 from .models import Usuarios
 from rest_framework.response import Response
@@ -203,10 +203,11 @@ class RolesDetailView(RetrieveUpdateDestroyAPIView):
     serializer_class = RolesSerializer
 
 
-# -----------<<<<<<<<<<<----------CONSULTA-------->>>>>>>>>>>-----------------
+# -----------<<<<<<<<<<<----------CONSULTA-------->>>>>>>>>>>-----------------!!!!!
 class UsuariosDetailView(RetrieveUpdateDestroyAPIView):
      queryset = User.objects.all()
      serializer_class = UsuariosEditarSerializer
+
 
 
 # ----------<<<<<<<<---------PRUEBA USER--------->>>>>>>>>>>-----------------
@@ -215,6 +216,9 @@ class UsuarioRetrieveView(RetrieveAPIView):
     serializer_class = UsuariosSerializer
     lookup_field = 'id'  
 
+class UsersSerializerLiscreateView(ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UsersSerializer
 
 
 

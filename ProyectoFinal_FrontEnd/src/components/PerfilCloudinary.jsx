@@ -44,11 +44,9 @@ function PerfilCloudinary() {
   // Mostrar lista
   return (
     <div>
-     <ul className="listaUsuarios">
-  {usuario
-    .filter((user) => user.id === Number(localStorage.getItem('id')))
-    .map((user) => (
-      <li key={user.id} className="usuarioItem">
+      <ul className="listaUsuarios">
+        {usuario.map((user, index) => (
+          <li key={user.id} className="usuarioItem">
             <div><strong>Alias Usuario:</strong> {user.usuario_alias}</div>
             <div><strong>Nombre:</strong> {user.usuario_nombre}</div>
             <div><strong>Email:</strong> {user.usuario_email}</div>

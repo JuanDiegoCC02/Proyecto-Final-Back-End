@@ -6,8 +6,8 @@ import { getUsers } from '../services/MainLlamados';    //LLamado de para public
 
 
 function CardPefil() {
-  const [usuario, setUsuario] = useState([]);
-  const [publicaciones, setPublicaciones] = useState([])
+  const [usuarios, setUsuarios] = useState (null);
+  const [publicaciones, setPublicaciones] = useState([]);
   const [reload, setReload] = useState(false);
 
   const [mostrar, setMostrar] = useState(null); 
@@ -25,11 +25,10 @@ function CardPefil() {
   useEffect(() => {
     //Funcion usuario
     async function traerUsuario() {
-      const id = idLogueado
-      if (!id) return;
-      const data_users = await GetUsuarios(`api/usuario/${id}`);
-     const info_Usuario = data_users.filter(user => user.id === idLogueado);
-      setUsuario(info_Usuario);
+      if (!idLogueado) return;
+      const data_users = await GetUsuarios(`api/users/${idLogueado}`);
+      const info_Usuario = data_users.filter(user => user.id === idLogueado);
+      setUsuarios(info_Usuario);
       console.log("Usuario", info_Usuario);
     }
 
@@ -65,17 +64,13 @@ function CardPefil() {
 
     <div>
      <ul className="listaUsuarios">
-  {usuario.map((user) => (
-
+  {usuarios && usuarios.map(user => (
       <li key={user.id} className="usuarioItem">
-            <div><strong>Usuario:</strong> {user.usuario_alias}</div>
-            <div><strong>Nombre:</strong> {user.usuario_nombre}</div>
-            <div><strong>Email:</strong> {user.usuario_email}</div>
+            <div><strong>Usuario:</strong> {user.username}</div>
+            <div><strong>Nombre:</strong> {user.first_name}</div>
+            <div><strong>Email:</strong> {user.email}</div>
 
-            <strong>Cantidad de Publicaciones:</strong>
-        {publicaciones.map((publicacion) => (
-          <span key={publicacion.id}>{/* ... */}</span>
-        ))}
+         <strong>Cantidad de Publicaciones:</strong> {publicaciones.length}
 
 
             <div><strong>Tipo de Usuario:</strong> {user.tipo_usuario}</div>

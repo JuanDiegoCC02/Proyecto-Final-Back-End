@@ -1,10 +1,11 @@
 from django.urls import path
 from .views import  UsuariosListCreateView, TipoPublicacionesListCreateView, PublicacionesListCreateView, EmailContactoListCreateView
 from .views import  RolesDetailView, UsuariosDetailView, TipoPublicacionesDetailView, PublicacionesDetailView, EmailsContactosDetailView
-from .views import  AggUsuarioView,LoginView,UsuarioEditarView, ComentariosListCreateView, ComentariosDetailView, UsuarioRetrieveView
+from .views import  AggUsuarioView,LoginView,UsuarioEditarView, ComentariosListCreateView, ComentariosDetailView, UsuarioRetrieveView, UsersSerializerLiscreateView
 
 urlpatterns = [
 
+    path ('users/', UsersSerializerLiscreateView.as_view()),
     path('usuario/<int:id>/', UsuarioRetrieveView.as_view(), name='usuario-detail'),
 
     path ('usuarios/', AggUsuarioView.as_view(), name = 'usuarios-list-create'),
@@ -23,7 +24,7 @@ urlpatterns = [
 
 
     path ('roles/<int:pk>/', RolesDetailView.as_view(), name = 'roles-editar-actualizar'),
-    path ('usuarios/<int:pk>/', UsuariosDetailView.as_view(), name = 'usuarios-editar-actualizar'),
+    path ('usuarios ', UsuariosDetailView.as_view(), name = 'usuarios-editar-actualizar'),
     
     path ('tipopublicaciones/<int:pk>/', TipoPublicacionesDetailView.as_view(), name = 'tipopublicaciones-editar-actualizar'),
     path ('publicaciones/<int:pk>/', PublicacionesDetailView.as_view()),
