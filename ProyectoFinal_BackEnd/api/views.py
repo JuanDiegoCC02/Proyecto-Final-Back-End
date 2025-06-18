@@ -1,11 +1,6 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, RetrieveAPIView
-<<<<<<< HEAD
-from .models import Roles, Usuarios, TipoPublicaciones, Publicaciones, EmailsContactos, Comentarios
-from .serializers import RolesSerializer, UsuariosSerializer,UsuariosEditarSerializer, TipoPublicacionesSerializer, PublicacionesSerializer, EmailContactosSerializer, ComentariosSerializer, UsersSerializer
-=======
 from .models import Roles, Usuarios, TipoPublicaciones, Publicaciones, EmailsContactos, Comentarios, RespuestaComentarios
 from .serializers import RolesSerializer, UsuariosSerializer,UsuariosEditarSerializer, TipoPublicacionesSerializer, PublicacionesSerializer, EmailContactosSerializer, ComentariosSerializer,RespuestaComentariosSerializer
->>>>>>> 46b7343091e634870410fb540dc7754a4799afb7
 from rest_framework.views import APIView
 from .models import Usuarios
 from rest_framework.response import Response
