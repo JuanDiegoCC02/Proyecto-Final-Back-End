@@ -2,8 +2,6 @@ import React, { useState} from 'react'
 import { PostUsuarios } from '../services/llamados_usuarios';
 import { Link, useNavigate } from 'react-router-dom';
 import "../styles/Login.css"
-
-//Prueba de Cookies
 import {useCookies} from 'react-cookie'
 
 
@@ -12,8 +10,6 @@ function InicioSesionForm() {
     const [ContraseñaUsuario, setContraseñaUsuario] = useState("")
     const [mensaje, setMensaje] = useState("")
     const Navigate = useNavigate();
-
-    // Prueba Cookies
     const [cookies, setCookie, removeCookie] = useCookies(['accessToken'],{
         doNotParse: true
     })
@@ -33,16 +29,14 @@ function InicioSesionForm() {
         console.log(data);
         if (response.ok) {
 
-            // Prueba Cookies
+            // Cookies
             setCookie("accessToken", data.access, { path: "/", maxAge: 3600 });
             setCookie("id", data.id, { path: "/" });
-                console.log("accessToken", data.access);
-
+            console.log("accessToken", data.access);
 
             localStorage.setItem("grupoUsuario", data.grupo)
             localStorage.setItem("id", data.id);
             localStorage.setItem("accessToken", data.access)
-
             console.log ("accessToken", data.access);
             Navigate("/"); 
         } else {
@@ -53,9 +47,6 @@ function InicioSesionForm() {
         setMensaje("Ocurrió un error al iniciar sesión.");
     }
 };
-
-
-
 
   return (
     <div>
@@ -69,8 +60,8 @@ function InicioSesionForm() {
         </nav>
 <>
     <div className='loginContainer'>
-    <label htmlFor="" className='labelLogin'>Nombre</label>
-    <input className='inputLogin' value={NombreUsuario} onChange={(e) => setNombreUsuario(e.target.value)}  placeholder='Nombre' type="text" />
+    <label htmlFor="" className='labelLogin'>Usuario</label>
+    <input className='inputLogin' value={NombreUsuario} onChange={(e) => setNombreUsuario(e.target.value)}  placeholder='Usuario' type="text" />
     <hr className='barLogin' />
 
     <label htmlFor="" className='labelLogin'>Contraseña</label>

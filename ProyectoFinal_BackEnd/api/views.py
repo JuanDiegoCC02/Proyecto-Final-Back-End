@@ -1,7 +1,7 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, RetrieveAPIView
-from .models import Roles, Usuarios, TipoPublicaciones, Publicaciones, EmailsContactos, Comentarios, RespuestaComentarios, Calificaciones
+from .models import Usuarios, TipoPublicaciones, Publicaciones, EmailsContactos, Comentarios, RespuestaComentarios, Calificaciones
 from .models import Usuarios
-from .serializers import RolesSerializer, UsuariosSerializer,UsuariosEditarSerializer, TipoPublicacionesSerializer, PublicacionesSerializer, EmailContactosSerializer, ComentariosSerializer,RespuestaComentariosSerializer, UsersSerializer, CalificacionesSerializer
+from .serializers import UsuariosSerializer,UsuariosEditarSerializer, TipoPublicacionesSerializer, PublicacionesSerializer, EmailContactosSerializer, ComentariosSerializer,RespuestaComentariosSerializer, UsersSerializer, CalificacionesSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.contrib.auth.models import User, Group
@@ -78,19 +78,13 @@ class EmailContactoListCreateView(ListCreateAPIView):
     queryset = EmailsContactos.objects.all()
     serializer_class = EmailContactosSerializer
 
-#View Roles
-class RolesListCreateView(ListCreateAPIView):
-    permission_classes = [Permisos, IsAuthenticated]
-    queryset = Roles.objects.all()
-    serializer_class = RolesSerializer
-
 #View Usuarios
 class UsuariosListCreateView(ListCreateAPIView):
     queryset = Usuarios.objects.all()
     serializer_class = UsuariosSerializer
 
 
-#View AggUsuarios
+#View AggUsuarios solo realiza un Post
 class AggUsuarioView(APIView):
     permission_classes = [AllowAny]
         # <---todos los tados del request--->
@@ -130,6 +124,32 @@ class AggUsuarioView(APIView):
             telefono = telefono
         )
         return Response({"exito": "Usuario creado"},status=201)
+
+
+
+
+#View para tabla django y usuarios solo realiza Get
+class GetUsuarioView(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self, request):
+        usuarios = []
+
+        for user in User.objects.all():
+            try:
+                extra = Usuarios.objects.get(usuario=user)
+                usuarios.append({
+                    "id": user.id,
+                    "username": user.username,
+                    "email": user.email,
+                    "first_name": user.first_name,
+                    "last_name": user.last_name,
+                    "fecha_nacimiento": extra.fecha_nacimiento,
+                    "telefono": extra.telefono,
+                })
+            except Usuarios.DoesNotExist:
+                pass  
+
+        return Response(usuarios)
 
 
 
@@ -182,11 +202,6 @@ class CalificacionesListCreateView(ListCreateAPIView):
     queryset = Calificaciones.objects.all()
     serializer_class = CalificacionesSerializer
 
-#View Retrieve Usuarios
-class UsuarioRetrieveView(RetrieveAPIView):
-    queryset = Usuarios.objects.all()
-    serializer_class = UsuariosSerializer
-    lookup_field = 'id'  
 
 #View User tabla django
 class UsersSerializerLiscreateView(ListCreateAPIView):
@@ -251,10 +266,6 @@ class EmailsContactosDetailView(RetrieveUpdateDestroyAPIView):
     queryset = EmailsContactos.objects.all()
     serializer_class = EmailContactosSerializer
 
-#DetailView Roles
-class RolesDetailView(RetrieveUpdateDestroyAPIView):
-    queryset = Roles.objects.all()
-    serializer_class = RolesSerializer
 
 #DetailView Users
 class UsuariosDetailView(RetrieveUpdateDestroyAPIView):

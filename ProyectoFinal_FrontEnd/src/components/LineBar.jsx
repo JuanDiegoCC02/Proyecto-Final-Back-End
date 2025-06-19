@@ -16,7 +16,7 @@ const LineBar = () => {
 
     setSeriesNoticias(filtradoNoticias.length);
     setSeriesCampanas(filtradoCampanas.length);
-
+    console.log(filtradoNoticias.length)
   }
 
   list();

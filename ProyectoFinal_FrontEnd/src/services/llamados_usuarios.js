@@ -3,7 +3,7 @@
 async function GetUsuarios() {
     const accessToken = localStorage.getItem("accessToken");
   try {
-    const response = await fetch(`http://127.0.0.1:8000/api/users/`, {
+    const response = await fetch(`http://127.0.0.1:8000/api/usuariosGet/`, {
       method: "GET",
       headers: {
        "Authorization": `Bearer ${accessToken}`, 

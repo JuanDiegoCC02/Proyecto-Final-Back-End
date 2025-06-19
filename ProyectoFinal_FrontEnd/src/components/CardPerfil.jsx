@@ -26,7 +26,7 @@ function CardPefil() {
     //Funcion usuario
     async function traerUsuario() {
       if (!idLogueado) return;
-      const data_users = await GetUsuarios(`api/users/${idLogueado}`);
+      const data_users = await GetUsuarios(`api/usuariosGet/${idLogueado}`);
       const info_Usuario = data_users.filter(user => user.id === idLogueado);
       setUsuarios(info_Usuario);
       console.log("Usuario", info_Usuario);
