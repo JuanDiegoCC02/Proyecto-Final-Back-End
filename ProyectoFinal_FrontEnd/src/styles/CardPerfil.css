@@ -1,0 +1,111 @@
+/* General */
+
+/* Lista del perfil */
+.liPerfil {
+  list-style: none;
+  padding: 30px;
+  margin: 0 auto;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Tarjeta de perfil */
+.PerfilItem {
+  background: #ffffff;
+  border: 1px solid #b3e5c6;
+ /*border-left: 6px solid #4caf50;  estilo técnico con color ambiental */
+  border-radius: 5px;
+  border: 9px;
+  border-style: ridge;
+  border-color: rgb(5, 120, 89) ;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 100, 80, 0.903);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #dfe4e563;
+}
+
+.PerfilItem:hover {
+  transform: scale(1.01);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.905);
+
+}
+
+/* Imagen de perfil */
+.perfilIMG {
+  border-radius: 50%;
+  border: 3px solid  #026b56;
+  margin-top: 10px;
+  object-fit: cover;
+  width: 120px;
+  height: 120px;
+   box-shadow:  0 4px 14px rgba(1, 62, 39, 0.934);
+}
+
+/* Botones */
+.btnPerfilEdit,
+.btnConfirmar {
+  background-color: #5a5d5d; /* verde menta tecnológica */
+  color: rgb(217, 219, 219);
+  font-weight: bold;
+  border: none;
+  padding: 10px 16px;
+  margin-top: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btnPerfilEdit:hover,
+.btnConfirmar:hover {
+  background-color: #008f74;
+}
+
+/* Inputs */
+.inptCardPerfil {
+  width: 95%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #c4e8db;
+  border-radius: 6px;
+  background-color: #eefaf6;
+  color: #1f3a36;
+  font-size: 14px;
+}
+
+/* Etiquetas destacadas */
+strong {
+  color: #0a5444;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .PerfilItem {
+    padding: 20px;
+  }
+
+  .perfilIMG {
+    width: 90px;
+    height: 90px;
+  }
+
+  .inptCardPerfil {
+    width: 100%;
+  }
+}
+.containerData{
+  margin: 15px;
+  margin-left: 3px;
+}
+
+.containerData ul {
+  padding-left: 20px;
+  margin: 5px 0;
+}
+
+.containerData li {
+  list-style-type: disc;
+  margin-bottom: 4px;
+  color: #2e3c3a;
+}

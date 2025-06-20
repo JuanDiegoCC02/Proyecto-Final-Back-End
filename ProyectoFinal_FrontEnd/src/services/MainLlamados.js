@@ -37,7 +37,10 @@ async function postUsers(obj,endpoint) {
             body: JSON.stringify(obj)
         });
 
+     
         return await response.json();
+
+            
     } catch (error) {
         console.error('Error posting user:', error);
         throw error;
@@ -58,6 +61,7 @@ async function updateUsers(logInUser, logInPassword, MdUsu)
             MdUsuario
         };
 
+
         const response = await fetch("http://127.0.0.1:8000/users/"+id, {
             method: 'PUT',
             headers: {
@@ -67,6 +71,7 @@ async function updateUsers(logInUser, logInPassword, MdUsu)
             body: JSON.stringify(userData)
         });
 
+     
         return await response.json();
     } catch (error) {
         console.error('Error update user:', error);

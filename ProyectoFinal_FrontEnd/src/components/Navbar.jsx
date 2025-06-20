@@ -29,20 +29,20 @@ function NavBar() {
             
     <Navbar collapseOnSelect expand="lg" className="ContainerNavbar">
       <Container className='MainContainerNavbar'>
-         <Imagen enlaceImagen={"../src/Images/Logo Pag Noticias.jpg"}/>
+         <Imagen className="logoNavbar" enlaceImagen={"../src/Images/Logo Pag Noticias.jpg"}/>
         <Navbar.Brand href="/"></Navbar.Brand>
         <Navbar.Brand className='BrandTitle' href="/"></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav" >
           <Nav className="me-auto ">
-            <Nav.Link href="/moderador">Moderador</Nav.Link>
-            <Nav.Link href="/noticias">Noticias</Nav.Link>
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/contacto">Contacto</Nav.Link>
-            <NavDropdown className='linkConfg' title="Configuración" id="collapsible-nav-dropdown">
-              <NavDropdown.Item href="/perfil">Perfil</NavDropdown.Item>
+            <Nav.Link className='linkNavbar' href="/moderador">Moderador</Nav.Link>
+            <Nav.Link className='linkNavbar' href="/noticias">Form Noticias</Nav.Link>
+            <Nav.Link className='linkNavbar' href="/">Home</Nav.Link>
+            <Nav.Link className='linkNavbar' href="/contacto">Contacto</Nav.Link>
+            <NavDropdown className='linkConfg' id="collapsible-nav-dropdown" title="⚙️" >
+              <NavDropdown.Item className='confgbtn' href="/perfil">Perfil</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item onClick={cerrarSesion}>Cerrar Sesión</NavDropdown.Item>
+              <NavDropdown.Item className='confgbtn'  onClick={cerrarSesion}>Cerrar Sesión</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

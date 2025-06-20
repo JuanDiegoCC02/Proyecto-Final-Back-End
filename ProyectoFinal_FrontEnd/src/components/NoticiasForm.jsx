@@ -1,116 +1,124 @@
-    import React, {useState, useEffect} from 'react'
-    import  {postUsers, getUsers } from '../services/MainLlamados'
-    import Geolocalizacion from '../components/Geolocalizacion'
-    import "../styles/NoticiasForm.css"
-    import { useNavigate } from "react-router-dom";
-    import Cloudinary from './Cloudinary';
+import React, { useState, useEffect } from 'react';
+import { postUsers, getUsers } from '../services/MainLlamados';
+import Geolocalizacion from '../components/Geolocalizacion';
+import Cloudinary from './Cloudinary';
+import "../styles/NoticiasForm.css";
 
+function NoticiasForm() {
+    const [TituloNoticia, setTituloNoticia] = useState("");
+    const [DescripcionNoticia, setDescripcionNoticia] = useState("");
+    const [TipoPublicacion, setTipoPublicacion] = useState([]);
+    const [publicacion, setPublicacion] = useState("");
+    const [mensaje, setMensaje] = useState("");
+    const [errores, setErrores] = useState({}); 
 
+    function TituloF(e) {
+        setTituloNoticia(e.target.value);
+    }
 
+    function DescripcionF(e) {
+        setDescripcionNoticia(e.target.value);
+    }
 
-    function NoticiasForm() {
-        const [TituloNoticia, setTituloNoticia] = useState("")
-        const [DescripcionNoticia, setDescripcionNoticia] = useState("")
-        const [TipoPublicacion, setTipoPublicacion] = useState([])
-        const [publicacion, setPublicacion] = useState("")
+    async function enviar() {
+        const guardaLatitud = JSON.parse(localStorage.getItem("posicion"));
+        const guardarUsuario = JSON.parse(localStorage.getItem("id"));
+        const guardarURL = localStorage.getItem("img");
 
-        const navigate = useNavigate();
-        
+        const obj = {
+            titulo: TituloNoticia,
+            descripcion: DescripcionNoticia,
+            tipopublicacion: publicacion,
+            usuario: guardarUsuario,
+            latitud: guardaLatitud?.[0],
+            longitud: guardaLatitud?.[1],
+            img: guardarURL
+        };
 
+        try {
+            const respuestaServer = await postUsers(obj, "api/publicaciones/");
+            console.log("Publicación creada:", respuestaServer);
 
+            setMensaje("Publicación creada con éxito");
+            setErrores({}); // limpiar errores anteriores
 
-        function TituloF(e) {
-            setTituloNoticia(e.target.value)
-        }
-        function DescripcionF(e) {
-            setDescripcionNoticia(e.target.value)
-        }
-        function TipoPublicacionF(e) {
-            setTipoPublicacion(e.target.value)
-        }
+            // REINICIAR CAMPOS
+            setTituloNoticia("");
+            setDescripcionNoticia("");
+            setPublicacion("");
 
-        async function enviar (){
-            const guardaLatitud =  JSON.parse(localStorage.getItem("posicion"))
-            const guardarLongitud =  JSON.parse(localStorage.getItem("posicion"))
-            const guardarUsuario = JSON.parse(localStorage.getItem("id"))
-            const guardarURL = localStorage.getItem("img")
-            
-            const obj = {
-                titulo: TituloNoticia,
-                descripcion: DescripcionNoticia,
-                tipopublicacion: publicacion,
-                usuario: guardarUsuario,
-                latitud: guardaLatitud[0],
-                longitud: guardarLongitud[1],
-                img : guardarURL
-            }
-            console.log(obj);
-            console.log("Latitud", guardaLatitud);
-            console.log("Longitud", guardarLongitud);
-            console.log (guardarUsuario);
-            try {
-            const respuestaServer = await postUsers(obj,"api/publicaciones/");
-        
-            console.log("Post User", respuestaServer);
-            
         } catch (error) {
-            console.error("Error", error);
-            setMensaje("No se envio la noticia.");
+            console.error("Error al crear publicación:", error);
+
+            if (error instanceof Response) {
+                const data = await error.json();
+                setErrores(data);
+                setMensaje("Hay errores en el formulario. Revisa los campos.");
+            } else {
+                setMensaje("Ocurrió un error inesperado.");
+            }
         }
-        }
-        
-        useEffect(() => {
+    }
+
+    useEffect(() => {
         const fetchTiposPublicacion = async () => {
             try {
                 const respuesta = await getUsers("api/tipopublicaciones");
-                setTituloNoticia("")
-                setDescripcionNoticia("")
-                setPublicacion(""); // Reinicar campos del formulario
-                setTipoPublicacion(respuesta);  
-                console.log(respuesta)
+                setTipoPublicacion(respuesta);
             } catch (error) {
                 console.error("Error al obtener tipos de publicación:", error);
+                setMensaje("Error al obtener el tipo de publicación.");
             }
         };
 
         fetchTiposPublicacion();
     }, []);
 
-        
-
-        return (
-            <>
+    return (
+        <>
             <div className='mainContainerNoticia'>
                 <h2 className='tituloNoticia'>Ingrese Noticia</h2>
-                    <div className='containerNoticia'> 
-                    <input value={TituloNoticia} className='inputTexto' type="text" onChange={TituloF} placeholder='Titulo Noticia' />
-                    <input className='inputTexto' type="text" onChange={DescripcionF}  placeholder='Descripción Noticia' />
+                <div className='containerNoticia'>
+                    <input
+                        value={TituloNoticia}
+                        className='inputTexto'
+                        type="text"
+                        onChange={TituloF}
+                        placeholder='Titulo Noticia'
+                    />
+                    {errores.titulo && <p className='error-message-I'>{errores.titulo[0]}</p>}
 
-                <select onChange={(e)=>setPublicacion(e.target.value)} className='selectNoticias' defaultValue="">
-                    <option value="" disabled>Tipo de Publicación</option>
-                    {TipoPublicacion.map((tipo) => (
-                        <option key={tipo.id} value={tipo.id}>{tipo.nombre}</option>
-                    ))}
+                    <input
+                        value={DescripcionNoticia}
+                        className='inputTexto'
+                        type="text"
+                        onChange={DescripcionF}
+                        placeholder='Descripción Noticia'
+                    />
+                    {errores.descripcion && <p className='error-message-I'>{errores.descripcion[0]}</p>}
+
+                    <select
+                        value={publicacion}
+                        onChange={(e) => setPublicacion(e.target.value)}
+                        className='selectNoticias'
+                    >
+                        <option value="" disabled>Tipo de Publicación</option>
+                        {TipoPublicacion.map((tipo) => (
+                            <option key={tipo.id} value={tipo.id}>{tipo.nombre}</option>
+                        ))}
                     </select>
+                    {errores.tipopublicacion && <p className='error-message-I'>{errores.tipopublicacion[0]}</p>}
 
-
-                    <Geolocalizacion/>
-                    <Cloudinary/>
-                    
+                    <Geolocalizacion />
+                    <Cloudinary />
 
                     <button onClick={enviar} className='noticiasBtn'>Enviar</button>
 
-
-                    
-                    </div>
+                    {mensaje && <p className='error-message-I'>{mensaje}</p>}
                 </div>
+            </div>
+        </>
+    );
+}
 
-                
-                    
-                
-            </>
-
-        )
-    }
-
-    export default NoticiasForm
+export default NoticiasForm;

@@ -96,6 +96,7 @@ class AggUsuarioView(APIView):
         email = request.data.get("email")
         fecha_nacimiento = request.data.get("fecha_nacimiento")
         telefono = request.data.get("telefono")
+        foto_perfil = request.data.get("foto_perfil")
 
         if not username or not password or not email or not  fecha_nacimiento or not telefono:
             return Response(    
@@ -117,11 +118,12 @@ class AggUsuarioView(APIView):
         grupo = Group.objects.get(name="Usuario")
         usuario.groups.add(grupo)
 
-        #  <---Datos unicos de la tabla creada--->
+        #  <---Datos unicos de la tabla creada por nosotros--->
         Usuarios.objects.create(
             usuario = usuario,
             fecha_nacimiento = fecha_nacimiento,
-            telefono = telefono
+            telefono = telefono,
+            foto_perfil = foto_perfil
         )
         return Response({"exito": "Usuario creado"},status=201)
 
@@ -145,6 +147,7 @@ class GetUsuarioView(APIView):
                     "last_name": user.last_name,
                     "fecha_nacimiento": extra.fecha_nacimiento,
                     "telefono": extra.telefono,
+                    "foto_perfil" : extra.foto_perfil
                 })
             except Usuarios.DoesNotExist:
                 pass  
@@ -196,6 +199,13 @@ class PublicacionesListCreateView(ListCreateAPIView):
     permission_classes = [Permisos, IsAuthenticated]
     queryset = Publicaciones.objects.all()
     serializer_class = PublicacionesSerializer
+    def perform_create(self, serializer):
+        user = self.request.user
+
+        serializer.save(usuario=user)
+    
+
+
 
 #View Calificaciones
 class CalificacionesListCreateView(ListCreateAPIView):
@@ -224,6 +234,7 @@ class UsuarioEditarView(APIView):
         password = request.data.get("password")
         fecha_nacimiento = request.data.get("fecha_nacimiento")
         telefono = request.data.get("telefono")
+        img = request.data.get("foto_perfil")
 
         user = User.objects.get(id=id)
                 
@@ -238,13 +249,14 @@ class UsuarioEditarView(APIView):
         if password:
             user.set_password(password)
         
-        usuario_ext = user.usuarios
+        usuario_ext = Usuarios.objects.get(usuario=user)
 
         if fecha_nacimiento:
             usuario_ext.fecha_nacimiento = fecha_nacimiento
         if telefono:
             usuario_ext.telefono = telefono
-        
+        if img:
+            usuario_ext.foto_perfil = img
         user.save()
         usuario_ext.save()
         return Response({"mensaje": "Usuario actualizado"}, status=200)

@@ -55,6 +55,7 @@ class PublicacionesSerializer(serializers.ModelSerializer):
         ]
 
 
+
 #Serializer Calificacion
 class CalificacionesSerializer(serializers.ModelSerializer):
     class Meta:

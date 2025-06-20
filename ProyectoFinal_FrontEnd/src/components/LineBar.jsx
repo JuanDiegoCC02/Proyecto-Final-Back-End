@@ -3,14 +3,12 @@ import { getUsers } from "../services/MainLlamados";
 import Chart from "react-apexcharts";
 
 const LineBar = () => {
-
   const [seriesNoticias, setSeriesNoticias] = useState(0);
   const [seriesCampanas, setSeriesCampanas] = useState(0);
 
  useEffect(() => {
   async function list() {   
     const datos = await getUsers("api/publicaciones");
-
     const filtradoNoticias = datos.filter((item) => item.nombre_tipo_publicacion === "Noticias");
     const filtradoCampanas = datos.filter((item) => item.nombre_tipo_publicacion === "Campañas");
 

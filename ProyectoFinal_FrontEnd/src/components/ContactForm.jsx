@@ -66,7 +66,7 @@ function ContactForm() {
       <input className='contactMsg' value={TextContact} onChange={contact_text} type="text" placeholder='Mensaje' />
       <br />
       <button className='contactBtn' onClick={registrarContacto}>Enviar</button>
-      {mensaje && <p>{mensaje}</p>} <br />
+      {mensaje && <p  className='error-message-I' >{mensaje}</p>} <br />
 
     </div>
 

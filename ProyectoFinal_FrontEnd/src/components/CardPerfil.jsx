@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { GetUsuarios, UpdateUsuarios } from '../services/llamados_usuarios';
-import Cloudinary from './Cloudinary'; 
-
 import { getUsers } from '../services/MainLlamados';    //LLamado de para publicaciones
+
+import "../styles/CardPerfil.css"
+import CloudinaryPerfil from './CloudinaryPerfil';
 
 
 function CardPefil() {
   const [usuarios, setUsuarios] = useState (null);
   const [publicaciones, setPublicaciones] = useState([]);
+  const [calificaciones, setCalificaciones] = useState([]);
   const [reload, setReload] = useState(false);
 
   const [mostrar, setMostrar] = useState(null); 
@@ -15,7 +17,7 @@ function CardPefil() {
   const [edicionNombre, setEdicionNombre] = useState('');
   const [edicionEmail, setEdicionEmail] = useState('');
   const [editImg, setEditImg] = useState('');
-
+ 
   const idLogueado = Number(localStorage.getItem('id'));
 
   
@@ -37,8 +39,17 @@ function CardPefil() {
     const data_publicaciones = await getUsers('api/publicaciones');
     const publicacionesUsuario = data_publicaciones.filter(publicacion => publicacion.usuario === idLogueado);
     setPublicaciones(publicacionesUsuario);
-    console.log("publicaciones", publicacionesUsuario )
+    console.log("publicaciones", publicacionesUsuario)
   }
+
+async function traerCalificaciones() {
+  const data_calificaciones = await getUsers('api/calificaciones');
+  const calificacionesUsuario = data_calificaciones.filter(calificacion => calificacion.usuario === idLogueado);
+  setCalificaciones(calificacionesUsuario);
+  console.log("calificaiones", calificacionesUsuario)
+}
+
+  traerCalificaciones();
   traerPublicaciones();
   traerUsuario();
   }, [reload]);
@@ -46,15 +57,15 @@ function CardPefil() {
 
   // Función de actualizar
   async function actualizar(id) {
-    const imagenActualizada = localStorage.getItem('img') || editImg;
 
     const usuarioActualizado = {
       username: edicionAliasUsuario,
       first_name: edicionNombre,
       email: edicionEmail,
-      img: imagenActualizada,
+      foto_perfil: localStorage.getItem("img"),
     };
     await UpdateUsuarios(usuarioActualizado, id);
+    localStorage.removeItem('img');
     setReload(!reload);
     setMostrar(null); 
   }
@@ -63,51 +74,59 @@ function CardPefil() {
   return (
 
     <div>
-     <ul className="listaUsuarios">
+
+      
+     <ul className="liPerfil">
   {usuarios && usuarios.map(user => (
-      <li key={user.id} className="usuarioItem">
-            <div><strong>Usuario:</strong> {user.username}</div>
-            <div><strong>Nombre:</strong> {user.first_name}</div>
-            <div><strong>Email:</strong> {user.email}</div>
+      <li key={user.id} className="PerfilItem">
 
-         <strong>Cantidad de Publicaciones:</strong> {publicaciones.length}
-
-
-            <div><strong>Tipo de Usuario:</strong> {user.tipo_usuario}</div>
-            <div><strong>Calificacion:</strong> {user.tipo_usuario}</div>
-
-
-         {/*------Prueba de Foto Perfil-------*/}
+                   {/*------Prueba MOSTRAR Foto del Perfil-------*/}
             <div>
-              <strong>Foto de Perfil:</strong><br />
-              <img src={user.img} alt="Perfil" className="perfilIMG" width={150} />
+              <strong>Foto de Perfil</strong><br />
+              <img src={user.foto_perfil} alt="Perfil" className="perfilIMG" width={150} /><br />
             </div>
 
+            <div className='containerData'><strong>Usuario:</strong> {user.username}</div>
+            <div className='containerData'><strong>Nombre:</strong> {user.first_name}</div>
+            <div className='containerData'><strong>Email:</strong> {user.email}</div>
+            <div className='containerData'><strong>Cantidad de Publicaciones:</strong> {publicaciones.length}</div>
 
-            <button className='tablaUsuariosEditBtn' onClick={() => {
+     <div className='containerData'>  <strong>Calificaciones:</strong> {calificaciones.length === 0 ? ( <p>No hay calificaciones aún.</p>): 
+     ( <ul>
+        {calificaciones.map((calificacion, index) => (
+         <li key={index}>
+           {Number(calificacion.puntaje).toFixed(1)} 🍀
+        </li>
+      ))}
+    </ul>
+  )}
+</div>
+            <div className='containerData'><strong>Tipo de Usuario:</strong> {user.tipo_usuario}</div>
+
+            <button className='btnPerfilEdit' onClick={() => {
                 setMostrar(user.id);
-                setEdicionAliasUsuario(user.usuario_alias);
-                setEdicionNombre(user.usuario_nombre);
-                setEdicionEmail(user.usuario_email);
+                setEdicionAliasUsuario(user.username);
+                setEdicionNombre(user.first_name);
+                setEdicionEmail(user.email);
                 setEditImg(user.img);
               }}  >Editar </button>
 
               {mostrar === user.id && ( 
               <>
 
-                <input type="text" className='inputTablaUsuarios' value={edicionAliasUsuario} 
+                <input type="text" className='inptCardPerfil' value={edicionAliasUsuario} 
                   onChange={(e) => setEdicionAliasUsuario(e.target.value)} placeholder='Editar Alias Usuario'/> <br />
 
-                <input type="text" className='inputTablaUsuarios' value={edicionNombre} 
+                <input type="text" className='inptCardPerfil' value={edicionNombre} 
                   onChange={(e) => setEdicionNombre(e.target.value)} placeholder='Editar Nombre'/>  <br />
 
-                <input type="text" className='inputTablaUsuarios' value={edicionEmail} 
+                <input type="text" className='inptCardPerfil' value={edicionEmail} 
                   onChange={(e) => setEdicionEmail(e.target.value)} placeholder='Editar Email' /> <br />
 
-
-          {/*Prueba Foto de Perfil*/}
-                <Cloudinary />
-                <button className='tablaUsuariosConfirmBtn' onClick={() => actualizar(user.id)}> Confirmar Edit </button>
+    {/*Prueba Foto de Perfil*/}
+               <CloudinaryPerfil onImageUpload={(url) => setEditImg(url)} />
+        
+                <button className='btnConfirmar' onClick={() => actualizar(user.id)}> Confirmar Edición </button>
               </>
             )}
           </li>
