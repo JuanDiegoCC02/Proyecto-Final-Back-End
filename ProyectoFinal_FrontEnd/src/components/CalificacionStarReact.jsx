@@ -32,7 +32,7 @@ function CalificacionStarReact() {
         color2={'#ffd700'}
       />
     </div>
-      <button onClick={()=>{
+      <button className='btnCalificarNoticiasFull' onClick={()=>{
         enviarCalificacion()
       }}>Calificar</button>
       </>

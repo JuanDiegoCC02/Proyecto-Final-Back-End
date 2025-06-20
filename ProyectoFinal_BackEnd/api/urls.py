@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import  UsuariosListCreateView, TipoPublicacionesListCreateView, PublicacionesListCreateView, EmailContactoListCreateView
-from .views import  UsuariosDetailView, TipoPublicacionesDetailView, PublicacionesDetailView, EmailsContactosDetailView
+from .views import  UsuariosDetailView, TipoPublicacionesDetailView, PublicacionesDetailView, EmailsContactosDetailView, RespuestaComentariosDetailView
 from .views import  AggUsuarioView,LoginView,UsuarioEditarView, ComentariosListCreateView, ComentariosDetailView, UsersSerializerLiscreateView
 from .views import RespuestaComentariosListCreateView, CalificacionesListCreateView, GetUsuarioView
 
@@ -30,5 +30,6 @@ urlpatterns = [
     path ('publicaciones/<int:pk>/', PublicacionesDetailView.as_view()),
     path ('emailscontacto/<int:pk>/', EmailsContactosDetailView.as_view()),
     path ('comentarios/<int:pk>/', ComentariosDetailView.as_view()),
+    path ('respuestascomentarios/<int:pk>/', RespuestaComentariosDetailView.as_view(), name = 'respuestascomentarios-editar-actualizar'),
 
 ]

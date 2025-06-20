@@ -48,7 +48,7 @@ function TablaComentariosCom() {
   await deleteUser(id, "api/emailscontacto")
   setReload(!reload)
 }
-  function abrirModal(usuario) {
+  function abrirModal(usuario) {  
     setUsuario(usuario) 
     setEditNombre(usuario.nombre)
     setEditEMail(usuario.email)

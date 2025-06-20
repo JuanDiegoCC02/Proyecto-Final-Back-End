@@ -272,6 +272,12 @@ class ComentariosDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Comentarios.objects.all()
     serializer_class = ComentariosSerializer
 
+#DetailView Respuesta Comentarios
+class RespuestaComentariosDetailView(RetrieveUpdateDestroyAPIView):
+    permission_classes = [Permisos, IsAuthenticated]
+    queryset = RespuestaComentarios.objects.all()
+    serializer_class = RespuestaComentariosSerializer        
+
 #DetailView Email Contactos
 class EmailsContactosDetailView(RetrieveUpdateDestroyAPIView):
     permission_classes = [Permisos, IsAuthenticated]
