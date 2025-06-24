@@ -43,8 +43,8 @@ function CardPefil() {
   }
 
 async function traerCalificaciones() {
-  const data_calificaciones = await getUsers('api/calificaciones');
-  const calificacionesUsuario = data_calificaciones.filter(calificacion => calificacion.usuario === idLogueado);
+  const data_calificaciones = await getUsers(`api/calificacion_usuario/${idLogueado}`);
+  const calificacionesUsuario = data_calificaciones.filter(calificacion => Number(calificacion.usuario) === idLogueado);
   setCalificaciones(calificacionesUsuario);
   console.log("calificaiones", calificacionesUsuario)
 }
@@ -95,13 +95,19 @@ async function traerCalificaciones() {
      ( <ul>
         {calificaciones.map((calificacion, index) => (
          <li key={index}>
-           {Number(calificacion.puntaje).toFixed(1)} 🍀
+           {Number(calificacion.puntaje).toFixed(1)} ✨
+
         </li>
       ))}
     </ul>
   )}
 </div>
-            <div className='containerData'><strong>Tipo de Usuario:</strong> {user.tipo_usuario}</div>
+       <div className='containerData'>
+            <strong>Tipo de Usuario:</strong> {publicaciones.length === 0 ? ( <p>Poco Frecuente 😴</p>) : 
+              publicaciones.length > 5 ? ( <p>Muy Frecuente 😎</p>) :
+              ( <p>Frecuente 😊</p>  )} {/*Valor Intermedio*/}
+            </div>
+
 
             <button className='btnPerfilEdit' onClick={() => {
                 setMostrar(user.id);

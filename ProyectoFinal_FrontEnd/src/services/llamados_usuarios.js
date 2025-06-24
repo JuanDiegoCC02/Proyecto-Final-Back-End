@@ -1,5 +1,38 @@
 // Llamados Usuarios
 
+// Prueba Post para validar usuario y calificacion
+async function GetCalificacionPorUsuarioYPublicacion(usuarioId, publicacionId) {
+    const accessToken = localStorage.getItem("accessToken");
+    try {
+        const response = await fetch(`http://127.0.0.1:8000/api/calificaciones/?usuario=${usuarioId}&publicacion=${publicacionId}`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${accessToken}`,
+                "Content-Type": "application/json",
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error("Error al obtener calificación");
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error("Error al obtener calificación:", error);
+        throw error;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 async function GetUsuarios() {
     const accessToken = localStorage.getItem("accessToken");
   try {
@@ -107,4 +140,6 @@ export{
     PostUsuarios,
     UpdateUsuarios,
     DeleteUsuarios,
+
+    GetCalificacionPorUsuarioYPublicacion
 }
