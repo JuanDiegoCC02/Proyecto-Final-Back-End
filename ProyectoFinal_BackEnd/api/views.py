@@ -206,11 +206,42 @@ class PublicacionesListCreateView(ListCreateAPIView):
     
 
 
-
-#View Calificaciones
+#View Calificaciones 
 class CalificacionesListCreateView(ListCreateAPIView):
-    queryset = Calificaciones.objects.all()
     serializer_class = CalificacionesSerializer
+
+    def get_queryset(self):
+        # Para el método GET estándar sin filtros
+        return Calificaciones.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        usuario_id = request.query_params.get('usuario')
+        publicacion_id = request.query_params.get('publicacion')
+
+        if usuario_id and publicacion_id:
+            queryset = Calificaciones.objects.filter(usuario=usuario_id, publicacion=publicacion_id)
+        else:
+            queryset = Calificaciones.objects.none()
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+
+#View GetCalificaciones
+class CalificacionesView(APIView):
+    permission_classes = [AllowAny]
+    def get(self,request,id):
+        calificaciones_usuario = Calificaciones.objects.filter(usuario=id)
+        
+        calificaciones_serializer = CalificacionesSerializer(calificaciones_usuario,many=True)
+
+        return Response(calificaciones_serializer.data)
+
+  
+
+
+
 
 
 #View User tabla django

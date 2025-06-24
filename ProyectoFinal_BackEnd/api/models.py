@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class Usuarios(models.Model):
     #relacion entre tablas
     usuario = models.OneToOneField(User,on_delete=models.CASCADE)
-    foto_perfil = models.TextField()
+    foto_perfil = models.TextField(null=True, blank=True)
     fecha_nacimiento = models.DateField()
     telefono = models.CharField(max_length=50)
 
@@ -75,3 +75,8 @@ class Calificaciones(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name="calificaciones")
     publicacion = models.ForeignKey(Publicaciones, on_delete=models.CASCADE, related_name="calificaciones")
 
+    class Meta:
+        unique_together = ('usuario', 'publicacion')  
+
+    def __str__(self):
+        return f"{self.usuario.username} - {self.publicacion.titulo} - {self.puntaje} estrellas"

@@ -2,7 +2,7 @@ from django.urls import path
 from .views import  UsuariosListCreateView, TipoPublicacionesListCreateView, PublicacionesListCreateView, EmailContactoListCreateView
 from .views import  UsuariosDetailView, TipoPublicacionesDetailView, PublicacionesDetailView, EmailsContactosDetailView, RespuestaComentariosDetailView
 from .views import  AggUsuarioView,LoginView,UsuarioEditarView, ComentariosListCreateView, ComentariosDetailView, UsersSerializerLiscreateView
-from .views import RespuestaComentariosListCreateView, CalificacionesListCreateView, GetUsuarioView
+from .views import RespuestaComentariosListCreateView, CalificacionesListCreateView, GetUsuarioView, CalificacionesView
 
 
 urlpatterns = [
@@ -22,7 +22,7 @@ urlpatterns = [
     path ('calificaciones/', CalificacionesListCreateView.as_view()),
     path ('comentarios/', ComentariosListCreateView.as_view()),
     path ('respuestascomentarios/', RespuestaComentariosListCreateView.as_view()),
-
+    path ('calificacion_usuario/<int:id>/', CalificacionesView.as_view()),
   
    
     path ('usuarios/<int:pk>/', UsuariosDetailView.as_view(), name = 'usuarios-editar-actualizar'),
