@@ -196,7 +196,7 @@ class TipoPublicacionesListCreateView(ListCreateAPIView):
 
 #View Publicaciones
 class PublicacionesListCreateView(ListCreateAPIView):
-    permission_classes = [Permisos, IsAuthenticated]
+    # permission_classes = [Permisos, IsAuthenticated]
     queryset = Publicaciones.objects.all()
     serializer_class = PublicacionesSerializer
     def perform_create(self, serializer):

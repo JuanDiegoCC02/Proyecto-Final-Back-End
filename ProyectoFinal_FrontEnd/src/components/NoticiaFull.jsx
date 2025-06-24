@@ -9,7 +9,7 @@ const rootElement = document.getElementById('root')
 const root = ReactDOM.createRoot(rootElement)
 
 function NoticiaFull() {
-  const [comentariosPublicaciones, setComentariosPublicaciones] = useState("")  
+  const [comentariosPublicaciones, setComentariosPublicaciones] = useState("")
   const [publicaciones, setPublicaciones] = useState([])
   const [usuario, setUsuario] = useState(null)
   const [reload, setReload] = useState(false)
@@ -29,20 +29,30 @@ function NoticiaFull() {
   // Edit Respuestas
   const [mostrarRespuesta, setMostrarRespuesta] = useState(false)
   const [editRespuesta, setEditRespuesta] = useState("")
-  
 
-    async function AggComentario() {
-      const comentarioPublicacion = {
-        "contenido": comentariosPublicaciones,
-        "publicacion": localStorage.getItem("id_publicacion"),
-        "usuario": localStorage.getItem("id")
-      }
-      await postUsers(comentarioPublicacion, "api/comentarios/")
-      setComentariosPublicaciones("")
-      setReload(r => !r)
+  const [respuestaEditando, setRespuestaEditando] = useState(null);
+  const [comentarioEditando, setComentarioEditando] = useState(null); // para saber a qué comentario pertenece la respuesta
+
+  // REPORTES
+  const [reportes, setReportes] = useState(0)
+  const [cantReportes,setCantReportes] = useState([])
+
+  // POST para agregar comentarios a la publicacion 
+  async function AggComentario() {
+    const comentarioPublicacion = {
+      "contenido": comentariosPublicaciones,
+      "publicacion": localStorage.getItem("id_publicacion"),
+      "usuario": localStorage.getItem("id")
     }
+    await postUsers(comentarioPublicacion, "api/comentarios/")
+    setComentariosPublicaciones("")
+    setReload(r => !r)
+  }
 
+  // POST para agregar respuestas a los comentarios de la publicacion
+  // Se usa el comentarioId para identificar a qué comentario se le está agregando la respuesta  
   async function AgregarRespuesta(comentarioId) {
+    console.log("Comentario ID:", comentarioId);
     const respuesta = {
       "contenido": textoRespuesta[comentarioId],
       "comentario": comentarioId,
@@ -53,28 +63,52 @@ function NoticiaFull() {
     setTextoRespuesta(prev => ({ ...prev, [comentarioId]: "" }))
     setReload(r => !r)
     // Opcional: recargar respuestas solo para ese comentario
-    TraerRespuestas(comentarioId)
+    const prueba = TraerRespuestas(comentarioId)
+    console.log(prueba);
+    console.log("entra");
     setMostrar(false)
-  }
+  } 
 
+  // GET para traer las respuestas que se hacen a los comentarios de la publicacion 
   async function TraerRespuestas(comentarioId) {
+    console.log("Traer respuestas para comentario ID:", comentarioId);
     const datos = await getUsers("api/respuestascomentarios")
     const filtradas = datos.filter(r => r.comentario === comentarioId)
     setRespuestas(prev => ({ ...prev, [comentarioId]: filtradas }))
   }
 
   useEffect(() => {
+    // Get para traer las publicaciones del formulario
     async function TraerPublicaciones() {
       const datos = await getUsers("api/publicaciones", localStorage.getItem("id_publicacion") + "/")
       setPublicaciones(Array.isArray(datos) ? datos : datos ? [datos] : [])
-    } 
-    async function TraerComentarios() {
+    }
+    // Get para traer los comentarios de la publicacion 
+    async function TraerComentarios() { 
       const datos = await getUsers("api/comentarios")
       const filtro = datos.filter((dato) => dato.publicacion === parseInt(localStorage.getItem("id_publicacion")))
       setComentarios(Array.isArray(filtro) ? filtro : filtro ? [filtro] : [])
+      console.log(datos);
+      console.log(datos[0].usuario);
     }
+    // GET REPORTES
+    async function traerReportes() {
+      try {
+        const datos = await getUsers("api/publicaciones");
+        console.log(datos);
+        const filtro = datos.filter((dato) => dato.id == localStorage.getItem("id_publicacion"));
+        console.log(filtro);
+        // setReportes(Array.isArray(filtro) ? filtro : filtro ? [filtro] : []);
+        setReportes(filtro);
+        setCantReportes(filtro[0].reporte)
+      } catch (error) {
+        console.error("Error al traer reportes:", error);
+      }
+    }
+    traerReportes()
     TraerPublicaciones()
     TraerComentarios()
+
   }, [reload])
 
   //Eliminar Comentarios
@@ -91,7 +125,7 @@ function NoticiaFull() {
     await patchData(actComentario, "api/comentarios", id)
     setReload(!reload)
     setMostrar(false);
-  }
+  } // Modal para abrir el editar de comentarios
   function abrirModal(usuario) {
     setUsuario(usuario);
     setEditComentario(usuario.contenido);
@@ -100,9 +134,9 @@ function NoticiaFull() {
   }
 
   // Eliminar Respuesta Comentario 
-  async function eliminarRespuesta(id) {
-    await deleteUser(id, "api/respuestascomentarios")
-    setReload(r => !r)
+  async function eliminarRespuesta(respuestaId, comentarioId) {
+    await deleteUser(respuestaId, "api/respuestascomentarios");
+    await TraerRespuestas(comentarioId); // Actualiza solo las respuestas de ese comentario
   }
 
   // Editar Respuestas comentarios
@@ -110,15 +144,42 @@ function NoticiaFull() {
     const actRespuesta = {
       "contenido": editRespuesta
     }
-    await patchData(actRespuesta, "api/respuestascomentarios", id)
-    setReload(r => !r)
+    await patchData(actRespuesta, "api/respuestascomentarios", id);
+    // Actualiza solo las respuestas del comentario correspondiente
+    if (comentarioEditando) {
+      await TraerRespuestas(comentarioEditando);
+    }
+    setRespuestaEditando(null);
+    setComentarioEditando(null);
+  } // Modal para abrir el editar de respuestas
+  function abrirModalRespuestas(respuesta, comentarioId) {
+    setUsuario(respuesta);
+    setEditRespuesta(respuesta.contenido);
+    setRespuestaEditando(respuesta.id);
+    setComentarioEditando(comentarioId);
   }
-  function abrirModalRespuestas(usuario) {
-    setUsuario(usuario);
-    setEditRespuesta(usuario.contenido);
-    setMostrarRespuesta(true);
-    console.log(editRespuesta);
+
+  // REPORTES PATCH
+  async function AggReporte() {
+    console.log(reportes[0].reporte++);
+    const reportePublicacion = {
+      "reporte": reportes[0].reporte+=1-1,
+      "publicacion": localStorage.getItem("id_publicacion"),
+      "usuario": localStorage.getItem("id")
+    }
+    const act = await patchData(reportePublicacion, "api/publicaciones",localStorage.getItem("id_publicacion"))
+    console.log(reportePublicacion);
+    console.log(act);
+    // All llegar a 20 reportes 
+    // el estado de la publicacion cambie a pendiente
+    if (reportes[0].reporte >= 20) {
+      console.log("llegó");
+      const cambiarEstado = await patchData({"estado_publicacion":"pendiente"},"api/publicaciones",localStorage.getItem("id_publicacion"))
+      console.log(cambiarEstado);
+    }
+    setReload(prev => !prev)
   }
+
   
   return (
     <div className='noticiasContainer'>
@@ -132,17 +193,21 @@ function NoticiaFull() {
               <h2>{p.descripcion}</h2>
               <MapaCards latitud={p.latitud} longitud={p.longitud} />
               <hr />
-               <React.StrictMode>
-                  <CalificacionStarReact />
-                </React.StrictMode>
-              <h1>--</h1>
+              <React.StrictMode>
+                <CalificacionStarReact />
+              </React.StrictMode>
+              <h2>Haz Click para reportar esta Noticia</h2>
+              <p>Número de Reportes: {cantReportes}</p>
+              <h5>All llegar a 20 reportes se desaparecera la publicacion</h5>
+              <button onClick={AggReporte} className='btnReportes'>Reportar</button>
+
               <h2>Comentarios</h2>
               <div>
-                  <input className='inputNoticiasFull' type="text" value={comentariosPublicaciones}
-                  onChange={(e) => setComentariosPublicaciones(e.target.value)} placeholder='Agregar comentario'/>
-                  <br />
-                  <button className='btnComentarioNoticiasFull' onClick={AggComentario}>Enviar Comentario</button>
-                </div>
+                <input className='inputNoticiasFull' type="text" value={comentariosPublicaciones}
+                  onChange={(e) => setComentariosPublicaciones(e.target.value)} placeholder='Agregar comentario' />
+                <br />
+                <button className='btnComentarioNoticiasFull' onClick={AggComentario}>Enviar Comentario</button>
+              </div>
 
 
               <div className="comentariosContainer">
@@ -150,13 +215,20 @@ function NoticiaFull() {
                   <div key={comentario.id} className="comentarioCard">
                     <div className="comentarioUsuario">{`Usuario #${comentario.usuario}`}</div>
                     <div className="comentarioContenido">{comentario.contenido}</div>
-                    <button className='noticiasFullBtnEliminar' onClick={() => EliminarComentario(comentario.id)}>Eliminar</button>
-                    <button className='noticiasFullBtnEdit' onClick={() => abrirModal(comentario)}>Editar</button>
-                    {mostrar && 
-                        <>
+
+                    {/*Para que el boton de Eliminar solo se muestre al usuario que realizó el comentario*/}
+                    {localStorage.getItem("id") == comentario.usuario && (
+                      <button className='noticiasFullBtnEliminar' onClick={() => EliminarComentario(comentario.id)}>Eliminar</button>
+                    )}
+                    {/*Para que el boton de editar solo se muestre al usuario que realizó el comentario*/}
+                    {localStorage.getItem("id") == comentario.usuario && (
+                      <button className='noticiasFullBtnEdit' onClick={() => abrirModal(comentario)}>Editar</button>
+                    )}
+                    {mostrar &&
+                      <>
                         <input className='noticiasInputComentariosBtn' type="text" value={editComentario} onChange={(e) => setEditComentario(e.target.value)} />
                         <button className='noticiasFullGuardarComentariosBtn' onClick={() => actualizarComentarios(comentario.id)}>Guardar</button>
-                        </>
+                      </>
                     }
                     <button
                       className='noticiasFullBtnRespuesta'
@@ -178,16 +250,52 @@ function NoticiaFull() {
                           {respuestas[comentario.id] && respuestas[comentario.id].length > 0 ? (
                             respuestas[comentario.id].map(respuesta => (
                               <div key={respuesta.id} className="respuestaCard">
-                                {respuesta.contenido}
-                                <br />
-                                <button className='btnRespuestaEliminar' onClick={() => eliminarRespuesta(respuesta.id)}>Eliminar</button>
-                                <button className='btnRespuestaEditar' onClick={() => abrirModalRespuestas(respuesta)}>Editar</button>
-                                {mostrarRespuesta &&
-                                <>
-                                <input className='inputRespuestaEditNoticias' type="text" value={editRespuesta} onChange={(e) => setEditRespuesta(e.target.value)}/>
-                                <button className='btnRespuestaConfirmarEdit' onClick={() => actualizarRespuestas(respuesta.id)}>Guardar</button>
-                                </>
-                                }
+                                {respuestaEditando === respuesta.id ? (
+                                  <>
+                                    <input
+                                      className='inputRespuestaEditNoticias'
+                                      type="text"
+                                      value={editRespuesta}
+                                      onChange={(e) => setEditRespuesta(e.target.value)}
+                                    />
+                                    <button
+                                      className='btnRespuestaConfirmarEdit'
+                                      onClick={() => actualizarRespuestas(respuesta.id)}
+                                    >
+                                      Guardar
+                                    </button>
+                                    <button
+                                      className='btnRespuestaCancelarEdit'
+                                      onClick={() => setRespuestaEditando(null)}
+                                    >
+                                      Cancelar
+                                    </button>
+                                  </>
+                                ) : (
+                                  <>
+                                    {respuesta.contenido}
+                                    <br />
+                                    {/*Para solo mostrar el boton de eliminar en sus propios comentarios al usuario*/}
+                                    {localStorage.getItem("id") == respuesta.usuario && (
+                                      <>
+                                        <button
+                                          className='btnRespuestaEliminar'
+                                          onClick={() => {
+                                            eliminarRespuesta(respuesta.id, comentario.id);
+                                          }}
+                                        >
+                                          Eliminar
+                                        </button>
+                                        <button
+                                          className='btnRespuestaEditar'
+                                          onClick={() => abrirModalRespuestas(respuesta, comentario.id)}
+                                        >
+                                          Editar
+                                        </button>
+                                      </>
+                                    )}
+                                  </>
+                                )}
                               </div>
                             ))
                           ) : (
@@ -199,7 +307,6 @@ function NoticiaFull() {
                           placeholder='Responder Comentario'
                           value={textoRespuesta[comentario.id] || ""}
                           onChange={e => setTextoRespuesta(prev => ({ ...prev, [comentario.id]: e.target.value }))}
-                          
                         />
                         <button className='btnRespuestaNoticias' onClick={() => AgregarRespuesta(comentario.id)}>Enviar Respuesta</button>
                       </div>
@@ -207,7 +314,7 @@ function NoticiaFull() {
                   </div>
                 ))}
               </div>
-            </div> 
+            </div>
           ))}
         </div>
       </div>

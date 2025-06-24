@@ -51,7 +51,7 @@ class PublicacionesSerializer(serializers.ModelSerializer):
         fields = [
             "id", "titulo", "descripcion", "latitud", "longitud", "img", 
             "estado_publicacion", "tipopublicacion", "usuario", 
-            "nombre_tipo_publicacion", "calificacion"
+            "nombre_tipo_publicacion", "calificacion","reporte"
         ]
 
 

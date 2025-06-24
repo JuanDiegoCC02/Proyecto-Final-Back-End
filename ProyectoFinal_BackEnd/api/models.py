@@ -37,6 +37,7 @@ class Publicaciones(models.Model):
     tipopublicacion = models.ForeignKey(TipoPublicaciones, on_delete = models.CASCADE, related_name= 'publicaciones' )   
     usuario = models.ForeignKey(User, on_delete = models.CASCADE, related_name = 'publicaciones') 
     calificacion = models.FloatField(default=0)
+    reporte = models.IntegerField(default=0)
     def __str__(self):
         return self.titulo
     

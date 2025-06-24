@@ -3,7 +3,6 @@
 }
 
 .tablaUsuariosDeleteBtn {
-    background-color: aquamarine;
     border: none;
 }
 .tablaUsuariosDeleteBtn:hover {
@@ -13,6 +12,7 @@
 
 .tablaUsuariosEditBtn {
     border: none;
+    margin-left: 10px;
 }
 .tablaUsuariosEditBtn:hover {
     background-color: #494949;

@@ -17,7 +17,7 @@ import FullNoticias from '../pages/FullNoticias';
 function Routing() {
   return (
    <Router>
-        <Routes>
+        <Routes>   
             {/*Rutas Privadas*/}
             <Route path="/admin" element={<PrivateRoutes children={<NoticiasAdmin/>} rol="Administrador"/>}/>
             <Route path="/moderador" element={<PrivateRoutes children={<Moderador/>} rol="Administrador"/>}/>

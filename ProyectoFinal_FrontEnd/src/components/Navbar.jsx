@@ -35,7 +35,9 @@ function NavBar() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav" >
           <Nav className="me-auto ">
-            <Nav.Link className='linkNavbar' href="/moderador">Moderador</Nav.Link>
+            {localStorage.getItem('grupoUsuario') === 'Administrador' && (
+              <Nav.Link className='linkNavbar' href="/moderador">Moderador</Nav.Link>
+            )}
             <Nav.Link className='linkNavbar' href="/noticias">Form Noticias</Nav.Link>
             <Nav.Link className='linkNavbar' href="/">Home</Nav.Link>
             <Nav.Link className='linkNavbar' href="/contacto">Contacto</Nav.Link>
