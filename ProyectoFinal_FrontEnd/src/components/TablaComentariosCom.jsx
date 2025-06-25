@@ -4,18 +4,18 @@ import { getUsers, patchData, deleteUser } from '../services/MainLlamados'
 import "../styles/TablaUsuarios.css"
 
 function TablaComentariosCom() {
+    // Se utiliza para el GET de comentarios
     const [comentarios, setComentarios] = useState ([])
+    // Para recargar
     const [reload, setReload] = useState (false)
-
+    // Abrir el input y btn para poder editar la informacion
     const [mostrar, setMostrar] = useState(false)
-    //Para el edit
+    // Se utiliza para el EDIT de comentarios
     const [editNombre, setEditNombre] = useState("")
     const [editEmail, setEditEMail] = useState("")
     const [editTelefono, setEditTelefono] = useState("")
     const [editComentario, setEditComentario] = useState("")
     const [usuario,setUsuario] = useState(null)
-
-
 
   useEffect(() => {
     if(usuario){
@@ -23,7 +23,7 @@ function TablaComentariosCom() {
       console.log(usuario);
       setEditNombre(usuario.nombre)
     }
-
+    // Funcion GET para mostrar los comentarios
     async function TraerComentarios() {
       const datos = await getUsers("api/emails-contacto")
       setComentarios (datos)
@@ -31,6 +31,7 @@ function TablaComentariosCom() {
     TraerComentarios()
   }, [reload])
 
+  // Funcion PATCH para poder editar la informacion 
   async function actualizarComentarios(id) {
     const actComentario = {
       "nombre" : editNombre,
@@ -41,13 +42,16 @@ function TablaComentariosCom() {
     await patchData (actComentario, "api/emailscontacto", id)
     setReload(!reload)
     setMostrar(!mostrar)
-    
   }
 
+  // Funcion DELETE para eliminar solicitudes de contacto
   async function EliminarContacto(id) {
   await deleteUser(id, "api/emailscontacto")
   setReload(!reload)
 }
+
+  // Funcion para abrir el modal en el Btn de editar que despliega inputs en los que
+  // se coloca la nueva informacion y un btn de confirmar
   function abrirModal(usuario) {  
     setUsuario(usuario) 
     setEditNombre(usuario.nombre)
@@ -56,14 +60,12 @@ function TablaComentariosCom() {
     setEditComentario(usuario.mensaje)
     setMostrar(true)
     console.log(editNombre);
-    
   }
-  
 
   return (
      <Table responsive="sm" striped="columns">
       <thead >
-        <tr>
+        <tr> {/*Para mostrar a que cuadro pertenece la información */}
           <th style={{backgroundColor:"#5b5b5b"}} className='pruebaWe'>#</th>
           <th style={{backgroundColor:"#68c4af"}}>Nombre</th>
           <th style={{backgroundColor:"#68c4af"}}>Email</th>

@@ -5,38 +5,36 @@ import MapaCards from './MapaCards'
 import ReactDOM from 'react-dom/client'
 import CalificacionStarReact from './CalificacionStarReact'
 
+// Parte de Calificaciones 
 const rootElement = document.getElementById('root')
 const root = ReactDOM.createRoot(rootElement)
 
 function NoticiaFull() {
-  const [comentariosPublicaciones, setComentariosPublicaciones] = useState("")
+  // Para el map publicaciones
   const [publicaciones, setPublicaciones] = useState([])
-  const [usuario, setUsuario] = useState(null)
+  // POST de comentarios
+  const [comentariosPublicaciones, setComentariosPublicaciones] = useState("")
+  // Para cargar los inputs
   const [reload, setReload] = useState(false)
-
   // Comentarios
   const [comentarios, setComentarios] = useState([])
-
   // Respuestas
   const [comentarioActivo, setComentarioActivo] = useState(null)
   const [respuestas, setRespuestas] = useState({})
   const [textoRespuesta, setTextoRespuesta] = useState({})
-
   //Edit comentario
   const [mostrar, setMostrar] = useState(false)
   const [editComentario, setEditComentario] = useState("")
-
+  const [usuario, setUsuario] = useState(null) // Se utiliza en los 2 modales
   // Edit Respuestas
   const [mostrarRespuesta, setMostrarRespuesta] = useState(false)
   const [editRespuesta, setEditRespuesta] = useState("")
-
   const [respuestaEditando, setRespuestaEditando] = useState(null);
   const [comentarioEditando, setComentarioEditando] = useState(null); // para saber a qué comentario pertenece la respuesta
-
   // REPORTES
   const [reportes, setReportes] = useState(0)
   const [cantReportes,setCantReportes] = useState([])
-
+  
   // POST para agregar comentarios a la publicacion 
   async function AggComentario() {
     const comentarioPublicacion = {
@@ -62,7 +60,7 @@ function NoticiaFull() {
     await postUsers(respuesta, "api/respuestascomentarios/")
     setTextoRespuesta(prev => ({ ...prev, [comentarioId]: "" }))
     setReload(r => !r)
-    // Opcional: recargar respuestas solo para ese comentario
+    // recargar respuestas solo para ese comentario
     const prueba = TraerRespuestas(comentarioId)
     console.log(prueba);
     console.log("entra");
@@ -158,7 +156,6 @@ function NoticiaFull() {
     setRespuestaEditando(respuesta.id);
     setComentarioEditando(comentarioId);
   }
-
   // REPORTES PATCH
   async function AggReporte() {
     console.log(reportes[0].reporte++);
@@ -179,13 +176,12 @@ function NoticiaFull() {
     }
     setReload(prev => !prev)
   }
-
   
   return (
     <div className='noticiasContainer'>
       <div className='noticiasCard'>
         <div className='noticiasCardContent'>
-          {Array.isArray(publicaciones) && publicaciones.map((p) => (
+          {Array.isArray(publicaciones) && publicaciones.map((p) => ( // Card que trae y contiene las publicaciones
             <div key={p.id} className='noticiasItem'>
               <p className='tipoPublicacion'>{p.nombre_tipo_publicacion}</p>
               <img src={p.img} alt="Imagen de la noticia" className='noticiasIMG' width={300} />
@@ -209,7 +205,6 @@ function NoticiaFull() {
                 <button className='btnComentarioNoticiasFull' onClick={AggComentario}>Enviar Comentario</button>
               </div>
 
-
               <div className="comentariosContainer">
                 {comentarios.map((comentario) => (
                   <div key={comentario.id} className="comentarioCard">
@@ -225,7 +220,7 @@ function NoticiaFull() {
                       <button className='noticiasFullBtnEdit' onClick={() => abrirModal(comentario)}>Editar</button>
                     )}
                     {mostrar &&
-                      <>
+                      <> {/*Input y btn que se muestran al abrir el modal*/}
                         <input className='noticiasInputComentariosBtn' type="text" value={editComentario} onChange={(e) => setEditComentario(e.target.value)} />
                         <button className='noticiasFullGuardarComentariosBtn' onClick={() => actualizarComentarios(comentario.id)}>Guardar</button>
                       </>

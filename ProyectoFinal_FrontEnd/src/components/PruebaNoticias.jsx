@@ -6,11 +6,11 @@ import MapaCards from './MapaCards'
 import Cloudinary from './Cloudinary'
 
 function PruebaNoticias() {
-    // Para el get
+    // GET de publicaciones
         const [publicaciones, setPublicaciones] = useState([])
         const [reload, setReload] = useState (false)
     
-        // Edit
+    // EDIT de publicaciones
         const [editTitulo, setEditTitulo] = useState("")
         const [editDescripcion, setEditDescripcion] = useState("")
         const [editLatitud, setEditLatitud] = useState("")
@@ -28,6 +28,7 @@ function PruebaNoticias() {
           setEditTitulo(usuario.titulo)
         }
     
+        // Funcion GET para que las publicaciones se muestren
         async function TraerPublicaciones() {
             const datos = await getUsers("api/publicaciones")
             setPublicaciones(datos)
@@ -35,6 +36,7 @@ function PruebaNoticias() {
         TraerPublicaciones()
         }, [reload])
     
+        // Funcion PATCH para poder editar la información de las publicaciones
         async function ActualizarPublicaciones(id) {
             const actPublicacion = {
                 "titulo" : editTitulo,
@@ -48,6 +50,8 @@ function PruebaNoticias() {
             setMostrar(!mostrar)
         }  
     
+        // Funcion para que al dar click al btn de editar se abra el modal con un input
+        // y btn para poder agregar y confirmar la nueva informacion
         function abrirModalPublicaciones(usuario) {
             setUsuario(usuario)
             setEditTitulo(usuario.titulo)
@@ -59,6 +63,7 @@ function PruebaNoticias() {
             console.log(editTitulo);
         }
     
+        // Funcion DELETE para poder eliminar publicaciones 
         async function EliminarPublicacion(id) {
             await deleteUser (id, "api/publicaciones")
             setReload(!reload)
@@ -79,12 +84,10 @@ function PruebaNoticias() {
     const estados = ["pendiente", "rechazada", "publicada"];
 
 async function cambiarEstado(id, estadoActual) {
-    const nuevoEstado = estados[(estados.indexOf(estadoActual) + 1) % estados.length]; // Alterna entre estados
+    const nuevoEstado = estados[(estados.indexOf(estadoActual) + 1) % estados.length]; // Para alternar entre estados
     await estadoPublicacion(id, nuevoEstado);
 }
 
-        
-        // <input type="file" onChange={(e) => setEditImg(e.target.files[0])} placeholder='Editar IMG' />
   return (
  <div className='noticiasContainer'>
   <div className='noticiasCard'>

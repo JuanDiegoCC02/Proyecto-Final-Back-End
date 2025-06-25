@@ -40,7 +40,7 @@ const Cloudinary = () => {
 
     return (
         <div>
-            <h5>Ingrese Imagen de la Noticia </h5>
+            <h5>Ingrese Imagen de la Publicacion </h5>
 
             {/*1 - El siguiente input type file envia la imagen por el evento al handler Img */}
 

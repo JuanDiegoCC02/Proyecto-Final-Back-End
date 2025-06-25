@@ -4,14 +4,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import Nav from 'react-bootstrap/Nav';
 import "../styles/Sidebar.css"
 
-
 const options = [
-
-  {
-    name: 'Enable body scrolling',
-    scroll: true,
-    backdrop: false,
-  },
   {
     name: 'Enable both scrolling & backdrop',
     scroll: true,
@@ -43,12 +36,13 @@ function Sidebar({ name, ...props }) {
             <Nav.Link href="/moderador">Moderador</Nav.Link>
         </Nav>
         <Offcanvas.Body style={{backgroundColor: "#DDDDDD"}}>
-          Aquí se va a poder acceder a los Usuarios, solicitudes de los Formularios de contacto, y las noticias
+          Aquí se va a poder acceder a los Usuarios, solicitudes de los Formularios de contacto, y las publicaciones
           que envíen los usuarios, cada uno tiene su funcionalidad CRUD de Post, Get, Patch que se utiliza para 
           editar información, y el Delete.
           
         </Offcanvas.Body>
       </Offcanvas>
+      
     </>
   );
 }

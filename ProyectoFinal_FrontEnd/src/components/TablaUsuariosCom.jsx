@@ -10,8 +10,8 @@ function StripedColumnsExample() {
   
   const [reload, setReload] = useState (false)
   
-  //prueba
-  const [mostrar, setMostrar] = useState(false)
+  // Editar información de usuarios
+  const [mostrar, setMostrar] = useState(false) //Para abrir y cerrar un btn que contiene el input en el que se edita la información
   const [edicionAliasUsuario, setEdicionAliasUsuario] = useState("")
   const [edicionNombre, setEdicionNombre] = useState("")
   const [edicionApellido, setEdicionApellido] = useState("")
@@ -19,6 +19,7 @@ function StripedColumnsExample() {
   const [edicionFechaNacimiento, setEdicionFechaNacimiento] = useState("")
   const [edicionTelefono, setEdicionTelefono] = useState("")
 
+  // Funcion para mostrar los usuarios mediante un GET
   useEffect(() => {
     async function list() {
       const datos = await GetUsuarios()
@@ -28,7 +29,7 @@ function StripedColumnsExample() {
     list()
   }, [reload])
 
-
+  // Funcion para editar la información de los usuarios
 async function actualizar(id) {
   const p = {
     "username": edicionAliasUsuario,
@@ -43,7 +44,7 @@ async function actualizar(id) {
   setReload(!reload)
   setMostrar(!mostrar)
 }
-
+// Función para eliminar Usuarios
 async function EliminarUsuarios(id) {
   await DeleteUsuarios(id)
   setReload(!reload)
@@ -52,7 +53,7 @@ async function EliminarUsuarios(id) {
   return (
     <Table  responsive="sm" striped="columns">
       <thead >
-        <tr>
+        <tr> {/*Para mostrar a que cuadro pertenece la información */}
           <th style={{backgroundColor:"#5b5b5b"}} className='pruebaWe'>#</th>
           <th style={{backgroundColor:"#68c4af"}}>Alias Usuario</th>
           <th style={{backgroundColor:"#68c4af"}}>Nombre</th>

@@ -19,7 +19,7 @@ function NoticiasForm() {
     function DescripcionF(e) {
         setDescripcionNoticia(e.target.value);
     }
-
+    // Recupera datos guardados en el LocalStorage
     async function enviar() {
         const guardaLatitud = JSON.parse(localStorage.getItem("posicion"));
         const guardarUsuario = JSON.parse(localStorage.getItem("id"));
@@ -35,7 +35,7 @@ function NoticiasForm() {
             img: guardarURL
         };
 
-        try {
+        try { // parte de la Función Post para enviar la informacion del formulario
             const respuestaServer = await postUsers(obj, "api/publicaciones/");
             console.log("Publicación creada:", respuestaServer);
 
@@ -59,7 +59,7 @@ function NoticiasForm() {
             }
         }
     }
-
+    // Para elegir entre Noticias y Campañas que se encuentran en la base de Datos
     useEffect(() => {
         const fetchTiposPublicacion = async () => {
             try {
@@ -77,14 +77,14 @@ function NoticiasForm() {
     return (
         <>
             <div className='mainContainerNoticia'>
-                <h2 className='tituloNoticia'>Ingrese Noticia</h2>
+                <h2 className='tituloNoticia'>Ingrese Publicacion</h2>
                 <div className='containerNoticia'>
                     <input
                         value={TituloNoticia}
                         className='inputTexto'
                         type="text"
                         onChange={TituloF}
-                        placeholder='Titulo Noticia'
+                        placeholder='Titulo Publicacion'
                     />
                     {errores.titulo && <p className='error-message-I'>{errores.titulo[0]}</p>}
 
@@ -93,7 +93,7 @@ function NoticiasForm() {
                         className='inputTexto'
                         type="text"
                         onChange={DescripcionF}
-                        placeholder='Descripción Noticia'
+                        placeholder='Descripción Publicacion'
                     />
                     {errores.descripcion && <p className='error-message-I'>{errores.descripcion[0]}</p>}
 

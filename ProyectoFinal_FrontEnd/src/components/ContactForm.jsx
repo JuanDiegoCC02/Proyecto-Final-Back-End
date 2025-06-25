@@ -1,19 +1,18 @@
-import React, {useState, useEffect} from 'react'
-import  {postUsers, getUsers, patchData, deleteUser} from '../services/MainLlamados'
+import React, {useState} from 'react'
+import  {postUsers} from '../services/MainLlamados'
 import "../styles/Contact.css"
 
-
 function ContactForm() {
+      // Parte del POST
       const [NombreContact, setNombreContact] = useState("")
       const [EmailContact, setEmailContact] = useState("")
       const [TelefonoContact, setTelefonoContact] = useState("")
       const [TextContact, setTextoContact] = useState("")
       const [mensaje, setMensaje] = useState("")
 
-  function nombre_contact(e) {
+    function nombre_contact(e) {
         setNombreContact(e.target.value)
     }
-
     function email_contact(e) {
         setEmailContact(e.target.value)
     }
@@ -24,6 +23,7 @@ function ContactForm() {
         setTextoContact(e.target.value)
     }
 
+    // Esta funcion es para que no se pueda enviar el formulario si hay campos vacios
  async function registrarContacto() {
          if (!NombreContact || !EmailContact || !TelefonoContact || !TextContact) {
             setMensaje("Todos los campos son obligatorios.");
@@ -37,7 +37,7 @@ function ContactForm() {
             mensaje: TextContact,
         }
 
-    try {
+    try { // metodo POST para que pueda enviar la informacion que se ingresa al formulario
         const respuestaServer = await postUsers(obj,"api/emails-contacto/");
         setNombreContact("") , setEmailContact(""), setTelefonoContact(""), setTextoContact(""); //Para reiniciar el formulario despues de enviarlo
         console.log("Contacto registrado:", respuestaServer);
@@ -47,7 +47,6 @@ function ContactForm() {
       }
 }
 
-     
   return (  
     <>
       <div className='MainContactContainer'>

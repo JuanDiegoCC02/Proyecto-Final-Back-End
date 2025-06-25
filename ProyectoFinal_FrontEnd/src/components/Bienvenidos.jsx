@@ -11,9 +11,7 @@ function Bienvenidos() {
     <div className='bienSubTitle'>
         <h2>Informa y mantente informado sobre las últimas noticias ambientales en tiempo real</h2>
     </div>
-
   </>
-
   )
 }
 
