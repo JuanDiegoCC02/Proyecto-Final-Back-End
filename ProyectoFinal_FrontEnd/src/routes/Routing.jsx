@@ -9,10 +9,11 @@ import Noticias from '../pages/Noticias';
 import TablaUsuarios from '../pages/tablaUsuarios';
 import TablaComentarios from '../pages/TablaComentarios';
 import NoticiasAdmin from '../pages/NoticiasAdmin';
-import PruebaNoticias from '../components/PruebaNoticias';
+
 import PrivateRoutes from '../components/PrivateRoutes';
 import Perfil from '../pages/Perfil';
 import FullNoticias from '../pages/FullNoticias';
+import PageTermCond from '../pages/PageTermCond';
 
 function Routing() {
   return (
@@ -23,7 +24,7 @@ function Routing() {
             <Route path="/moderador" element={<PrivateRoutes children={<Moderador/>} rol="Administrador"/>}/>
             <Route path="/tablacomentarios" element={<PrivateRoutes children={<TablaComentarios/>} rol="Administrador"/>}/>
             <Route path="/tablausuarios" element={<PrivateRoutes children={<TablaUsuarios/>} rol="Administrador"/>}/>
-            <Route path="/perfil" element={<PrivateRoutes children={<Perfil/>} rol="Administrador"/>}/>
+            <Route path="/perfil" element={<Perfil/>}/>
 
             {/*Rutas Publicas*/}
             <Route path="/" element={<Home/>}/>
@@ -32,8 +33,9 @@ function Routing() {
             <Route path = '/noticias' element = {<Noticias/>}/> 
             <Route path="/contacto" element={<Contact/>}/>
             <Route path="/noticiafull" element={<FullNoticias/>}/>
+            <Route path="/noticiafull/:id" element={<FullNoticias />} />
 
-
+             <Route path="/termcond" element={<PageTermCond />} />
         </Routes>
    </Router>
 

@@ -13,9 +13,7 @@
 
 /* Tarjeta de perfil */
 .PerfilItem {
-  background: #ffffff;
   border: 1px solid #b3e5c6;
- /*border-left: 6px solid #4caf50;  estilo técnico con color ambiental */
   border-radius: 5px;
   border: 9px;
   border-style: ridge;
@@ -23,7 +21,8 @@
   padding: 25px;
   box-shadow: 0 4px 15px rgba(0, 100, 80, 0.903);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background-color: #dfe4e563;
+  background-color: #0a7061fc;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .PerfilItem:hover {
@@ -46,8 +45,8 @@
 /* Botones */
 .btnPerfilEdit,
 .btnConfirmar {
-  background-color: #5a5d5d; /* verde menta tecnológica */
-  color: rgb(217, 219, 219);
+  background-color: #bac0bd; /* verde menta tecnológica */
+  color: rgb(63, 74, 69);
   font-weight: bold;
   border: none;
   padding: 10px 16px;
@@ -59,7 +58,7 @@
 
 .btnPerfilEdit:hover,
 .btnConfirmar:hover {
-  background-color: #008f74;
+  background-color: #6ecf9a;
 }
 
 /* Inputs */
@@ -69,14 +68,14 @@
   margin-top: 10px;
   border: 1px solid #c4e8db;
   border-radius: 6px;
-  background-color: #eefaf6;
+  background-color: #bae2de;
   color: #1f3a36;
   font-size: 14px;
 }
 
 /* Etiquetas destacadas */
 strong {
-  color: #0a5444;
+  color: #ffffff;
 }
 
 /* Responsive */
@@ -97,15 +96,41 @@ strong {
 .containerData{
   margin: 15px;
   margin-left: 3px;
+  color: #a7dfb9;
 }
 
 .containerData ul {
   padding-left: 20px;
   margin: 5px 0;
+  
 }
 
 .containerData li {
   list-style-type: disc;
   margin-bottom: 4px;
   color: #2e3c3a;
+}
+
+.linkCalificacion{
+color:  #e7ea8b;
+font-family:  fantasy;
+
+
+}
+
+.liCalificaiones{
+
+    display: inline-block;
+    margin: 3px;
+    padding: 5px;
+  background-color: rgb(2, 68, 42);
+border-radius: 4px;
+
+   list-style: none;
+    
+}
+
+.btnVerCalificacion{
+border-style: ridge;
+border-color: rgb(14, 120, 40);
 }

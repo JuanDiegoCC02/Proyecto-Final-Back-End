@@ -52,7 +52,9 @@ function InicioSesionForm() {
     <div>
         <nav>
      <div className='ImgInicioLogo'>
+        <a href="/">
          <img src="../src/Images/Logo Pag Noticias.jpg" alt="" />
+     </a>
      </div><br /><br />
      <div>
         <h3 className='tituloInicio'>Inicio de Sesión</h3>

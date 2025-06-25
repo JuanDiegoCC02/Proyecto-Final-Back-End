@@ -83,6 +83,10 @@
     color: rgba(17, 48, 141, 0.902);
 }
 
+.linkTermCond{
+    color:  rgba(17, 48, 141, 0.902);
+}
+
 /* Msj Alert error */
 .error-message {
     color: #c6fdfb;

@@ -21,8 +21,8 @@ function Footer() {
         <div className='sec-QuickLinks'>
           <h2>Soporte</h2>
           <ul>
-          <li><a href="">Privacidad</a></li>
-          <li><a href="">Politicas</a></li>
+          <li><a href="/termcond">Privacidad</a></li>
+          <li><a href="/termcond">Politicas</a></li>
           <li><a href="/contacto">Ayuda</a></li>
           <li><a href=""></a></li>
             </ul>
@@ -31,8 +31,8 @@ function Footer() {
         <div className='sec-QuickLinks'>
           <h2>Información</h2>
           <ul>
-          <li><a href="">Noticias</a></li>
-          <li><a href="">Campañas/Voluntariados</a></li>
+          <li><a href="/">Noticias</a></li>
+          <li><a href="/  ">Campañas/Voluntariados</a></li>
             </ul>
         </div>
 

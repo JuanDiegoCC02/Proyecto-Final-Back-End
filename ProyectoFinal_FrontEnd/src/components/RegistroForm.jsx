@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import  {PostUsuarios} from '../services/llamados_usuarios'
 import { Link, useNavigate } from 'react-router-dom';
 import "../styles/Register.css"
+import InfoTCmodal from './InfoTCModal';
 
 function RegistroForm() {
     const [NombreUser, setNombreUser] = useState("")
@@ -11,6 +12,15 @@ function RegistroForm() {
     const [EmailUsuario, setEmailUsuario] = useState("")
     const [Fecha_NacimientoUsuario, setFecha_NacimientoUsuario] = useState("")
     const [TelefonoUsuario, setTelefonoUsuario] = useState("")
+
+    const [TermCondCheckbox, setTermCondCheckbox] = useState(false)
+    const [mostrarInfoTC, setMostrarInfoTC] = useState(false);
+    const eliminarMensaje = () => {
+    setMostrarInfoTC(false);
+    };
+    const [errorTerminos, setErrorTerminos] = useState("");
+
+
      const [mensaje, setMensaje] = useState("")
      const navigate = useNavigate();
 
@@ -35,11 +45,30 @@ function RegistroForm() {
     function telefono(e) {
         setTelefonoUsuario(e.target.value)
     }
+    function cambioTermsConds(e) {
+        const checked = e.target.checked
+        setTermCondCheckbox(checked)
+       if (!checked) {
+        setErrorTerminos("Debe aceptar los Términos y Condiciones para continuar.");
+    } else {
+        setErrorTerminos("");
+        setMostrarInfoTC(true);
+    }
+}
 
     
     async function registrar() {
+
+        setMensaje(""); 
+        setErrorTerminos(""); 
+
          if (!NombreUser || !NmUsuario || !ApUsuario || !ContraseñaUsuario || !EmailUsuario || !Fecha_NacimientoUsuario || !TelefonoUsuario) {
             setMensaje("Debe completar todos los campos!");
+            return;
+        }
+         if (!TermCondCheckbox){
+            setErrorTerminos("Debe aceptar los Términos y Condiciones para continuar.")
+            setMostrarInfoTC(false)
             return;
         }
     
@@ -78,7 +107,9 @@ function RegistroForm() {
   return (
     <div>
      <div className='ImgInicioLogo'>
-         <img src="../src/Images/Logo Pag Noticias.jpg" alt="" />
+        <a href="/">
+         <img  src="../src/Images/Logo Pag Noticias.jpg" alt="" />
+         </a>
      </div><br /><br />
 
         <h3 className='tituloRegistro' >Registro</h3>
@@ -112,14 +143,31 @@ function RegistroForm() {
             <input className='inputRegister' value={TelefonoUsuario} onChange={telefono} type="text" placeholder='Telefono' />
             </div><hr />
             <div> 
-            <label className='labelRegister' htmlFor="">Terminos y Condiciones</label>
-            <input type="checkbox" name="" id="" /> 
-            </div><hr />
+            <label className='labelRegister' htmlFor=""><a className='linkTermCond' href="/termcond" target="_blank" rel="noopener noreferrer"> Terminos y Condiciones </a></label>
+            <input type="checkbox" name="checkbox" id="checkbox" onChange={cambioTermsConds} /> 
+            </div>
+              <div>
+             <>
+               {mostrarInfoTC && (
+               <>
+                <button className='BtnInfoModal' onClick={eliminarMensaje}>X</button>
+                <InfoTCmodal InfoTC={"Esta de Acuerdo con los terminos y condiciones de nuestro Registro y politicas para el uso correcto de Nuestra Pagina."} />
+              </>
+                )}
+                </>  
+             </div><br />
+            <hr />
             <div>
                 <input className="registerBtn" type="button" onClick={registrar} value="Registro" /><br /><br />
                  {mensaje && <p className='error-message'>{mensaje}</p>} 
+
+                 {errorTerminos && <p className="error-message">{errorTerminos}</p>}
             
             </div><br />
+
+
+          
+
             
         <p>¿Ya tienes cuenta? <br /> <Link className='linkRegistro' to="/inicio">Inicia Sesión</Link>   </p>
         </div>

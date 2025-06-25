@@ -4,6 +4,8 @@ import { getUsers } from '../services/MainLlamados';    //LLamado de para public
 
 import "../styles/CardPerfil.css"
 import CloudinaryPerfil from './CloudinaryPerfil';
+import { useNavigate } from 'react-router-dom';
+
 
 
 function CardPefil() {
@@ -17,10 +19,22 @@ function CardPefil() {
   const [edicionNombre, setEdicionNombre] = useState('');
   const [edicionEmail, setEdicionEmail] = useState('');
   const [editImg, setEditImg] = useState('');
+  const navigate = useNavigate();
+  const [mostrarRedireccion,setMostrarRedireccion] = useState(false)
+  const [timeoutId, setTimeoutId] = useState(null);
+
  
   const idLogueado = Number(localStorage.getItem('id'));
 
   
+  const linkCalificacion = (publicacion) => {
+  if (publicacion) {
+    console.log(publicacion);
+    localStorage.setItem("id_publicacion",publicacion)
+    navigate("/noticiafull")
+    // navigate(`/noticiafull/${publicacion}`);
+  }
+};
 
 
 
@@ -86,22 +100,46 @@ async function traerCalificaciones() {
               <img src={user.foto_perfil} alt="Perfil" className="perfilIMG" width={150} /><br />
             </div>
 
-            <div className='containerData'><strong>Usuario:</strong> {user.username}</div>
-            <div className='containerData'><strong>Nombre:</strong> {user.first_name}</div>
-            <div className='containerData'><strong>Email:</strong> {user.email}</div>
-            <div className='containerData'><strong>Cantidad de Publicaciones:</strong> {publicaciones.length}</div>
+            <div className='containerData'><strong>Usuario</strong> <br /> {user.username}</div>
+            <div className='containerData'><strong>Nombre</strong> <br /> {user.first_name}</div>
+            <div className='containerData'><strong>Email</strong> <br /> {user.email}</div>
+            <div className='containerData'><strong>Cantidad de Publicaciones</strong> <br /> {publicaciones.length}</div>
 
-     <div className='containerData'>  <strong>Calificaciones:</strong> {calificaciones.length === 0 ? ( <p>No hay calificaciones aún.</p>): 
-     ( <ul>
+
+
+     <div> <strong>Calificaciones</strong></div>
+       <ul>
         {calificaciones.map((calificacion, index) => (
-         <li key={index}>
-           {Number(calificacion.puntaje).toFixed(1)} ✨
+          <li 
+            className='liCalificaiones' key={index} onMouseEnter={() => {
+              if (timeoutId) {
+                clearTimeout(timeoutId);
+                setTimeoutId(null);
+              }
+              setMostrarRedireccion(index); 
+            }}
+            onMouseLeave={() => {
+              
+              const id = setTimeout(() => {
+                setMostrarRedireccion(null);
+              }, 2000); setTimeoutId(id); 
+            }}
+            onClick={() => linkCalificacion(calificacion.publicacion)}
+          >
+            <div className='linkCalificacion'>
+              {Number(calificacion.puntaje).toFixed(1)} ✨
+            </div>
 
-        </li>
-      ))}
-    </ul>
-  )}
-</div>
+        {/* Mostrar botón solo si el index coincide */}
+        {mostrarRedireccion === index && (
+          <div>
+            <button className='btnVerCalificacion'>Ir a la publicación</button>
+          </div>
+      )}
+    </li>
+  ))}
+</ul>
+
        <div className='containerData'>
             <strong>Tipo de Usuario:</strong> {publicaciones.length === 0 ? ( <p>Poco Frecuente 😴</p>) : 
               publicaciones.length > 5 ? ( <p>Muy Frecuente 😎</p>) :

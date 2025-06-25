@@ -29,7 +29,9 @@ function NavBar() {
             
     <Navbar collapseOnSelect expand="lg" className="ContainerNavbar">
       <Container className='MainContainerNavbar'>
-         <Imagen className="logoNavbar" enlaceImagen={"../src/Images/Logo Pag Noticias.jpg"}/>
+        <a href="/">
+         <Imagen  className="logoNavbar" enlaceImagen={"../src/Images/Logo Pag Noticias.jpg"}/>
+         </a>
         <Navbar.Brand href="/"></Navbar.Brand>
         <Navbar.Brand className='BrandTitle' href="/"></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

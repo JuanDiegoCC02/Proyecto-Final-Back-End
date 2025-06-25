@@ -21,8 +21,8 @@ function Footer_Registro() {
         <div className='sec-QuickLinks'>
           <h2>Soporte</h2>
           <ul>
-          <li><a href="">Privacidad</a></li>
-          <li><a href="">Politicas</a></li>
+          <li><a href="/termcond">Privacidad</a></li>
+          <li><a href="/termcond">Politicas</a></li>
           <li><a href="/contacto">Ayuda</a></li>
           <li><a href=""></a></li>
             </ul>
