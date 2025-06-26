@@ -17,9 +17,10 @@ class UsuariosSerializer(serializers.ModelSerializer):
     usuario_nombre = serializers.CharField(source="usuario.first_name",read_only=True)
     usuario_apellido = serializers.CharField(source="usuario.last_name",read_only=True)
     usuario_email = serializers.CharField(source="usuario.email",read_only=True)
+    usuario_date_joined = serializers.DateTimeField(source="usuario.date_joined", read_only=True)
     class Meta:
         model = Usuarios
-        fields = ["id","fecha_nacimiento","telefono","usuario","usuario_alias","usuario_nombre","usuario_apellido","usuario_email"]
+        fields = ["id","fecha_nacimiento","telefono","usuario","usuario_alias","usuario_nombre","usuario_apellido","usuario_email", "usuario_date_joined"]
 
 
 #Serializer EDIT Usarios

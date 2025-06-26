@@ -43,6 +43,7 @@ function NoticiaFull() {
       "usuario": localStorage.getItem("id")
     }
     await postUsers(comentarioPublicacion, "api/comentarios/")
+    console.log (comentariosPublicaciones)
     setComentariosPublicaciones("")
     setReload(r => !r)
   }

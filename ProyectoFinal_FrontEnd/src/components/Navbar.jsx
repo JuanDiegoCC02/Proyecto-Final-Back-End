@@ -39,8 +39,16 @@ function NavBar() {
           <Nav className="me-auto ">
             {localStorage.getItem('grupoUsuario') === 'Administrador' && (
               <Nav.Link className='linkNavbar' href="/moderador">Moderador</Nav.Link>
+              
             )}
-            <Nav.Link className='linkNavbar' href="/noticias">Form Noticias</Nav.Link>
+              {localStorage.getItem('grupoUsuario') === 'Administrador' && (
+            <Nav.Link className='linkNavbar' href="/noticias">Publicaciones</Nav.Link>
+            )}
+
+            {!localStorage.getItem('grupoUsuario') && (
+           <Nav.Link className='linkNavbar' href="/registro"> Registro </Nav.Link>
+            )}
+
             <Nav.Link className='linkNavbar' href="/">Home</Nav.Link>
             <Nav.Link className='linkNavbar' href="/contacto">Contacto</Nav.Link>
             <NavDropdown className='linkConfg' id="collapsible-nav-dropdown" title="⚙️" >

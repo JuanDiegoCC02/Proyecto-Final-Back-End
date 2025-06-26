@@ -9,6 +9,7 @@ function NoticiasForm() {
     const [DescripcionNoticia, setDescripcionNoticia] = useState("");
     const [TipoPublicacion, setTipoPublicacion] = useState([]);
     const [publicacion, setPublicacion] = useState("");
+    const [publiCreada, setPubliCreada] = useState ("")
     const [mensaje, setMensaje] = useState("");
     const [errores, setErrores] = useState({}); 
 
@@ -20,45 +21,57 @@ function NoticiasForm() {
         setDescripcionNoticia(e.target.value);
     }
     // Recupera datos guardados en el LocalStorage
-    async function enviar() {
-        const guardaLatitud = JSON.parse(localStorage.getItem("posicion"));
-        const guardarUsuario = JSON.parse(localStorage.getItem("id"));
-        const guardarURL = localStorage.getItem("img");
+  async function enviar() {
+    const guardaLatitud = JSON.parse(localStorage.getItem("posicion"));
+    const guardarUsuario = JSON.parse(localStorage.getItem("id"));
+    const guardarURL = localStorage.getItem("img");
 
-        const obj = {
-            titulo: TituloNoticia,
-            descripcion: DescripcionNoticia,
-            tipopublicacion: publicacion,
-            usuario: guardarUsuario,
-            latitud: guardaLatitud?.[0],
-            longitud: guardaLatitud?.[1],
-            img: guardarURL
-        };
+    // Validación manual antes de enviar
+    const erroresLocales = {};
+    if (!TituloNoticia.trim()) erroresLocales.titulo = ["El título es obligatorio"];
+    if (!DescripcionNoticia.trim()) erroresLocales.descripcion = ["La descripción es obligatoria"];
+    if (!publicacion) erroresLocales.tipopublicacion = ["Debe seleccionar un tipo de publicación"];
 
-        try { // parte de la Función Post para enviar la informacion del formulario
-            const respuestaServer = await postUsers(obj, "api/publicaciones/");
-            console.log("Publicación creada:", respuestaServer);
+    if (Object.keys(erroresLocales).length > 0) {
+        setErrores(erroresLocales);
+        setMensaje("Hay errores en el formulario. Revisa los campos.");
+        return; 
+    }
 
-            setMensaje("Publicación creada con éxito");
-            setErrores({}); // limpiar errores anteriores
+    const obj = {
+        titulo: TituloNoticia,
+        descripcion: DescripcionNoticia,
+        tipopublicacion: publicacion,
+        usuario: guardarUsuario,
+        latitud: guardaLatitud?.[0],
+        longitud: guardaLatitud?.[1],
+        img: guardarURL
+    };
 
-            // REINICIAR CAMPOS
-            setTituloNoticia("");
-            setDescripcionNoticia("");
-            setPublicacion("");
+    try {
+        const respuestaServer = await postUsers(obj, "api/publicaciones/");
+        console.log("Publicación enviada:", respuestaServer);
 
-        } catch (error) {
-            console.error("Error al crear publicación:", error);
+        setPubliCreada("Publicación Enviada");
+        setMensaje(""); 
+        setErrores({});
+        setTituloNoticia("");
+        setDescripcionNoticia("");
+        setPublicacion("");
+        
+    } catch (error) {
+        console.error("Error al crear publicación:", error);
 
-            if (error instanceof Response) {
-                const data = await error.json();
-                setErrores(data);
-                setMensaje("Hay errores en el formulario. Revisa los campos.");
-            } else {
-                setMensaje("Ocurrió un error inesperado.");
-            }
+        if (error instanceof Response) {
+            const data = await error.json();
+            setErrores(data);
+            setMensaje("Hay errores en el formulario. Revisa los campos.");
+        } else {
+            setMensaje("Ocurrió un error inesperado.");
         }
     }
+}
+
     // Para elegir entre Noticias y Campañas que se encuentran en la base de Datos
     useEffect(() => {
         const fetchTiposPublicacion = async () => {
@@ -77,14 +90,14 @@ function NoticiasForm() {
     return (
         <>
             <div className='mainContainerNoticia'>
-                <h2 className='tituloNoticia'>Ingrese Publicacion</h2>
+                <h2 className='tituloNoticia'>Ingrese Publicación</h2>
                 <div className='containerNoticia'>
                     <input
                         value={TituloNoticia}
                         className='inputTexto'
                         type="text"
                         onChange={TituloF}
-                        placeholder='Titulo Publicacion'
+                        placeholder='Titulo Publicación'
                     />
                     {errores.titulo && <p className='error-message-I'>{errores.titulo[0]}</p>}
 
@@ -93,7 +106,7 @@ function NoticiasForm() {
                         className='inputTexto'
                         type="text"
                         onChange={DescripcionF}
-                        placeholder='Descripción Publicacion'
+                        placeholder='Descripción Publicación'
                     />
                     {errores.descripcion && <p className='error-message-I'>{errores.descripcion[0]}</p>}
 
@@ -115,6 +128,8 @@ function NoticiasForm() {
                     <button onClick={enviar} className='noticiasBtn'>Enviar</button>
 
                     {mensaje && <p className='error-message-I'>{mensaje}</p>}
+
+                    {publiCreada && <p className='creacion-message-I'>{publiCreada}</p>}
                 </div>
             </div>
         </>

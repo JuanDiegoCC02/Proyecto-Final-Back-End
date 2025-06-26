@@ -62,3 +62,37 @@
  background-color: #18374bdb;
     color: rgba(219, 234, 134, 0.92);
 }
+/* Msj Alert éxito */
+.creacion-message-I {
+    color: #e9fdf0;
+    font-size: 1em;
+    font-weight: bold;
+    margin: 20px auto;
+    text-align: center;
+    padding: 13px 60px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #034d34, #50aa83);
+    border: 3px ridge #427957;
+    box-shadow: 0 4px 12px rgba(31, 33, 31, 0.9);
+    position: relative;
+    animation: bounceIn 0.5s ease-out;
+    max-width: 400px;
+    width: 90%;
+}
+
+.creacion-message-I::before {
+    content: "🦖";
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2em;
+    animation: pulse 1s infinite;
+}
+@media (max-width: 480px) {
+    .creacion-message-I {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+}
+

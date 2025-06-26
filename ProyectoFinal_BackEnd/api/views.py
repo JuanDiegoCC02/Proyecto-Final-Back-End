@@ -147,7 +147,8 @@ class GetUsuarioView(APIView):
                     "last_name": user.last_name,
                     "fecha_nacimiento": extra.fecha_nacimiento,
                     "telefono": extra.telefono,
-                    "foto_perfil" : extra.foto_perfil
+                    "foto_perfil" : extra.foto_perfil,
+                    "date_joined" : user.date_joined
                 })
             except Usuarios.DoesNotExist:
                 pass  
