@@ -5,10 +5,6 @@ import MapaCards from './MapaCards'
 import ReactDOM from 'react-dom/client'
 import CalificacionStarReact from './CalificacionStarReact'
 
-// Parte de Calificaciones 
-const rootElement = document.getElementById('root')
-const root = ReactDOM.createRoot(rootElement)
-
 function NoticiaFull() {
   // Para el map publicaciones
   const [publicaciones, setPublicaciones] = useState([])
@@ -23,50 +19,91 @@ function NoticiaFull() {
   const [respuestas, setRespuestas] = useState({})
   const [textoRespuesta, setTextoRespuesta] = useState({})
   //Edit comentario
-  const [mostrar, setMostrar] = useState(false)
+  const [comentarioEditandoId, setComentarioEditandoId] = useState(null);
   const [editComentario, setEditComentario] = useState("")
   const [usuario, setUsuario] = useState(null) // Se utiliza en los 2 modales
   // Edit Respuestas
-  const [mostrarRespuesta, setMostrarRespuesta] = useState(false)
   const [editRespuesta, setEditRespuesta] = useState("")
   const [respuestaEditando, setRespuestaEditando] = useState(null);
   const [comentarioEditando, setComentarioEditando] = useState(null); // para saber a qué comentario pertenece la respuesta
   // REPORTES
   const [reportes, setReportes] = useState(0)
   const [cantReportes,setCantReportes] = useState([])
+
+  // Errores
+  const [mensaje, setMensaje] = useState("");
+  const [errores, setErrores] = useState({})
+  const [erroresRespuestas, setErroresRespuestas] = useState({})
+
   
   // POST para agregar comentarios a la publicacion 
   async function AggComentario() {
+    const erroresLocales = {}; // Validación manual antes de enviar
+    if (!comentariosPublicaciones.trim()) erroresLocales.contenido = ["El contenido en el comentario es obligatorio"];
+    if (Object.keys(erroresLocales).length > 0) {
+        setErrores(erroresLocales);
+        setMensaje("Hay errores en el formulario. Revisa los campos.");
+        return;
+    }
+
     const comentarioPublicacion = {
       "contenido": comentariosPublicaciones,
       "publicacion": localStorage.getItem("id_publicacion"),
       "usuario": localStorage.getItem("id")
     }
+
+    try {
     await postUsers(comentarioPublicacion, "api/comentarios/")
-    console.log (comentariosPublicaciones)
     setComentariosPublicaciones("")
-    setReload(r => !r)
+    setReload((r) => !r)
+    setErrores({});
   }
+  catch (error) {
+        console.error("Error al crear publicación:", error);
+        if (error instanceof Response) {
+            const data = await error.json();
+            setErrores(data);
+            setMensaje("Hay errores en el formulario. Revisa los campos.");
+        } else {
+            setMensaje("Ocurrió un error inesperado.");
+        }
+    }
+}
+  
 
   // POST para agregar respuestas a los comentarios de la publicacion
   // Se usa el comentarioId para identificar a qué comentario se le está agregando la respuesta  
   async function AgregarRespuesta(comentarioId) {
     console.log("Comentario ID:", comentarioId);
+   if (!textoRespuesta[comentarioId] || !textoRespuesta[comentarioId].trim()) {
+    setErroresRespuestas(prev => ({
+      ...prev,
+      [comentarioId]: "El contenido en la respuesta es obligatorio"
+    }));
+     setErrores({}); // Limpia errores de comentario
+    return;
+  }
+
     const respuesta = {
       "contenido": textoRespuesta[comentarioId],
       "comentario": comentarioId,
       "usuario": localStorage.getItem("id"),
       "publicacion": localStorage.getItem("id_publicacion")
     }
-    await postUsers(respuesta, "api/respuestascomentarios/")
-    setTextoRespuesta(prev => ({ ...prev, [comentarioId]: "" }))
-    setReload(r => !r)
-    // recargar respuestas solo para ese comentario
-    const prueba = TraerRespuestas(comentarioId)
-    console.log(prueba);
-    console.log("entra");
-    setMostrar(false)
-  } 
+    try {
+    await postUsers(respuesta, "api/respuestascomentarios/");
+    setTextoRespuesta(prev => ({ ...prev, [comentarioId]: "" }));
+    setErroresRespuestas(prev => ({ ...prev, [comentarioId]: "" })); // limpiar error de ese comentario
+    await TraerRespuestas(comentarioId);
+    setReload(r => !r);
+  } catch (error) {
+    console.error("Error al crear respuesta:", error);
+    setErroresRespuestas(prev => ({
+      ...prev,
+      [comentarioId]: "Ocurrió un error al enviar la respuesta."
+    }));
+  }
+}
 
   // GET para traer las respuestas que se hacen a los comentarios de la publicacion 
   async function TraerRespuestas(comentarioId) {
@@ -123,14 +160,15 @@ function NoticiaFull() {
     }
     await patchData(actComentario, "api/comentarios", id)
     setReload(!reload)
-    setMostrar(false);
-  } // Modal para abrir el editar de comentarios
-  function abrirModal(usuario) {
-    setUsuario(usuario);
-    setEditComentario(usuario.contenido);
-    setMostrar(true);
-    console.log(editComentario);
-  }
+    setComentarioEditandoId(null); // para cerrar el input después de guardar
+  } 
+  // Modal para abrir el editar de comentarios
+  function abrirModal(comentario) {
+  setComentarioEditandoId(comentario.id);
+  setEditComentario(comentario.contenido);
+  setErrores({}); // Limpia errores al abrir modal
+}
+
 
   // Eliminar Respuesta Comentario 
   async function eliminarRespuesta(respuestaId, comentarioId) {
@@ -195,13 +233,13 @@ function NoticiaFull() {
               </React.StrictMode>
               <h2>Haz Click para reportar esta Noticia</h2>
               <p>Número de Reportes: {cantReportes}</p>
-              <h5>All llegar a 20 reportes se desaparecera la publicacion</h5>
               <button onClick={AggReporte} className='btnReportes'>Reportar</button>
 
               <h2>Comentarios</h2>
               <div>
                 <input className='inputNoticiasFull' type="text" value={comentariosPublicaciones}
                   onChange={(e) => setComentariosPublicaciones(e.target.value)} placeholder='Agregar comentario' />
+                    {errores.contenido && <p className='error-message-I'>{errores.contenido[0]}</p>}
                 <br />
                 <button className='btnComentarioNoticiasFull' onClick={AggComentario}>Enviar Comentario</button>
               </div>
@@ -220,12 +258,23 @@ function NoticiaFull() {
                     {localStorage.getItem("id") == comentario.usuario && (
                       <button className='noticiasFullBtnEdit' onClick={() => abrirModal(comentario)}>Editar</button>
                     )}
-                    {mostrar &&
-                      <> {/*Input y btn que se muestran al abrir el modal*/}
-                        <input className='noticiasInputComentariosBtn' type="text" value={editComentario} onChange={(e) => setEditComentario(e.target.value)} />
-                        <button className='noticiasFullGuardarComentariosBtn' onClick={() => actualizarComentarios(comentario.id)}>Guardar</button>
+                    {comentarioEditandoId === comentario.id && (
+                      <>
+                        {/* Input para editar el comentario */} 
+                        <input
+                          className='noticiasInputComentariosBtn'
+                          type="text"
+                          value={editComentario} // Valor actual del comentario en edición
+                          onChange={(e) => setEditComentario(e.target.value)} // Actualiza el estado conforme escribes
+                        />
+                        {/* Botón para guardar el comentario editado */}
+                        <button
+                          className='noticiasFullGuardarComentariosBtn'
+                          onClick={() => actualizarComentarios(comentario.id)} // Llama a la función que actualiza el comentario en backend
+                        >Guardar</button>
+                        <button className='noticiasFullBtnCancelarEdit' onClick={() => setComentarioEditandoId()}>Cancelar</button>
                       </>
-                    }
+                    )}
                     <button
                       className='noticiasFullBtnRespuesta'
                       onClick={() => {
@@ -304,6 +353,8 @@ function NoticiaFull() {
                           value={textoRespuesta[comentario.id] || ""}
                           onChange={e => setTextoRespuesta(prev => ({ ...prev, [comentario.id]: e.target.value }))}
                         />
+                        {erroresRespuestas[comentario.id] && <p className='error-message-I'>{erroresRespuestas[comentario.id]}</p>}
+
                         <button className='btnRespuestaNoticias' onClick={() => AgregarRespuesta(comentario.id)}>Enviar Respuesta</button>
                       </div>
                     )}

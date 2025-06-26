@@ -5,6 +5,7 @@ import "../styles/Register.css"
 import InfoTCmodal from './InfoTCModal';
 
 function RegistroForm() {
+    // Estados para los inputs
     const [NombreUser, setNombreUser] = useState("")
     const [NmUsuario, setNmUsuario] = useState("")
     const [ApUsuario, setApUsuario] = useState("")
@@ -12,9 +13,10 @@ function RegistroForm() {
     const [EmailUsuario, setEmailUsuario] = useState("")
     const [Fecha_NacimientoUsuario, setFecha_NacimientoUsuario] = useState("")
     const [TelefonoUsuario, setTelefonoUsuario] = useState("")
-
+    //Checkbox TC
     const [TermCondCheckbox, setTermCondCheckbox] = useState(false)
     const [mostrarInfoTC, setMostrarInfoTC] = useState(false);
+    // Función para cerrar el modal de Terminos y condenación 
     const eliminarMensaje = () => {
     setMostrarInfoTC(false);
     };
@@ -24,6 +26,7 @@ function RegistroForm() {
      const [mensaje, setMensaje] = useState("")
      const navigate = useNavigate();
 
+    // Handlers de input para guardar el estado cuando el valor cambie
     function nombre_user(e) {
         setNombreUser(e.target.value)
     }
@@ -45,10 +48,11 @@ function RegistroForm() {
     function telefono(e) {
         setTelefonoUsuario(e.target.value)
     }
+    // Para manejar el Checkbox
     function cambioTermsConds(e) {
         const checked = e.target.checked
         setTermCondCheckbox(checked)
-       if (!checked) {
+       if (!checked) { // Si no está marcado, da error
         setErrorTerminos("Debe aceptar los Términos y Condiciones para continuar.");
     } else {
         setErrorTerminos("");
@@ -58,21 +62,23 @@ function RegistroForm() {
 
     
     async function registrar() {
-
+        // Para limpiar los textos
         setMensaje(""); 
         setErrorTerminos(""); 
 
+        // Validación para que todos los espacios deban completarse antes de poder enviar el formulario
          if (!NombreUser || !NmUsuario || !ApUsuario || !ContraseñaUsuario || !EmailUsuario || !Fecha_NacimientoUsuario || !TelefonoUsuario) {
             setMensaje("Debe completar todos los campos!");
             return;
         }
+
+        // Validacion para terminos y condiciones
          if (!TermCondCheckbox){
             setErrorTerminos("Debe aceptar los Términos y Condiciones para continuar.")
             setMostrarInfoTC(false)
             return;
         }
     
-
         const obj = {
             username: NombreUser,
             first_name: NmUsuario,
@@ -82,7 +88,7 @@ function RegistroForm() {
             fecha_nacimiento: Fecha_NacimientoUsuario,
             telefono: TelefonoUsuario
         }
-    try {
+    try { // POST para crear el usuario
         const respuestaServer = await PostUsuarios(obj);
         console.log("Usuario registrado:", respuestaServer);
         navigate("/inicio");
@@ -165,10 +171,6 @@ function RegistroForm() {
             
             </div><br />
 
-
-          
-
-            
         <p>¿Ya tienes cuenta? <br /> <Link className='linkRegistro' to="/inicio">Inicia Sesión</Link>   </p>
         </div>
     </div>

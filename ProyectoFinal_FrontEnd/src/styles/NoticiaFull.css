@@ -1,4 +1,3 @@
-
 .comentariosContainer {
   display: flex;
   flex-direction: column;
@@ -227,4 +226,15 @@
 } .btnReportes:hover {
     background-color: rgb(13, 13, 189);
     color: whitesmoke;
+}
+
+.noticiasFullBtnCancelarEdit {
+  border: none;
+  border-radius: 4px;
+  padding: 4px;
+  margin-left: 4px;
+  background-color: #717678;
+} .noticiasFullBtnCancelarEdit:hover {
+  background-color: #a8b5bf; 
+  color: whitesmoke;
 }
