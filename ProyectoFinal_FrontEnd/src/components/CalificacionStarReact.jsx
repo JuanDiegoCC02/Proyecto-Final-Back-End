@@ -69,7 +69,7 @@ function CalificacionStarReact() {
         onClick={enviarCalificacion}
         disabled={disabled}
       >
-        {disabled ? "Ya calificado" : "Calificar"}
+        {disabled ? "Ya calificaste" : "Calificar"}
       </button>
     </>
   )

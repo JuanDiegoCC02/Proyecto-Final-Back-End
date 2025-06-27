@@ -24,10 +24,10 @@
 
 .noticiasFullBtnEliminar {
     background-color: rgb(94, 144, 94);
-    margin-top: 3px;
     padding: 2px;
     border: none;
     border-radius: 4px;
+    margin-bottom: 5.5px;
 } .noticiasFullBtnEliminar:hover {
     background-color: rgb(255, 0, 0);
     color: white;
@@ -238,3 +238,8 @@
   background-color: #a8b5bf; 
   color: whitesmoke;
 }
+.alertaEliminarCont{
+  position: relative;
+  bottom: 500px;
+}
+

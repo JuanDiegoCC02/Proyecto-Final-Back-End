@@ -7,7 +7,7 @@ function NoticiasTitulo() {
     <div>
     <div className='tituloNoticiasContainer'>
 
-    <h1>Publicaciones más recientes</h1>
+    <h1>Publicaciones recientes</h1>
 
     </div>
     <br />
