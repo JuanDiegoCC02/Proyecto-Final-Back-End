@@ -37,25 +37,38 @@ function NavBar() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav" >
           <Nav className="me-auto ">
+
+
+            {/*Accesos de usuarios sin registrar */}
             {localStorage.getItem('grupoUsuario') === 'Administrador' && (
               <Nav.Link className='linkNavbar' href="/moderador">Moderador</Nav.Link>
-              
             )}
               {localStorage.getItem('grupoUsuario') === 'Administrador' && (
             <Nav.Link className='linkNavbar' href="/noticias">Publicaciones</Nav.Link>
             )}
 
-            {!localStorage.getItem('grupoUsuario') && (
-           <Nav.Link className='linkNavbar' href="/registro"> Registro </Nav.Link>
-            )}
 
             <Nav.Link className='linkNavbar' href="/">Home</Nav.Link>
             <Nav.Link className='linkNavbar' href="/contacto">Contacto</Nav.Link>
-            <NavDropdown className='linkConfg' id="collapsible-nav-dropdown" title="⚙️" >
+
+            {/*Accesos de usuarios registrado */}
+            {localStorage.getItem('grupoUsuario') && (
+              <NavDropdown className='linkConfg' id="collapsible-nav-dropdown" title="👤Mi Cuenta"  >
               <NavDropdown.Item className='confgbtn' href="/perfil">Perfil</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item className='confgbtn'  onClick={cerrarSesion}>Cerrar Sesión</NavDropdown.Item>
             </NavDropdown>
+            )}
+
+             {/*Accesos de usuarios sin registrar */}       
+            {!localStorage.getItem('grupoUsuario') && (
+           <Nav.Link className='linkNavbar' href="/registro"> Registro </Nav.Link>
+            )}
+              {!localStorage.getItem('grupoUsuario') && (
+           <Nav.Link className='linkNavbar' href="/inicio"> Inicio </Nav.Link>
+            )}
+
+
           </Nav>
         </Navbar.Collapse>
       </Container>

@@ -36,33 +36,44 @@ const LineBarUsers = ({ title }) => {
     list();
   }, []);
 
-  const options = {
-    chart: {
-      height: 350,
-      type: 'line',
-      zoom: { enabled: false },
+const options = { chart: {
+    height: 350,
+    type: 'line', 
+    zoom: { enabled: false },
+    toolbar: { show: false }
+  },
+  colors: ['#0EA676'], // Verde oscuro para linea usuarios
+  dataLabels: { enabled: false },
+  stroke: {
+    curve: 'smooth',
+    width: 3
+  },
+  title: { text: title || 'Registro de Usuarios por Fecha', align: 'left',
+    style: {
+      fontSize: '16px',
+      color: '#0d6e63'
+    }
+  },
+  grid: { borderColor: '#d9f1e8',
+    row: {
+      colors: ['#e3f8f2', 'transparent'],
+      opacity: 0.4,
     },
-    colors: ['#448354'], // Color de la Linea del Grafico verde oscuro 
-    dataLabels: { enabled: false },
-    stroke: { curve: 'straight' },
-    title: {
-      text: title || 'Regitro de Usuarios por Fecha',
-      align: 'left',
-    },
-    grid: {
-      row: {
-        colors: ['#f3f3f3', 'transparent'], // Fondo del fondo blanco
-        opacity: 0.5,
-      },
-    },
-    xaxis: {
-      categories: chartData.categories,
-      title: { text: 'Fecha de registro' },
-    },
-    yaxis: {
-      title: { text: 'Cantidad de usuarios' },
-    },
-  };
+  },
+  xaxis: { categories: chartData.categories,
+    title: { text: 'Fecha de registro', style: { color: '#0d6e63' } },
+    labels: { style: { colors: '#0B3D28' } }
+  },
+  yaxis: {
+    title: { text: 'Cantidad de usuarios', style: { color: '#0B3D28' } },
+    labels: { style: { colors: '#0B3D28' } }
+  },
+  tooltip: {
+    theme: 'light',
+    x: { format: 'yyyy-MM-dd' }
+  }
+};
+
 
   return (
     <div className='grafico-usuarios-container'>

@@ -35,6 +35,7 @@ function NoticiasForm() {
     if (Object.keys(erroresLocales).length > 0) {
         setErrores(erroresLocales);
         setMensaje("Hay errores en el formulario. Revisa los campos.");
+        setPubliCreada("")
         return; 
     }
 

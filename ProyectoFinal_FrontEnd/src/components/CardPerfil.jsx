@@ -133,7 +133,7 @@ async function traerCalificaciones() {
         {/* Mostrar botón solo si el index coincide */}
         {mostrarRedireccion === index && (
           <div>
-            <button className='btnVerCalificacion'>Ir a la publicación</button>
+            <button className='btnVerCalificacion'>Ir a la Publicación</button>
           </div>
       )}
     </li>

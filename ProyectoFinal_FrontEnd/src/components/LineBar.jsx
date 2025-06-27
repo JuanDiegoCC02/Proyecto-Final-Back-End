@@ -30,32 +30,52 @@ return (
       <h5>Publicaciones por tipo de publicación</h5>
     </div>
     <div className="grafico-chart">
-      <Chart
-        options={{  
-          chart: { id: "basic-bar" },
-          xaxis: { categories: ["Noticias", "Campañas"] },
-          colors: ['#2B756B'], // color opcional
-          plotOptions: {
-            bar: {
-              borderRadius: 3,
-              horizontal: false,
-              columnWidth: '35%',
-            }
-          },
-          dataLabels: {
-            enabled: true
-          },
-        }}
-        series={[
-          {
-            name: "Publicaciones",
-            data: [seriesNoticias, seriesCampanas]
-          }
-        ]}
-        type="bar"
-        width="200%"
-        height="300"
-      />
+ <Chart
+  options={{
+    chart: { id: "basic-bar" },
+    xaxis: { categories: ["Noticias", "Campañas"] },
+    plotOptions: {
+      bar: {
+        borderRadius: 3,
+        horizontal: false,
+        columnWidth: '35%',
+      }
+    },
+    dataLabels: {
+      enabled: true
+    },
+    fill: {
+      type: 'gradient',
+      gradient: {
+        shade: 'light',
+        type: "vertical",
+        shadeIntensity: 0.4,
+        gradientToColors: ['#A8E6CF'],
+        inverseColors: false,
+        opacityFrom: 0.9,
+        opacityTo: 1,
+        stops: [0, 100],
+      }
+    },
+    colors: ['#2ABF91'],
+    states: {
+      hover: {
+         filter: { type: 'darken',   value: 0.4}
+      }
+    }
+  }}
+  series={[
+    {
+      name: "Publicaciones",
+      data: [seriesNoticias, seriesCampanas]
+    }
+  ]}
+  type="bar"
+  width="200%"
+  height="300"
+/>
+
+
     </div>
     <hr />
   </div>
