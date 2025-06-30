@@ -8,6 +8,7 @@
   border-radius: 12px;
   box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
+   margin-bottom: 30px;
 }
 
 .grafico-usuarios-container:hover {

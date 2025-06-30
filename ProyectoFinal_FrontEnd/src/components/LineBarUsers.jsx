@@ -14,7 +14,7 @@ const LineBarUsers = ({ title }) => {
     async function list() {
       const datos = await GetUsuarios();
 
-      // Agrupar usuarios por fecha 
+      // const de usuarios por fecha 
       const conteoPorFecha = {};
 
       datos.forEach((usuario) => {
@@ -23,7 +23,7 @@ const LineBarUsers = ({ title }) => {
         conteoPorFecha[fecha] = (conteoPorFecha[fecha] || 0) + 1;
       });
 
-      // Ordenar fechas y construir datos
+      // Orden y estructuracion de las fechas
       const fechasOrdenadas = Object.keys(conteoPorFecha).sort();
       const conteos = fechasOrdenadas.map((fecha) => conteoPorFecha[fecha]);
 
@@ -48,6 +48,8 @@ const options = { chart: {
     curve: 'smooth',
     width: 3
   },
+
+  //Titulo del Grafico
   title: { text: title || 'Registro de Usuarios por Fecha', align: 'left',
     style: {
       fontSize: '16px',
@@ -60,6 +62,8 @@ const options = { chart: {
       opacity: 0.4,
     },
   },
+
+  //Indica las categorias del grafico
   xaxis: { categories: chartData.categories,
     title: { text: 'Fecha de registro', style: { color: '#0d6e63' } },
     labels: { style: { colors: '#0B3D28' } }

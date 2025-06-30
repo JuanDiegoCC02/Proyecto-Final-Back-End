@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import { getUsers } from "../services/MainLlamados";
-import Chart from "react-apexcharts";
+
+//Import del componente Chart de la Librería react-apexcharts que permite crear gráficos interactivos.
+import Chart from "react-apexcharts";     
 import "../styles/LineBar.css"
 
 const LineBar = () => {
   const [seriesNoticias, setSeriesNoticias] = useState(0);
   const [seriesCampanas, setSeriesCampanas] = useState(0);
 
+
+  //Este useEffect recibe los datos y los filtra por el tipo de publicación para luego aplicar un legth para contar la cantidad
  useEffect(() => {
   async function list() {   
     const datos = await getUsers("api/publicaciones");
@@ -33,7 +37,11 @@ return (
  <Chart
   options={{
     chart: { id: "basic-bar" },
+
+    //indica la categorias del grafico
     xaxis: { categories: ["Noticias", "Campañas"] },
+
+    //Configura la barra y el estilo del Grafico 
     plotOptions: {
       bar: {
         borderRadius: 3,
@@ -41,9 +49,13 @@ return (
         columnWidth: '35%',
       }
     },
+
+    //Muestra el valor encima de cada barra
     dataLabels: {
       enabled: true
     },
+
+    //Degradado de la barra
     fill: {
       type: 'gradient',
       gradient: {
@@ -57,7 +69,10 @@ return (
         stops: [0, 100],
       }
     },
+    // Color normal de la barra
     colors: ['#2ABF91'],
+
+    //Efecto de la barra al pasar sobre ella
     states: {
       hover: {
          filter: { type: 'darken',   value: 0.4}

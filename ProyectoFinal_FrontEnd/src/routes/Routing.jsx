@@ -31,11 +31,11 @@ function Routing() {
             <Route path = '/registro' element = {<RegistroPage/>}/> 
             <Route path = '/inicio' element = {<InicioSesionPage/>}/> 
             <Route path = '/noticias' element = {<Noticias/>}/> 
-            <Route path="/contacto" element={<Contact/>}/>
-            <Route path="/noticiafull" element={<FullNoticias/>}/>
-            <Route path="/noticiafull/:id" element={<FullNoticias />} />
+            <Route path = "/contacto" element={<Contact/>}/>
+            <Route path = "/noticiafull" element={<FullNoticias/>}/>
+            <Route path = "/noticiafull/:id" element={<FullNoticias />} />
 
-             <Route path="/termcond" element={<PageTermCond />} />
+             <Route path = "/termcond" element={<PageTermCond />} />
         </Routes>
    </Router>
 

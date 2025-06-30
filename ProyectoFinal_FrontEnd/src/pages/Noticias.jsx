@@ -3,7 +3,7 @@ import NavBar from '../components/Navbar'
 import NoticiasTitulo from '../components/NoticiasTitulo'
 import NoticiasForm from '../components/NoticiasForm'
 import Footer from '../components/Footer'
-import Sidebar from '../components/Sidebar'
+
 
 import { useState,useEffect } from 'react'
 import { getUsers } from '../services/MainLlamados'
@@ -32,7 +32,7 @@ function Noticias() {
    </nav>,
 
   <main>
-    <Sidebar />
+    
     <NoticiasForm/>
      <NoticiasTitulo />
      <div className='d-flex flex-row gap-3 flex-wrap mx-auto justify-content-center'>

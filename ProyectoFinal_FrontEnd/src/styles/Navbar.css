@@ -27,8 +27,8 @@
   font-size: 12px;
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
-  color: white;
-  background-color: #02975ec3; 
+  color: rgb(240, 236, 236) ;
+  background-color: #47eeb383; 
   border: none;
   border-radius: 5px;
   padding: 8px 12px;
@@ -38,14 +38,14 @@
 }
 
 .linkConfg:hover {
-  background-color: #246951; /* un verde más oscuro aún al hacer hover */
+  background-color: #afb1b1bb; 
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.395);
 }
 
 
 .linkNavbar {
   font-family: 'Segoe UI', sans-serif;
-  color: #f5fff7; /* Verde claro para contraste con fondo oscuro */
+  color: #f5fff7; 
   font-size: 20px;
   text-decoration: none;
   padding: 10px 18px;

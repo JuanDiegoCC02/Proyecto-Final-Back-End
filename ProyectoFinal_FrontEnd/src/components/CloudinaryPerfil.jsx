@@ -27,6 +27,7 @@ const CloudinaryPerfil = ({ onImageUpload }) => {
             // Informar al componente padre
             onImageUpload(imageUrl);
 
+            //Guarda url en el localStorage
             localStorage.setItem("img", imageUrl);
         } catch (error) {
             console.error('Error uploading image:', error);

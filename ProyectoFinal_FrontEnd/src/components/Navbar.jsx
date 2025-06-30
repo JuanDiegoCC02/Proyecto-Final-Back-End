@@ -39,11 +39,12 @@ function NavBar() {
           <Nav className="me-auto ">
 
 
-            {/*Accesos de usuarios sin registrar */}
+            {/*Accesos de usuarios admin*/}
             {localStorage.getItem('grupoUsuario') === 'Administrador' && (
               <Nav.Link className='linkNavbar' href="/moderador">Moderador</Nav.Link>
             )}
-              {localStorage.getItem('grupoUsuario') === 'Administrador' && (
+             {/*Accesos de usuarios con registro*/}
+              {localStorage.getItem('grupoUsuario') && (
             <Nav.Link className='linkNavbar' href="/noticias">Publicaciones</Nav.Link>
             )}
 

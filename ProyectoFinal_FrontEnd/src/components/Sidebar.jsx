@@ -20,22 +20,20 @@ function Sidebar({ name, ...props }) {
 
   return (
     <>
-      <Button style={{backgroundColor:"#5b5b5b"}} variant="primary" onClick={toggleShow} className="me-2">
-        {name}
-      SideBar</Button>
+      <Button variant="primary" onClick={toggleShow} className="me-2"> {name}Menú</Button>
       <Offcanvas style={{backgroundColor:"#e6e6e6e6"}} show={show} onHide={handleClose} {...props}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Noticias Ambientales CR</Offcanvas.Title>
         </Offcanvas.Header>
-        <Nav style={{backgroundColor:"#ECFAE5"}} className="me-auto ">
-            <Nav.Link style={{backgroundColor: "#e6e6e6"}} href="/tablausuarios">Tabla Usuarios</Nav.Link>
-            <Nav.Link style={{backgroundColor: "#e6e6e6"}} href="/tablacomentarios">Tabla Contactos</Nav.Link>
-            <Nav.Link style={{backgroundColor: "#e6e6e6"}} href="/admin">Tabla Publicaciones</Nav.Link>
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/contacto">Contacto</Nav.Link>
-            <Nav.Link href="/moderador">Moderador</Nav.Link>
+        <Nav style={{backgroundColor:"#ECFAE5"}} className="navPadre">
+            <Nav.Link className='navHijo'  href="/tablausuarios">Tabla Usuarios</Nav.Link>
+            <Nav.Link className='navHijo'  href="/tablacomentarios">Tabla Contactos</Nav.Link>
+            <Nav.Link className='navHijo'  href="/admin">Tabla Publicaciones</Nav.Link>
+            <Nav.Link className='navHijo' href="/">Home</Nav.Link>
+            <Nav.Link className='navHijo' href="/contacto">Contacto</Nav.Link>
+            <Nav.Link className='navHijo' href="/moderador">Moderador</Nav.Link>
         </Nav>
-        <Offcanvas.Body style={{backgroundColor: "#DDDDDD"}}>
+        <Offcanvas.Body>
           Aquí se va a poder acceder a los Usuarios, solicitudes de los Formularios de contacto, y las publicaciones
           que envíen los usuarios, cada uno tiene su funcionalidad CRUD de Post, Get, Patch que se utiliza para 
           editar información, y el Delete.
