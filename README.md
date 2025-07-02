@@ -1,5 +1,5 @@
 # -Página Web Noticias Ambientales C.R.   /Proyecto Final Back-End/ 
-Estudiantes: Joseph Monge y J.Diego Corella
+Estudiantes: Joseph Monge y Juan Diego Corella
 
 En este Proyecto decidimos desarrollar una Página Web de Noticias Ambientales en Costa Rica, con el objetivo de permitir a los ciudadanos mantenerse informados sobre los sucesos ecológicos y
  ambientales en el país, además de la creación de campañas en busca de la colaboración activa en iniciativas de mitigación fomentando la interacción y el compromiso de los ciudadanos, no solo 
