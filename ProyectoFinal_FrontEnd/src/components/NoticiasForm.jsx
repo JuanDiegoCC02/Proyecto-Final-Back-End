@@ -5,6 +5,7 @@ import Cloudinary from './Cloudinary';
 import "../styles/NoticiasForm.css";
 
 function NoticiasForm() {
+     // Estados para capturar datos del formulario
     const [TituloNoticia, setTituloNoticia] = useState("");
     const [DescripcionNoticia, setDescripcionNoticia] = useState("");
     const [TipoPublicacion, setTipoPublicacion] = useState([]);
@@ -13,15 +14,17 @@ function NoticiasForm() {
     const [mensaje, setMensaje] = useState("");
     const [errores, setErrores] = useState({}); 
 
-    function TituloF(e) {
+    function TituloF(e) { // Función para actualizar título
         setTituloNoticia(e.target.value);
     }
 
-    function DescripcionF(e) {
+    function DescripcionF(e) { // Función para actualizar descripción
         setDescripcionNoticia(e.target.value);
     }
+
+    //Envía los datos del formulario al servidor
+    async function enviar() { 
     // Recupera datos guardados en el LocalStorage
-  async function enviar() {
     const guardaLatitud = JSON.parse(localStorage.getItem("posicion"));
     const guardarUsuario = JSON.parse(localStorage.getItem("id"));
     const guardarURL = localStorage.getItem("img");
@@ -32,13 +35,14 @@ function NoticiasForm() {
     if (!DescripcionNoticia.trim()) erroresLocales.descripcion = ["La descripción es obligatoria"];
     if (!publicacion) erroresLocales.tipopublicacion = ["Debe seleccionar un tipo de publicación"];
 
+     // Si hay errores, se detiene el envío y se muestra mensaje
     if (Object.keys(erroresLocales).length > 0) {
         setErrores(erroresLocales);
         setMensaje("Hay errores en el formulario. Revisa los campos.");
         setPubliCreada("")
         return; 
     }
-
+    // Obj con los datos que se van a enviar 
     const obj = {
         titulo: TituloNoticia,
         descripcion: DescripcionNoticia,
@@ -49,10 +53,10 @@ function NoticiasForm() {
         img: guardarURL
     };
 
-    try {
+    try { // Envio de datos a la API
         const respuestaServer = await postUsers(obj, "api/publicaciones/");
         console.log("Publicación enviada:", respuestaServer);
-
+        // Resetea el formulario y muestra mensaje
         setPubliCreada("Publicación Enviada");
         setMensaje(""); 
         setErrores({});
@@ -93,8 +97,10 @@ function NoticiasForm() {
             <div className='mainContainerNoticia'>
                 <h2 className='tituloNoticia'>Ingrese Publicación</h2>
                 <div className='containerNoticia'>
+                    {/*/Value se muestra en el input, vinculado al estado que tenga dentro de las llaves*/}
+                    {/*Onchange actualiza el estado cada vez que cambia el valor del input*/}
                     <input
-                        value={TituloNoticia}
+                        value={TituloNoticia} 
                         className='inputTexto'
                         type="text"
                         onChange={TituloF}

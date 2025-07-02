@@ -14,11 +14,9 @@
     const [publicaciones, setPublicaciones] = useState([])
     // POST de comentarios
     const [comentariosPublicaciones, setComentariosPublicaciones] = useState("")
-    // Para cargar los inputs
-    const [reload, setReload] = useState(false)
-    // Comentarios
+    const [reload, setReload] = useState(false) // para forzar recargas
+    // Comentarios y respuestas
     const [comentarios, setComentarios] = useState([])
-    // Respuestas
     const [comentarioActivo, setComentarioActivo] = useState(null)
     const [respuestas, setRespuestas] = useState({})
     const [textoRespuesta, setTextoRespuesta] = useState({})
@@ -77,7 +75,6 @@
           }
       }
   }
-    
     // POST para agregar respuestas a los comentarios de la publicacion
     // Se usa el comentarioId para identificar a qué comentario se le está agregando la respuesta  
     async function AgregarRespuesta(comentarioId) {
@@ -112,7 +109,7 @@
     }
   }
 
-    // GET para traer las respuestas que se hacen a los comentarios de la publicacion 
+    // GET para traer las respuestas que se hacen a un comentario especifico de la publicacion 
     async function TraerRespuestas(comentarioId) {
       console.log("Traer respuestas para comentario ID:", comentarioId);
       const datos = await getUsers("api/respuestascomentarios")
@@ -120,6 +117,7 @@
       setRespuestas(prev => ({ ...prev, [comentarioId]: filtradas }))
     }
 
+    // useEffect para cargar publicaciones, comentarios y reportes
     useEffect(() => {
       // Get para traer las publicaciones del formulario
       async function TraerPublicaciones() {
@@ -141,7 +139,6 @@
           console.log(datos);
           const filtro = datos.filter((dato) => dato.id == localStorage.getItem("id_publicacion"));
           console.log(filtro);
-          // setReportes(Array.isArray(filtro) ? filtro : filtro ? [filtro] : []);
           setReportes(filtro);
           setCantReportes(filtro[0].reporte)
         } catch (error) {
@@ -208,7 +205,7 @@
     async function AggReporte() {
       console.log(reportes[0].reporte++);
       const reportePublicacion = {
-        "reporte": reportes[0].reporte+=1-1,
+        "reporte": reportes[0].reporte+=1-1, // Se hizo el +=1-1 debido a que con +1 se agregan de 2 en 2 reportes
         "publicacion": localStorage.getItem("id_publicacion"),
         "usuario": localStorage.getItem("id")
       }

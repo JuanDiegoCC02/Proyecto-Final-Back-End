@@ -23,7 +23,7 @@ function RegistroForm() {
     const [errorTerminos, setErrorTerminos] = useState("");
 
 
-     const [mensaje, setMensaje] = useState("")
+     const [mensaje, setMensaje] = useState("") // Para mostrar mensaje
      const navigate = useNavigate();
 
     // Handlers de input para guardar el estado cuando el valor cambie

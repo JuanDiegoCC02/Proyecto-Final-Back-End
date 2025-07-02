@@ -1,6 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-
+                  // Se reciben dos funciones por props: confirmarEliminar y denegarEliminar
 function AlertaEliminar({confirmarEliminar,denegarEliminar}) {
   return (
     <div

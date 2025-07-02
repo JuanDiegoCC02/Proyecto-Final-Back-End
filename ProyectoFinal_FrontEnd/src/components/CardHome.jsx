@@ -1,8 +1,8 @@
 import React from 'react'
 import "../styles/CardHome.css"
 
-
 function CardHome() {
+  //Cards Informativos de Misión y Visión que se encuentran en el inicio del Home
   return (
     <div className='CardContainer'>
         <div className='Card'>

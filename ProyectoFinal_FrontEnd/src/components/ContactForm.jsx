@@ -11,6 +11,7 @@ function ContactForm() {
       const [msjExitoso, setMsjExitoso] = useState("")
       const [mensaje, setMensaje] = useState("")
 
+    // Funciones para actualizar cada campo del formulario
     function nombre_contact(e) {
         setNombreContact(e.target.value)
     }
@@ -24,15 +25,15 @@ function ContactForm() {
         setTextoContact(e.target.value)
     }
 
-    // Esta funcion es para que no se pueda enviar el formulario si hay campos vacios
- async function registrarContacto() {
+    // Función que valida y envía el formulario
+    async function registrarContacto() {
+        //Para que no se pueda enviar el formulario si hay campos vacios
          if (!NombreContact || !EmailContact || !TelefonoContact || !TextContact) {
             setMensaje("Todos los campos son obligatorios.");
             setMsjExitoso("")
             return;
         }
-        
-
+       // Objeto con los datos del formulario
         const obj = {
             nombre: NombreContact,
             email: EmailContact,
@@ -41,7 +42,7 @@ function ContactForm() {
         }
 
     try { // metodo POST para que pueda enviar la informacion que se ingresa al formulario
-        const respuestaServer = await postUsers(obj,"api/emails-contacto/");
+        const respuestaServer = await postUsers(obj,"api/emails-contacto/"); // Envío de los datos al backend (API)
         setNombreContact("") , setEmailContact(""), setTelefonoContact(""), setTextoContact(""); //Para reiniciar el formulario despues de enviarlo
         setMsjExitoso("¡Formulario enviado con exito!")
         setMensaje("")

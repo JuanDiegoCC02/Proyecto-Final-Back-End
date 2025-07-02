@@ -9,7 +9,7 @@ function Footer() {
         <div className='FooterContainer'>
         <div className='sec-AboutUs'>
           <h2>Sobre Nosotros</h2>
-          <p>Pagina ambiental.</p>
+          <p>Somos una Pagina ambiental creada para ayudar a la sociedad costarricense.</p>
             <ul className='sci'>
             <li><a href="https://www.youtube.com"><i className="fa-brands fa-youtube"></i></a></li>
             <li><a href="https://x.com"><i className="fa-brands fa-x-twitter"></i></a></li>

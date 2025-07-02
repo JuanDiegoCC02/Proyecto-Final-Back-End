@@ -79,6 +79,8 @@ async function EliminarUsuarios(id) {
           <button className='tablaUsuariosEditBtn' onClick={()=> setMostrar(!mostrar)}>Editar</button>
           {mostrar &&
               <> <br />
+              {/*/Value se muestra en el input, vinculado al estado que tenga dentro de las llaves*/}
+              {/*Onchange actualiza el estado cada vez que cambia el valor del input*/}
               <input type="text" className='inputTablaUsuarios' onChange={(e) => setEdicionAliasUsuario(e.target.value)} placeholder='Editar Alias Usuario' />
               <br />
               <input type="text" className='inputTablaUsuarios' onChange={(e) => setEdicionNombre(e.target.value)} placeholder='Editar Nombre' />

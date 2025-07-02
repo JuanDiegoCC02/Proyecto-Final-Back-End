@@ -4,6 +4,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import Nav from 'react-bootstrap/Nav';
 import "../styles/Sidebar.css"
 
+// Opción para configurar el comportamiento de scroll y fondo del Offcanvas
 const options = [
   {
     name: 'Enable both scrolling & backdrop',
@@ -13,10 +14,9 @@ const options = [
 ];
 
 function Sidebar({ name, ...props }) {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const toggleShow = () => setShow((s) => !s);
+  const [show, setShow] = useState(false); // Estado para controlar si el Offcanvas está visible o no
+  const handleClose = () => setShow(false); // Función que cierra el Sidebar
+  const toggleShow = () => setShow((s) => !s); // Función que alterna entre mostrar/ocultar el Sidebar
 
   return (
     <>

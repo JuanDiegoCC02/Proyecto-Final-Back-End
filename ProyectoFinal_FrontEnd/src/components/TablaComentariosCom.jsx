@@ -15,9 +15,10 @@ function TablaComentariosCom() {
     const [editEmail, setEditEMail] = useState("")
     const [editTelefono, setEditTelefono] = useState("")
     const [editComentario, setEditComentario] = useState("")
-    const [usuario,setUsuario] = useState(null)
+    const [usuario,setUsuario] = useState(null) //Estado para almacenar el usuario seleccionado para edición
 
   useEffect(() => {
+    // Si hay un usuario activo, se precargan sus datos en los inputs
     if(usuario){
       console.log("entra al usuario");
       console.log(usuario);
@@ -89,7 +90,9 @@ function TablaComentariosCom() {
          
       </tbody>
        {mostrar &&
-              <> <br />
+              <> <br /> 
+              {/*/Value se muestra en el input, vinculado al estado que tenga dentro de las llaves*/}
+              {/*Onchange actualiza el estado cada vez que cambia el valor del input*/}
               <input type="text" value={editNombre} className='inputTablaUsuarios' onChange={(e) => setEditNombre(e.target.value)} placeholder='Editar Nombre' />
               <br />
               <input type="text" value={editEmail}  className='inputTablaUsuarios' onChange={(e) => setEditEMail(e.target.value)} placeholder='Editar Email' />
@@ -99,7 +102,6 @@ function TablaComentariosCom() {
               <input type="text" value={editComentario}  className='inputTablaUsuarios' onChange={(e) => setEditComentario(e.target.value)} placeholder='Editar Mensaje' />
               <br />
               <button className='tablaUsuariosConfirmBtn' onClick={() => actualizarComentarios(usuario.id)}>Confirmar Edit</button>
-
               </>
           }
        

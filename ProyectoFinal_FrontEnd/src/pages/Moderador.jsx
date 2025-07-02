@@ -1,6 +1,5 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
-import ModeradorViews from  '../components/ModeradorViews'
 import StripedColumnsExample from '../components/TablaUsuariosCom'
 import Footer from '../components/Footer'
 import "../styles/Moderador.css"

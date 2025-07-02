@@ -1,7 +1,8 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-function AlertaEliminarRespuesta({confirmarEliminar,denegarEliminar}){
+                        // Se reciben dos funciones por props: confirmarEliminar y denegarEliminar
+function AlertaEliminarRespuesta({confirmarEliminar,denegarEliminar}){ 
   return (
     <div
       className="modal show"
