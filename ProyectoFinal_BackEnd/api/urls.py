@@ -11,9 +11,8 @@ urlpatterns = [
     path ('usuarios/', AggUsuarioView.as_view(), name = 'usuarios-list-create'),
     path ('usuarios-editar/<int:id>/', UsuarioEditarView.as_view(), name = 'usuarios-editar'),
     path ('usuariosGet/', GetUsuarioView.as_view()),
-
-    #duda de este url
     path ('usuarios-mostrar/', UsuariosListCreateView.as_view()),
+    
     path ('login/', LoginView.as_view(), name = 'usuarios-list-create'),
     path ('emails-contacto/', EmailContactoListCreateView.as_view()),
    

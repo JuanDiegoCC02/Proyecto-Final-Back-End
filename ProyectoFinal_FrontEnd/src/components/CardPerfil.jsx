@@ -94,7 +94,7 @@ async function traerCalificaciones() {
   {usuarios && usuarios.map(user => (
       <li key={user.id} className="PerfilItem">
 
-                   {/*------Prueba MOSTRAR Foto del Perfil-------*/}
+                   {/*------Foto del Perfil-------*/}
             <div>
               <strong>Foto de Perfil</strong><br />
               <img src={user.foto_perfil} alt="Perfil" className="perfilIMG" width={150} /><br />
@@ -106,9 +106,10 @@ async function traerCalificaciones() {
             <div className='containerData'><strong>Cantidad de Publicaciones</strong> <br /> {publicaciones.length}</div>
 
 
-
+        {/*------Calificaciones Perfil-------*/}
      <div> <strong>Calificaciones</strong></div>
        <ul>
+          {/*------Map para recorrer las calificaciones del usuario-------*/}
         {calificaciones.map((calificacion, index) => (
           <li 
             className='liCalificaiones' key={index} onMouseEnter={() => {
@@ -120,6 +121,7 @@ async function traerCalificaciones() {
             }}
             onMouseLeave={() => {
               
+              {/*------Se aplica un tiempo de 2 seg mejor acceso-------*/}
               const id = setTimeout(() => {
                 setMostrarRedireccion(null);
               }, 2000); setTimeoutId(id); 
@@ -130,7 +132,7 @@ async function traerCalificaciones() {
               {Number(calificacion.puntaje).toFixed(1)} ✨
             </div>
 
-        {/* Mostrar botón solo si el index coincide */}
+        {/* Mostrar botón de la calificación */}
         {mostrarRedireccion === index && (
           <div>
             <button className='btnVerCalificacion'>Ir a la Publicación</button>
@@ -167,7 +169,7 @@ async function traerCalificaciones() {
                 <input type="text" className='inptCardPerfil' value={edicionEmail} 
                   onChange={(e) => setEdicionEmail(e.target.value)} placeholder='Editar Email' /> <br />
 
-    {/*Prueba Foto de Perfil*/}
+               {/*Edit Foto de Perfil*/}
                <CloudinaryPerfil onImageUpload={(url) => setEditImg(url)} />
         
                 <button className='btnConfirmar' onClick={() => actualizar(user.id)}> Confirmar Edición </button>

@@ -16,30 +16,29 @@ from rest_framework.permissions import AllowAny
 class Permisos(BasePermission):
     def has_permission(self, request, view):
         usuario = request.user
+        #Valida la autentifiación del usuario
         if not usuario.is_authenticated:
             return False
+        
         metodo = request.method
         grupos_usuarios = usuario.groups.values_list('name', flat=True)
-
 
         if metodo in SAFE_METHODS:
             return True
         
+        #Pemrisos para Usuarios
         if "Usuario" in grupos_usuarios:
             if metodo in ["POST", "GET"]:
                 return True
-            
-        if "Moderador" in grupos_usuarios:
-            if metodo in ["POST", "GET", "PATCH", "DELETE"]:
-                return True
 
+        #Permisos para Administradores
         if "Administrador" in grupos_usuarios:
             if metodo in ["POST", "GET", "PATCH", "DELETE"]:
                 return True  
         return False
 
         
-#Permiso usuario
+#Permiso user
 class PermisosUser(BasePermission):
     def has_permission(self, request, view):
         usuario = request.user
@@ -47,8 +46,6 @@ class PermisosUser(BasePermission):
             return False
         metodo = request.method
         grupos_usuarios = usuario.groups.values_list('name', flat=True)
-
-
         if metodo in SAFE_METHODS:
             return True
         
@@ -86,8 +83,9 @@ class UsuariosListCreateView(ListCreateAPIView):
 
 #View AggUsuarios solo realiza un Post
 class AggUsuarioView(APIView):
+    #todos tienen permisos
     permission_classes = [AllowAny]
-        # <---todos los tados del request--->
+        # <---todos los datos del request--->
     def post(self,request):
         username = request.data.get("username") 
         first_name = request.data.get("first_name")
@@ -98,16 +96,21 @@ class AggUsuarioView(APIView):
         telefono = request.data.get("telefono")
         foto_perfil = request.data.get("foto_perfil")
 
+        #Validacion de campos desde Back-End
         if not username or not password or not email or not  fecha_nacimiento or not telefono:
             return Response(    
                 {"error": "Complete todos los campos"}, status=400 
             )
+        
+        #Validacion de Email existente en la base de datos
         if User.objects.filter(email=email).exists():
             return Response({"error": "Email ya Registrado"}, status=400)
+        
+        #Validacion de nombre de usuario ya existente en la base de datos
         if User.objects.filter(username=username).exists():
             return Response({"error":"Usuario ya Registrado"}, status=400)
 
-        #  <---Datos unicos de la tabla de django--->
+        #  <---Datos unicos de la tabla creada por django--->
         usuario = User.objects.create_user(
             username=username,
             first_name=first_name,
@@ -130,7 +133,7 @@ class AggUsuarioView(APIView):
 
 
 
-#View para tabla django y usuarios solo realiza Get
+#View de Get para tabla django y usuarios
 class GetUsuarioView(APIView):
     permission_classes = [IsAuthenticated]
     def get(self, request):
@@ -161,6 +164,7 @@ class GetUsuarioView(APIView):
 class LoginView(APIView):
     permission_classes = [AllowAny]
     def post(self, request):
+        #se valida el nombre de usuario y su contraseña
         username = request.data.get("username")
         password = request.data.get("password")
 
@@ -197,22 +201,20 @@ class TipoPublicacionesListCreateView(ListCreateAPIView):
 
 #View Publicaciones
 class PublicacionesListCreateView(ListCreateAPIView):
-    # permission_classes = [Permisos, IsAuthenticated]
+    permission_classes = [Permisos, IsAuthenticated]
     queryset = Publicaciones.objects.all()
     serializer_class = PublicacionesSerializer
     def perform_create(self, serializer):
         user = self.request.user
-
         serializer.save(usuario=user)
     
 
 
-#View Calificaciones 
+#View Calificaciones con ListCreateAPIView
 class CalificacionesListCreateView(ListCreateAPIView):
     serializer_class = CalificacionesSerializer
 
     def get_queryset(self):
-        # Para el método GET estándar sin filtros
         return Calificaciones.objects.all()
 
     def get(self, request, *args, **kwargs):
@@ -229,20 +231,13 @@ class CalificacionesListCreateView(ListCreateAPIView):
 
 
 
-#View GetCalificaciones
+#View Get Calificaciones con APIView
 class CalificacionesView(APIView):
     permission_classes = [AllowAny]
     def get(self,request,id):
         calificaciones_usuario = Calificaciones.objects.filter(usuario=id)
-        
         calificaciones_serializer = CalificacionesSerializer(calificaciones_usuario,many=True)
-
         return Response(calificaciones_serializer.data)
-
-  
-
-
-
 
 
 #View User tabla django
@@ -269,7 +264,7 @@ class UsuarioEditarView(APIView):
         img = request.data.get("foto_perfil")
 
         user = User.objects.get(id=id)
-                
+        #Edit de los datos de la tabla creada por django
         if username:
             user.username = username
         if first_name:
@@ -282,7 +277,7 @@ class UsuarioEditarView(APIView):
             user.set_password(password)
         
         usuario_ext = Usuarios.objects.get(usuario=user)
-
+        #Edit de los datos de la tabla creada por nosotros 
         if fecha_nacimiento:
             usuario_ext.fecha_nacimiento = fecha_nacimiento
         if telefono:

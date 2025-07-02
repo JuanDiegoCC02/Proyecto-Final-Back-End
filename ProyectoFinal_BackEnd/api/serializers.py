@@ -11,7 +11,7 @@ class UsersSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-#Serializer Usuarios conexion de tablas
+#Serializer Usuarios conexion entre tablas
 class UsuariosSerializer(serializers.ModelSerializer):
     usuario_alias = serializers.CharField(source="usuario.username",read_only=True)
     usuario_nombre = serializers.CharField(source="usuario.first_name",read_only=True)
@@ -71,7 +71,7 @@ class ComentariosSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-#Serializer Respues de Comentarios
+#Serializer Respuesta de Comentarios
 class RespuestaComentariosSerializer(serializers.ModelSerializer):
     usuario_alias = serializers.CharField(source="usuarios.username", read_only=True)
     comentario_responde = serializers.CharField(source="comentarios.contenido", read_only=True)

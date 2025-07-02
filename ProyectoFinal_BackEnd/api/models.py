@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 #Modelo Usuarios
 class Usuarios(models.Model):
-    #relacion entre tablas
+    #relacion entre la tabla creada por nosotros y la creada por django
     usuario = models.OneToOneField(User,on_delete=models.CASCADE)
     foto_perfil = models.TextField(null=True, blank=True)
     fecha_nacimiento = models.DateField()
@@ -21,7 +21,7 @@ class TipoPublicaciones(models.Model):
         return self.nombre
 
 
-#Modelo Publicaciones
+#Modelo del estado las Publicaciones
 class Publicaciones(models.Model):
     OPCIONES_ESTADO = (
         ("publicada", "Publicada"),
