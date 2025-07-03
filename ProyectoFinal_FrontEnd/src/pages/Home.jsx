@@ -30,8 +30,12 @@ function Home() {
         <Bienvenidos />
         <CardHome />
         <Img_info />
-        <NoticiasTitulo/>
-         {/*Para renderizar los cards con las publicaciones*/}
+        
+         {localStorage.getItem('grupoUsuario') && (
+           <NoticiasTitulo/>
+         )}
+       
+         {/*Para renderizar los cards con las publicaciones unicamente si el usuario ha iniciado sesion*/}
         <div className='d-flex flex-row gap-3 flex-wrap mx-auto justify-content-center'>
         {noticias.map((noticia) => {
           return (
