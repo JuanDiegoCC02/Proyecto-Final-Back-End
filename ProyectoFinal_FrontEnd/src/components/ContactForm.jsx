@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import  {postUsers} from '../services/MainLlamados'
+import  {postContacto} from '../services/MainLlamados'
 import "../styles/Contact.css"
 
 function ContactForm() {
@@ -42,7 +42,7 @@ function ContactForm() {
         }
 
     try { // metodo POST para que pueda enviar la informacion que se ingresa al formulario
-        const respuestaServer = await postUsers(obj,"api/emails-contacto/"); // Envío de los datos al backend (API)
+        const respuestaServer = await postContacto(obj,"api/emails-contacto/"); // Envío de los datos al backend (API)
         setNombreContact("") , setEmailContact(""), setTelefonoContact(""), setTextoContact(""); //Para reiniciar el formulario despues de enviarlo
         setMsjExitoso("¡Formulario enviado con exito!")
         setMensaje("")

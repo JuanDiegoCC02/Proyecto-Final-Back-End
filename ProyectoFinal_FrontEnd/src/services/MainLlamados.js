@@ -126,4 +126,29 @@ async function deleteUser(id,endpoint) {
     }
 }
 
-export { getUsers, postUsers, updateUsers, patchData, deleteUser };
+
+//////////////////////////Post Contacto sin autentificacion {Para tabla independiente de EmailsContacto}////////////////////////
+async function postContacto(obj,endpoint) {
+    try {
+        const response = await fetch(`http://127.0.0.1:8000/${endpoint}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+              
+            },
+            body: JSON.stringify(obj)
+        });
+
+     
+        return await response.json();
+
+            
+    } catch (error) {
+        console.error('Error posting user:', error);
+        throw error;
+    }
+}
+
+
+
+export { getUsers, postUsers, updateUsers, patchData, deleteUser, postContacto };

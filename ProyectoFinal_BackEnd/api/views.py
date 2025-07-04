@@ -71,7 +71,7 @@ class RespuestaComentariosListCreateView(ListCreateAPIView):
 
 #View  Emails Contactos
 class EmailContactoListCreateView(ListCreateAPIView):
-    permission_classes = [Permisos, IsAuthenticated]
+    permission_classes = [AllowAny] 
     queryset = EmailsContactos.objects.all()
     serializer_class = EmailContactosSerializer
 
